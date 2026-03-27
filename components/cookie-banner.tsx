@@ -33,8 +33,8 @@ export function CookieBanner() {
                                             We use cookies for authentication and analytics (Google Analytics) to improve your experience.{" "}
                                             <Link href="/privacy" className="text-indigo-400 hover:underline">
                                                           Privacy Policy
-                                            </Link>Link>
-                                </p>p>
+                                            </Link>
+                                </p>
                                 <div className="flex items-center gap-2 shrink-0">
                                             <Button
                                                             variant="outline"
@@ -43,17 +43,17 @@ export function CookieBanner() {
                                                             className="border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white text-xs"
                                                           >
                                                           Decline
-                                            </Button>Button>
+                                            </Button>
                                             <Button
                                                             size="sm"
                                                             onClick={accept}
                                                             className="bg-indigo-600 hover:bg-indigo-700 text-white text-xs"
                                                           >
                                                           Accept
-                                            </Button>Button>
-                                </div>div>
-                      </div>div>
-              </div>div>
-        </div>div>
+                                            </Button>
+                                </div>
+                      </div>
+              </div>
+        </div>
       );
-}</div>
+}
