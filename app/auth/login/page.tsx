@@ -50,7 +50,7 @@ export default function LoginPage() {
                                   <h2 className="text-3xl font-bold text-white leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                               Your EU job search,<br />
                                               <span style={{ background: "linear-gradient(135deg, #636DF5, #7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>powered by AI</span>
-                                  </h2>h2>
+                                  </h2>
                                   <div className="flex flex-wrap gap-2">
                                     {["✨ AI CV Adapter", "🌍 12 Countries", "💌 Cover Letters", "📋 Kanban Tracker"].map((pill) => (
                         <span key={pill} className="text-xs font-semibold px-3 py-1 rounded-full border border-white/10 text-white/70">{pill}</span>
@@ -71,7 +71,7 @@ export default function LoginPage() {
                                             ← Back to home
                                 </Link>
                       
-                                <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Welcome back</h1>h1>
+                                <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Welcome back</h1>
                                 <p className="text-sm mb-8" style={{ color: "#7A7F94" }}>Sign in to your EuroCareer AI account</p>
                       
                         {error && (
