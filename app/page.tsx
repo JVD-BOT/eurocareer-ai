@@ -1,201 +1,279 @@
+"use client";
 import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 const COUNTRIES = [
-  { code: "DE", name: "Germany" },
-  { code: "NL", name: "Netherlands" },
-  { code: "FR", name: "France" },
-  { code: "SE", name: "Sweden" },
-  { code: "GB", name: "UK" },
-  { code: "ES", name: "Spain" },
-  { code: "IE", name: "Ireland" },
-  { code: "DK", name: "Denmark" },
-  { code: "BE", name: "Belgium" },
-  { code: "AT", name: "Austria" },
-  { code: "CH", name: "Switzerland" },
-  { code: "IT", name: "Italy" },
-];
+  { code: "DE", name: "Germany", flag: "🇩🇪" },
+  { code: "NL", name: "Netherlands", flag: "🇳🇱" },
+  { code: "FR", name: "France", flag: "🇫🇷" },
+  { code: "SE", name: "Sweden", flag: "🇸🇪" },
+  { code: "GB", name: "UK", flag: "🇬🇧" },
+  { code: "ES", name: "Spain", flag: "🇪🇸" },
+  { code: "IE", name: "Ireland", flag: "🇮🇪" },
+  { code: "DK", name: "Denmark", flag: "🇩🇰" },
+  { code: "BE", name: "Belgium", flag: "🇧🇪" },
+  { code: "AT", name: "Austria", flag: "🇦🇹" },
+  { code: "CH", name: "Switzerland", flag: "🇨🇭" },
+  { code: "IT", name: "Italy", flag: "🇮🇹" },
+  ];
 
 const HOW_IT_WORKS = [
-  { step: "01", title: "Create your profile", desc: "Add your CV once. EuroCareer AI stores it securely and uses it as the base for every adaptation and cover letter." },
-  { step: "02", title: "Track your applications", desc: "Log every job across the Kanban board — Researching, Applied, Responded, Interview, Offer, Rejected." },
-  { step: "03", title: "Generate with AI", desc: "Pick a country, click adapt. Get a country-specific CV and cover letter in seconds, ready to send." },
-];
+  { step: "01", icon: "👤", title: "Create your profile", desc: "Add your CV once. EuroCareer AI stores it securely and uses it as the base for every adaptation and cover letter." },
+  { step: "02", icon: "📋", title: "Track your applications", desc: "Log every job across the Kanban board — Researching, Applied, Interview, Offer, Rejected." },
+  { step: "03", icon: "✨", title: "Generate with AI", desc: "Pick a country, click adapt. Get a country-specific CV and cover letter in seconds, ready to send." },
+  ];
 
 const FEATURES = [
-  { emoji: "📋", title: "Application Tracker", desc: "Kanban board across 6 stages — Researching, Applied, Responded, Interview, Offer, Rejected. Drag to update, filter by country or status." },
-  { emoji: "📄", title: "AI CV Adapter", desc: "One click and your CV is reformatted to the standards of Germany, Netherlands, France, Sweden, and 8 more countries." },
-  { emoji: "💌", title: "Cover Letter Generator", desc: "Choose formal, warm, or casual tone. Get a personalised letter in seconds — regenerate with feedback until perfect." },
-  { emoji: "🌍", title: "Country Intelligence", desc: "Built-in hiring norms for 12 EU countries: photo expectations, CV length, language conventions, and more." },
-];
+  { emoji: "📋", title: "Application Tracker", desc: "Kanban board across 6 stages — Researching, Applied, Interview, Offer, Rejected. Filter by country or status.", tag: "Core" },
+  { emoji: "📄", title: "AI CV Adapter", desc: "One click and your CV is reformatted to the standards of Germany, Netherlands, France, Sweden, and 8 more.", tag: "AI" },
+  { emoji: "💌", title: "Cover Letter Generator", desc: "Choose formal, warm, or casual tone. Get a personalised letter in seconds — regenerate with feedback.", tag: "AI" },
+  { emoji: "🌍", title: "Country Intelligence", desc: "Built-in hiring norms for 12 EU countries: photo expectations, CV length, language conventions, and more.", tag: "Core" },
+  ];
 
 const BLOG_POSTS = [
-  { tag: "CV Guide", title: "How to write a CV for Germany in 2026", desc: "German CVs follow strict conventions.", href: "/blog/german-cv-format" },
-  { tag: "Job Search", title: "Finding jobs in the Netherlands as a foreigner", desc: "The Dutch job market is open to internationals.", href: "/blog/netherlands-job-search" },
-  { tag: "CV Guide", title: "EU vs US resume: key differences", desc: "Here is what to change before you hit send.", href: "/blog/eu-vs-us-resume" },
-];
+  { tag: "CV Guide", flag: "🇩🇪", title: "How to write a CV for Germany in 2026", desc: "German CVs follow strict conventions around format, photo, and structure.", href: "/blog/german-cv-format" },
+  { tag: "Job Search", flag: "🇳🇱", title: "Finding jobs in the Netherlands as a foreigner", desc: "The Dutch job market is open to internationals — here is how to stand out.", href: "/blog/netherlands-job-search" },
+  { tag: "CV Guide", flag: "🇪🇺", title: "EU vs US resume: key differences explained", desc: "Here is exactly what to change before you hit send on an EU application.", href: "/blog/eu-vs-us-resume" },
+  ];
 
 const FAQS = [
-  { q: "Which countries are supported?", a: "Germany, Netherlands, France, Sweden, Denmark, UK, Spain, Ireland, Belgium, Austria, Switzerland, and Italy." },
-  { q: "How does the AI CV adapter work?", a: "Paste your existing CV, select the target country, and the AI rewrites it to match local hiring standards." },
-  { q: "Do I need ChatGPT or any other AI subscription?", a: "No. The AI is built directly into EuroCareer AI. Everything runs within the app." },
-  { q: "What is an AI credit?", a: "Each AI generation uses one credit. Free accounts get 3 per month. Pro accounts get unlimited." },
-  { q: "Can I cancel my Pro subscription at any time?", a: "Yes. Cancel anytime from the billing page." },
-  { q: "Is my data secure?", a: "All data is stored in a Supabase database with Row Level Security." },
-];
+  { q: "Which countries are supported?", a: "Germany, Netherlands, France, Sweden, Denmark, UK, Spain, Ireland, Belgium, Austria, Switzerland, and Italy — 12 countries total." },
+  { q: "How does the AI CV adapter work?", a: "Paste your existing CV, select the target country, and the AI rewrites it to match local hiring standards — format, length, photo norms, and more." },
+  { q: "Do I need ChatGPT or any other AI subscription?", a: "No. The AI is built directly into EuroCareer AI. Everything runs within the app — no third-party subscriptions needed." },
+  { q: "What is an AI credit?", a: "Each AI generation (CV adaptation or cover letter) uses one credit. Free accounts get 3 per month. Pro accounts get unlimited." },
+  { q: "Can I cancel my Pro subscription at any time?", a: "Yes. Cancel anytime from your billing page — no questions asked, no lock-in." },
+  { q: "Is my data secure?", a: "All data is stored in a Supabase database with Row Level Security. Only you can access your applications and documents." },
+  ];
 
 export default function LandingPage() {
+    const revealRefs = useRef<HTMLElement[]>([]);
+
+  useEffect(() => {
+        const observer = new IntersectionObserver(
+                (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible")),
+          { threshold: 0.1 }
+              );
+        revealRefs.current.forEach((el) => el && observer.observe(el));
+        return () => observer.disconnect();
+  }, []);
+
+  const addReveal = (el: HTMLElement | null) => {
+        if (el && !revealRefs.current.includes(el)) revealRefs.current.push(el);
+  };
+
   return (
-    <div className="min-h-screen bg-white text-gray-900">
-      <nav className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-5xl mx-auto px-6 py-3.5 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <img src="/LOGO_PNG.png" alt="EuroCareer AI" className="h-8 w-auto" />
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link href="/auth/login" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">Sign in</Link>
-            <Link href="/auth/signup" className="text-sm bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors">Start free</Link>
-          </div>
-        </div>
-      </nav>
-      <section className="max-w-5xl mx-auto px-6 pt-20 pb-16 text-center">
-        <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
-          <span>🇪🇺</span> Built for the European job market
-        </div>
-        <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight mb-6">
-          Land your EU role{" "}
-          <span className="bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">faster</span>
-          {" "}with AI
-        </h1>
-        <p className="text-xl text-gray-500 max-w-2xl mx-auto mb-10">Track every application, adapt your CV to local standards, and generate cover letters.</p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link href="/auth/signup" className="bg-indigo-600 hover:bg-indigo-700 text-white text-base font-semibold px-8 py-3.5 rounded-xl transition-colors w-full sm:w-auto text-center">Start free</Link>
-          <Link href="#how-it-works" className="text-base text-gray-600 hover:text-gray-900 transition-colors">See how it works</Link>
-        </div>
-        <p className="mt-4 text-sm text-gray-400">No credit card required</p>
-      </section>
-      <section className="border-y bg-gray-50 py-8">
-        <div className="max-w-5xl mx-auto px-6">
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest text-center mb-6">Trusted by job seekers targeting</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {COUNTRIES.map((c) => (
-              <span key={c.code} className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-1.5 text-sm text-gray-700 font-medium shadow-sm">
-                <span className="text-xs font-bold text-gray-400">{c.code}</span>
-                {c.name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="how-it-works" className="py-20 max-w-5xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-3">Three steps to your next EU role</h2>
-        <p className="text-gray-500 text-center mb-14">From signup to sent application in under 5 minutes.</p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-          {HOW_IT_WORKS.map((item) => (
-            <div key={item.step} className="flex flex-col items-start">
-              <span className="text-4xl font-extrabold text-indigo-100 mb-3">{item.step}</span>
-              <h3 className="font-bold text-gray-900 text-lg mb-2">{item.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-      <section className="bg-gray-50 py-20">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-3">Everything you need to win in Europe</h2>
-          <p className="text-gray-500 text-center mb-12">One platform from first application to signed offer.</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {FEATURES.map((f) => (
-              <div key={f.title} className="bg-white rounded-2xl border p-6 hover:shadow-md transition-shadow">
-                <div className="text-3xl mb-3">{f.emoji}</div>
-                <h3 className="font-semibold text-gray-900 mb-2">{f.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{f.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="py-20 max-w-5xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-3">Simple, transparent pricing</h2>
-        <p className="text-gray-500 text-center mb-12">Start free. Upgrade when you need more AI power.</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          <div className="rounded-2xl border p-8 space-y-4">
-            <p className="text-sm font-semibold text-gray-500 uppercase">Free</p>
-            <p className="text-4xl font-extrabold">€0</p>
-            <ul className="space-y-2 text-sm text-gray-700">
-              {["Application tracker (unlimited)", "Kanban board", "3 AI generations / month", "12 EU countries"].map((item) => (
-                <li key={item} className="flex items-center gap-2"><span className="text-green-500 font-bold">✓</span>{item}</li>
-              ))}
-            </ul>
-            <Link href="/auth/signup" className="block text-center border border-gray-200 hover:bg-indigo-50 text-gray-700 font-medium py-2.5 rounded-lg transition-colors text-sm">Get started free</Link>
-          </div>
-          <div className="rounded-2xl border-2 border-indigo-600 p-8 space-y-4 relative">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Most popular</div>
-            <p className="text-sm font-semibold text-indigo-600 uppercase">Pro</p>
-            <p className="text-4xl font-extrabold">€9 <span className="text-base text-gray-400 font-normal">/ month</span></p>
-            <ul className="space-y-2 text-sm text-gray-700">
-              {["Everything in Free", "Unlimited AI generations", "CV adapter for all 12 countries", "Cover letter with feedback loop", "Follow-up emails", "Priority AI processing"].map((item) => (
-                <li key={item} className="flex items-center gap-2"><span className="text-indigo-600 font-bold">✓</span>{item}</li>
-              ))}
-            </ul>
-            <Link href="/auth/signup" className="block text-center bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-lg transition-colors text-sm">Start with Pro</Link>
-          </div>
-        </div>
-      </section>
-      <section className="bg-gray-50 py-20">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-3">EU job search guides</h2>
-          <p className="text-gray-500 text-center mb-12">Free resources to help you land roles across Europe.</p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {BLOG_POSTS.map((post) => (
-              <Link key={post.title} href={post.href} className="bg-white rounded-2xl border p-6 hover:shadow-md transition-shadow flex flex-col gap-3">
-                <span className="text-xs font-semibold text-indigo-600 uppercase">{post.tag}</span>
-                <h3 className="font-bold text-gray-900 leading-snug">{post.title}</h3>
-                <p className="text-sm text-gray-500 flex-1">{post.desc}</p>
-                <span className="text-sm text-indigo-600 font-medium">Read guide</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="py-20">
-        <div className="max-w-2xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">Frequently asked questions</h2>
-          <div className="space-y-4">
-            {FAQS.map((faq) => (
-              <details key={faq.q} className="group bg-white rounded-xl border px-6 py-4 cursor-pointer">
-                <summary className="font-medium text-gray-900 list-none flex items-center justify-between gap-4">
-                  {faq.q}
-                  <span className="text-gray-400 group-open:rotate-180 transition-transform shrink-0">▼</span>
-                </summary>
-                <p className="mt-3 text-sm text-gray-500 leading-relaxed">{faq.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="py-20 bg-gray-900 text-white text-center">
-        <div className="max-w-xl mx-auto px-6">
-          <img src="/ARROW.png" alt="" className="h-10 w-auto mx-auto mb-6 opacity-80 invert" />
-          <h2 className="text-3xl font-bold mb-4">Ready to land your EU role?</h2>
-          <p className="text-gray-400 mb-8">Join job seekers using AI to stand out across 12 European markets.</p>
-          <Link href="/auth/signup" className="inline-block bg-white hover:bg-gray-100 text-gray-900 text-base font-semibold px-10 py-4 rounded-xl transition-colors">Start free</Link>
-          <p className="mt-4 text-sm text-gray-500">No credit card required</p>
-        </div>
-      </section>
-      <footer className="border-t bg-gray-50 py-10">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm text-gray-500">
-            <img src="/ARROW.png" alt="" className="h-5 w-auto" />
-            <span>© {new Date().getFullYear()} EuroCareer AI</span>
-          </div>
-          <div className="flex items-center gap-6 text-sm text-gray-400">
-            <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy</Link>
-            <Link href="/terms" className="hover:text-gray-600 transition-colors">Terms</Link>
-            <Link href="/auth/login" className="hover:text-gray-600 transition-colors">Sign in</Link>
-            <Link href="/auth/signup" className="hover:text-gray-600 transition-colors">Sign up</Link>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-}
+        <div className="min-h-screen text-[#0F1629]" style={{ background: "#F8F8F6" }}>
+
+          {/* ── NAV ── */}
+                <nav className="border-b border-[#E2E1DC] bg-white/90 backdrop-blur-sm sticky top-0 z-50">
+                        <div className="max-w-5xl mx-auto px-6 py-3.5 flex items-center justify-between">
+                                  <Link href="/" className="flex items-center gap-2">
+                                              <Image src="/LOGO_PNG.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" />
+                                  </Link>Link>
+                                  <div className="hidden md:flex items-center gap-6 text-sm text-[#7A7F94]">
+                                              <a href="#how-it-works" className="hover:text-[#0F1629] transition-colors">How it works</a>a>
+                                              <a href="#features" className="hover:text-[#0F1629] transition-colors">Features</a>a>
+                                              <a href="#pricing" className="hover:text-[#0F1629] transition-colors">Pricing</a>a>
+                                              <a href="#faq" className="hover:text-[#0F1629] transition-colors">FAQ</a>a>
+                                  </div>div>
+                                  <div className="flex items-center gap-3">
+                                              <Link href="/auth/login" className="text-sm text-[#3D4255] hover:text-[#0F1629] transition-colors font-medium">Sign in</Link>Link>
+                                              <Link href="/auth/signup" className="text-sm font-semibold px-4 py-2 rounded-lg text-white transition-all hover:-translate-y-0.5 hover:shadow-md" style={{ background: "#636DF5" }}>Start free</Link>Link>
+                                  </div>div>
+                        </div>div>
+                </nav>nav>
+        
+          {/* ── HERO ── */}
+              <section className="max-w-5xl mx-auto px-6 pt-20 pb-16 text-center relative">
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03]">
+                                <Image src="/STAR.png" alt="" width={400} height={400} className="animate-slow-spin" />
+                      </div>div>
+                      <div className="relative">
+                                <div className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-6 border border-[#E2E1DC] bg-white text-[#636DF5]">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#636DF5] animate-pulse-dot" />
+                                            Built for the European job market
+                                </div>div>
+                                <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight tracking-tight mb-6" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                                            Land your EU role{" "}
+                                            <span style={{ background: "linear-gradient(135deg, #636DF5, #7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>faster</span>span>
+                                  {" "}with AI
+                                </h1>h1>
+                                <p className="text-xl text-[#7A7F94] max-w-2xl mx-auto mb-10">Track every application, adapt your CV to local standards, and generate cover letters for 12 European markets — all in one place.</p>p>
+                                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                                            <Link href="/auth/signup" className="font-semibold px-8 py-3.5 rounded-xl text-white transition-all hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto text-center" style={{ background: "#0F1629" }}>Start free →</Link>Link>
+                                            <a href="#how-it-works" className="text-[#636DF5] font-medium hover:underline">See how it works</a>a>
+                                </div>div>
+                                <p className="mt-4 text-sm text-[#B0B4C5]">No credit card required</p>p>
+                      </div>div>
+              </section>section>
+        
+          {/* ── COUNTRY BAR ── */}
+              <section className="border-y border-[#E2E1DC] bg-white py-8">
+                      <div className="max-w-5xl mx-auto px-6">
+                                <p className="text-xs font-semibold text-[#B0B4C5] uppercase tracking-widest text-center mb-5">Trusted by job seekers targeting 12 EU countries</p>p>
+                                <div className="flex flex-wrap justify-center gap-2">
+                                  {COUNTRIES.map((c) => (
+                        <span key={c.code} className="inline-flex items-center gap-1.5 bg-[#F8F8F6] border border-[#E2E1DC] rounded-full px-3 py-1.5 text-sm text-[#3D4255] font-medium hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-colors cursor-default">
+                                        <span>{c.flag}</span>span> {c.name}
+                        </span>span>
+                      ))}
+                                </div>div>
+                      </div>div>
+              </section>section>
+        
+          {/* ── HOW IT WORKS ── */}
+              <section id="how-it-works" className="py-20 max-w-5xl mx-auto px-6">
+                      <div ref={addReveal} className="reveal text-center mb-14">
+                                <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#636DF5] uppercase tracking-widest mb-3">
+                                            <Image src="/STAR.png" alt="" width={14} height={14} className="opacity-60" /> How it works
+                                </div>div>
+                                <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Three steps to your next EU role</h2>h2>
+                                <p className="text-[#7A7F94] mt-3">From signup to sent application in under 5 minutes.</p>p>
+                      </div>div>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                        {HOW_IT_WORKS.map((item, i) => (
+                      <div key={item.step} ref={addReveal} className="reveal flex flex-col items-start" style={{ transitionDelay: `${i * 0.1}s` }}>
+                                    <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4 border border-[#E2E1DC] bg-white shadow-sm">{item.icon}</div>div>
+                                    <span className="text-xs font-bold text-[#B0B4C5] mb-2">{item.step}</span>span>
+                                    <h3 className="font-bold text-[#0F1629] text-lg mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>{item.title}</h3>h3>
+                                    <p className="text-sm text-[#7A7F94] leading-relaxed">{item.desc}</p>p>
+                      </div>div>
+                    ))}
+                      </div>div>
+              </section>section>
+        
+          {/* ── FEATURES ── */}
+              <section id="features" className="bg-white border-y border-[#E2E1DC] py-20">
+                      <div className="max-w-5xl mx-auto px-6">
+                                <div ref={addReveal} className="reveal text-center mb-12">
+                                            <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#636DF5] uppercase tracking-widest mb-3">
+                                                          <Image src="/STAR.png" alt="" width={14} height={14} className="opacity-60" /> Features
+                                            </div>div>
+                                            <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Everything you need to win in Europe</h2>h2>
+                                            <p className="text-[#7A7F94] mt-3">One platform from first application to signed offer.</p>p>
+                                </div>div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                  {FEATURES.map((f, i) => (
+                        <div key={f.title} ref={addReveal} className="reveal rounded-2xl border border-[#E2E1DC] bg-[#F8F8F6] p-6 hover:border-[#636DF5] hover:shadow-md transition-all hover:-translate-y-0.5" style={{ transitionDelay: `${i * 0.08}s` }}>
+                                        <div className="flex items-start justify-between mb-3">
+                                                          <span className="text-3xl">{f.emoji}</span>span>
+                                                          <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${f.tag === "AI" ? "bg-[#EEEFFE] text-[#636DF5]" : "bg-[#F3F2EE] text-[#7A7F94]"}`}>{f.tag === "AI" ? "✨ AI" : f.tag}</span>span>
+                                        </div>div>
+                                        <h3 className="font-semibold text-[#0F1629] mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>{f.title}</h3>h3>
+                                        <p className="text-sm text-[#7A7F94] leading-relaxed">{f.desc}</p>p>
+                        </div>div>
+                      ))}
+                                </div>div>
+                      </div>div>
+              </section>section>
+        
+          {/* ── PRICING ── */}
+              <section id="pricing" className="py-20 max-w-5xl mx-auto px-6">
+                      <div ref={addReveal} className="reveal text-center mb-12">
+                                <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Simple, transparent pricing</h2>h2>
+                                <p className="text-[#7A7F94] mt-3">Start free. Upgrade when you need more AI power.</p>p>
+                      </div>div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                                <div ref={addReveal} className="reveal rounded-2xl border border-[#E2E1DC] bg-white p-8 space-y-4">
+                                            <p className="text-xs font-bold text-[#B0B4C5] uppercase tracking-widest">Free</p>p>
+                                            <p className="text-4xl font-extrabold" style={{ fontFamily: "'Outfit', sans-serif" }}>€0</p>p>
+                                            <ul className="space-y-2 text-sm text-[#3D4255]">
+                                              {["Application tracker (unlimited)", "Kanban board", "3 AI generations / month", "12 EU countries"].map((item) => (
+                          <li key={item} className="flex items-center gap-2"><span className="text-[#16A34A] font-bold">✓</span>span>{item}</li>li>
+                        ))}
+                                            </ul>ul>
+                                            <Link href="/auth/signup" className="block text-center border border-[#E2E1DC] hover:border-[#636DF5] hover:bg-[#EEEFFE] text-[#3D4255] font-medium py-2.5 rounded-xl transition-colors text-sm">Get started free</Link>Link>
+                                </div>div>
+                                <div ref={addReveal} className="reveal rounded-2xl border-2 bg-white p-8 space-y-4 relative" style={{ borderColor: "#636DF5" }}>
+                                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-white text-xs font-semibold px-3 py-1 rounded-full" style={{ background: "#636DF5" }}>Most popular</div>div>
+                                            <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#636DF5" }}>Pro</p>p>
+                                            <p className="text-4xl font-extrabold" style={{ fontFamily: "'Outfit', sans-serif" }}>€9 <span className="text-base text-[#B0B4C5] font-normal">/ month</span>span></p>p>
+                                            <ul className="space-y-2 text-sm text-[#3D4255]">
+                                              {["Everything in Free", "Unlimited AI generations", "CV adapter for all 12 countries", "Cover letter with feedback loop", "Follow-up emails", "Priority AI processing"].map((item) => (
+                          <li key={item} className="flex items-center gap-2"><span className="font-bold" style={{ color: "#636DF5" }}>✓</span>span>{item}</li>li>
+                        ))}
+                                            </ul>ul>
+                                            <Link href="/auth/signup" className="block text-center text-white font-semibold py-2.5 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-md text-sm" style={{ background: "#636DF5" }}>Start with Pro</Link>Link>
+                                </div>div>
+                      </div>div>
+              </section>section>
+        
+          {/* ── BLOG ── */}
+              <section className="bg-white border-y border-[#E2E1DC] py-20">
+                      <div className="max-w-5xl mx-auto px-6">
+                                <div ref={addReveal} className="reveal flex items-center justify-between mb-10">
+                                            <div>
+                                                          <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#636DF5] uppercase tracking-widest mb-2">
+                                                                          <Image src="/STAR.png" alt="" width={14} height={14} className="opacity-60" /> Guides
+                                                          </div>div>
+                                                          <h2 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>EU job search guides</h2>h2>
+                                            </div>div>
+                                            <Link href="/blog" className="text-sm font-medium text-[#636DF5] hover:underline hidden sm:block">View all →</Link>Link>
+                                </div>div>
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                                  {BLOG_POSTS.map((post, i) => (
+                        <Link key={post.title} href={post.href} ref={addReveal} className="reveal group rounded-2xl border border-[#E2E1DC] bg-[#F8F8F6] p-6 hover:border-[#636DF5] hover:shadow-md transition-all hover:-translate-y-0.5 flex flex-col gap-3" style={{ transitionDelay: `${i * 0.08}s` }}>
+                                        <div className="text-2xl">{post.flag}</div>div>
+                                        <span className="text-xs font-semibold text-[#636DF5] uppercase">{post.tag}</span>span>
+                                        <h3 className="font-bold text-[#0F1629] leading-snug text-sm" style={{ fontFamily: "'Outfit', sans-serif" }}>{post.title}</h3>h3>
+                                        <p className="text-xs text-[#7A7F94] flex-1">{post.desc}</p>p>
+                                        <span className="text-sm font-medium text-[#636DF5] group-hover:underline">Read guide →</span>span>
+                        </Link>Link>
+                      ))}
+                                </div>div>
+                      </div>div>
+              </section>section>
+        
+          {/* ── FAQ ── */}
+              <section id="faq" className="py-20">
+                      <div className="max-w-2xl mx-auto px-6">
+                                <div ref={addReveal} className="reveal text-center mb-12">
+                                            <h2 className="text-3xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Frequently asked questions</h2>h2>
+                                </div>div>
+                                <div className="space-y-3">
+                                  {FAQS.map((faq, i) => (
+                        <details key={faq.q} ref={addReveal} className="reveal group rounded-xl border border-[#E2E1DC] bg-white px-6 py-4 cursor-pointer" style={{ transitionDelay: `${i * 0.05}s` }}>
+                                        <summary className="font-medium text-[#0F1629] list-none flex items-center justify-between gap-4 text-sm">
+                                          {faq.q}
+                                                          <span className="text-[#B0B4C5] group-open:rotate-180 transition-transform shrink-0 text-xs">▼</span>span>
+                                        </summary>summary>
+                                        <p className="mt-3 text-sm text-[#7A7F94] leading-relaxed">{faq.a}</p>p>
+                        </details>details>
+                      ))}
+                                </div>div>
+                      </div>div>
+              </section>section>
+        
+          {/* ── CTA ── */}
+              <section className="py-20 mx-4 sm:mx-8 mb-8 rounded-3xl text-white text-center relative overflow-hidden" style={{ background: "#0F1629" }}>
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.04]">
+                                <Image src="/STAR.png" alt="" width={500} height={500} className="animate-slow-spin" style={{ filter: "invert(1)" }} />
+                      </div>div>
+                      <div className="relative max-w-xl mx-auto px-6">
+                                <Image src="/STAR.png" alt="" width={36} height={36} className="mx-auto mb-5 opacity-60" style={{ filter: "invert(1)" }} />
+                                <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ fontFamily: "'Outfit', sans-serif" }}>Ready to land your EU role?</h2>h2>
+                                <p className="text-[#7A7F94] mb-8">Join job seekers using AI to stand out across 12 European markets.</p>p>
+                                <Link href="/auth/signup" className="inline-block bg-white text-[#0F1629] text-base font-semibold px-10 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg">Start free →</Link>Link>
+                                <p className="mt-4 text-sm text-[#7A7F94]">No credit card required</p>p>
+                      </div>div>
+              </section>section>
+        
+          {/* ── FOOTER ── */}
+              <footer className="border-t border-[#E2E1DC] py-10">
+                      <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                <div className="flex items-center gap-2 text-sm text-[#7A7F94]">
+                                            <Image src="/STAR.png" alt="" width={18} height={18} className="opacity-50" />
+                                            <span>© {new Date().getFullYear()} EuroCareer AI</span>span>
+                                </div>div>
+                                <div className="flex items-center gap-6 text-sm text-[#B0B4C5]">
+                                            <Link href="/privacy" className="hover:text-[#3D4255] transition-colors">Privacy</Link>Link>
+                                            <Link href="/terms" className="hover:text-[#3D4255] transition-colors">Terms</Link>Link>
+                                            <Link href="/auth/login" className="hover:text-[#3D4255] transition-colors">Sign in</Link>Link>
+                                            <Link href="/auth/signup" className="hover:text-[#3D4255] transition-colors">Sign up</Link>Link>
+                                </div>div>
+                      </div>div>
+              </footer>footer>
+        </div>div>
+      );
+}</nav>
