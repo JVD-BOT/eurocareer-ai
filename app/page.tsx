@@ -98,7 +98,7 @@ export default function LandingPage() {
                                             Land your EU role{" "}
                                             <span style={{ background: "linear-gradient(135deg, #636DF5, #7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>faster</span>
                                   {" "}with AI
-                                </h1>h1>
+                                </h1>
                                 <p className="text-xl text-[#7A7F94] max-w-2xl mx-auto mb-10">Track every application, adapt your CV to local standards, and generate cover letters for 12 European markets — all in one place.</p>
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                                             <Link href="/auth/signup" className="font-semibold px-8 py-3.5 rounded-xl text-white transition-all hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto text-center" style={{ background: "#0F1629" }}>Start free →</Link>
@@ -128,7 +128,7 @@ export default function LandingPage() {
                                 <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#636DF5] uppercase tracking-widest mb-3">
                                             <Image src="/STAR.png" alt="" width={14} height={14} className="opacity-60" /> How it works
                                 </div>
-                                <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Three steps to your next EU role</h2>h2>
+                                <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Three steps to your next EU role</h2>
                                 <p className="text-[#7A7F94] mt-3">From signup to sent application in under 5 minutes.</p>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -136,7 +136,7 @@ export default function LandingPage() {
                       <div key={item.step} ref={addReveal} className="reveal flex flex-col items-start" style={{ transitionDelay: `${i * 0.1}s` }}>
                                     <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4 border border-[#E2E1DC] bg-white shadow-sm">{item.icon}</div>
                                     <span className="text-xs font-bold text-[#B0B4C5] mb-2">{item.step}</span>
-                                    <h3 className="font-bold text-[#0F1629] text-lg mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>{item.title}</h3>h3>
+                                    <h3 className="font-bold text-[#0F1629] text-lg mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>{item.title}</h3>
                                     <p className="text-sm text-[#7A7F94] leading-relaxed">{item.desc}</p>
                       </div>
                     ))}
@@ -150,7 +150,7 @@ export default function LandingPage() {
                                             <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#636DF5] uppercase tracking-widest mb-3">
                                                           <Image src="/STAR.png" alt="" width={14} height={14} className="opacity-60" /> Features
                                             </div>
-                                            <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Everything you need to win in Europe</h2>h2>
+                                            <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Everything you need to win in Europe</h2>
                                             <p className="text-[#7A7F94] mt-3">One platform from first application to signed offer.</p>
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -160,7 +160,7 @@ export default function LandingPage() {
                                                           <span className="text-3xl">{f.emoji}</span>
                                                           <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${f.tag === "AI" ? "bg-[#EEEFFE] text-[#636DF5]" : "bg-[#F3F2EE] text-[#7A7F94]"}`}>{f.tag === "AI" ? "✨ AI" : f.tag}</span>
                                         </div>
-                                        <h3 className="font-semibold text-[#0F1629] mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>{f.title}</h3>h3>
+                                        <h3 className="font-semibold text-[#0F1629] mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>{f.title}</h3>
                                         <p className="text-sm text-[#7A7F94] leading-relaxed">{f.desc}</p>
                         </div>
                       ))}
@@ -171,7 +171,7 @@ export default function LandingPage() {
           {/* ── PRICING ── */}
               <section id="pricing" className="py-20 max-w-5xl mx-auto px-6">
                       <div ref={addReveal} className="reveal text-center mb-12">
-                                <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Simple, transparent pricing</h2>h2>
+                                <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Simple, transparent pricing</h2>
                                 <p className="text-[#7A7F94] mt-3">Start free. Upgrade when you need more AI power.</p>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -207,7 +207,7 @@ export default function LandingPage() {
                                                           <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#636DF5] uppercase tracking-widest mb-2">
                                                                           <Image src="/STAR.png" alt="" width={14} height={14} className="opacity-60" /> Guides
                                                           </div>
-                                                          <h2 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>EU job search guides</h2>h2>
+                                                          <h2 className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>EU job search guides</h2>
                                             </div>
                                             <Link href="/blog" className="text-sm font-medium text-[#636DF5] hover:underline hidden sm:block">View all →</Link>
                                 </div>
@@ -216,7 +216,7 @@ export default function LandingPage() {
                         <Link key={post.title} href={post.href} ref={addReveal} className="reveal group rounded-2xl border border-[#E2E1DC] bg-[#F8F8F6] p-6 hover:border-[#636DF5] hover:shadow-md transition-all hover:-translate-y-0.5 flex flex-col gap-3" style={{ transitionDelay: `${i * 0.08}s` }}>
                                         <div className="text-2xl">{post.flag}</div>
                                         <span className="text-xs font-semibold text-[#636DF5] uppercase">{post.tag}</span>
-                                        <h3 className="font-bold text-[#0F1629] leading-snug text-sm" style={{ fontFamily: "'Outfit', sans-serif" }}>{post.title}</h3>h3>
+                                        <h3 className="font-bold text-[#0F1629] leading-snug text-sm" style={{ fontFamily: "'Outfit', sans-serif" }}>{post.title}</h3>
                                         <p className="text-xs text-[#7A7F94] flex-1">{post.desc}</p>
                                         <span className="text-sm font-medium text-[#636DF5] group-hover:underline">Read guide →</span>
                         </Link>
@@ -229,7 +229,7 @@ export default function LandingPage() {
               <section id="faq" className="py-20">
                       <div className="max-w-2xl mx-auto px-6">
                                 <div ref={addReveal} className="reveal text-center mb-12">
-                                            <h2 className="text-3xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Frequently asked questions</h2>h2>
+                                            <h2 className="text-3xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Frequently asked questions</h2>
                                 </div>
                                 <div className="space-y-3">
                                   {FAQS.map((faq, i) => (
@@ -252,7 +252,7 @@ export default function LandingPage() {
                       </div>
                       <div className="relative max-w-xl mx-auto px-6">
                                 <Image src="/STAR.png" alt="" width={36} height={36} className="mx-auto mb-5 opacity-60" style={{ filter: "invert(1)" }} />
-                                <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ fontFamily: "'Outfit', sans-serif" }}>Ready to land your EU role?</h2>h2>
+                                <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ fontFamily: "'Outfit', sans-serif" }}>Ready to land your EU role?</h2>
                                 <p className="text-[#7A7F94] mb-8">Join job seekers using AI to stand out across 12 European markets.</p>
                                 <Link href="/auth/signup" className="inline-block bg-white text-[#0F1629] text-base font-semibold px-10 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg">Start free →</Link>
                                 <p className="mt-4 text-sm text-[#7A7F94]">No credit card required</p>
@@ -276,4 +276,4 @@ export default function LandingPage() {
               </footer>
         </div>
       );
-}</nav>
+}
