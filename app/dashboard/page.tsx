@@ -120,7 +120,7 @@ export default function DashboardPage() {
                                               <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden p-1.5 rounded-lg hover:bg-[#F8F8F6] transition-colors" style={{ color: "#3D4255" }}>
                                                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
                                               </button>
-                                              <h1 className="font-bold text-lg" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Dashboard</h1>h1>
+                                              <h1 className="font-bold text-lg" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Dashboard</h1>
                                   </div>
                                   <div className="flex items-center gap-3">
                                               <span className="text-sm hidden sm:block" style={{ color: "#7A7F94" }}>{user?.email}</span>
@@ -135,7 +135,7 @@ export default function DashboardPage() {
                         
                           {/* Welcome */}
                                   <div className="mb-8 animate-fade-up">
-                                              <h2 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Welcome back 👋</h2>h2>
+                                              <h2 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Welcome back 👋</h2>
                                               <p className="text-sm" style={{ color: "#7A7F94" }}>Here&apos;s your EuroCareer AI overview</p>
                                   </div>
                         
@@ -165,7 +165,7 @@ export default function DashboardPage() {
                                   <div className="bg-white rounded-2xl border border-[#E2E1DC] p-6 mb-6">
                                               <div className="flex items-center gap-2 mb-5">
                                                             <Image src="/STAR.png" alt="" width={16} height={16} style={{ opacity: 0.5 }} />
-                                                            <h3 className="font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Quick actions</h3>h3>
+                                                            <h3 className="font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Quick actions</h3>
                                               </div>
                                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                                 {QUICK_ACTIONS.map((action) => (
@@ -183,7 +183,7 @@ export default function DashboardPage() {
                           {/* Recent applications link */}
                                   <div className="bg-white rounded-2xl border border-[#E2E1DC] p-6">
                                               <div className="flex items-center justify-between mb-4">
-                                                            <h3 className="font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Applications</h3>h3>
+                                                            <h3 className="font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Applications</h3>
                                                             <Link href="/applications" className="text-sm font-medium hover:underline" style={{ color: "#636DF5" }}>View all →</Link>
                                               </div>
                                     {stats.applications === 0 ? (
