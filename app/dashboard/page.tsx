@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
-import type { User } from "@supabase/supabase-js";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type User = any;
 
 interface Stats {
   applications: number;
@@ -20,11 +21,11 @@ export default function DashboardPage() {
   const router = useRouter();
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
+    (supabase.auth as any).getUser().then(({ data }: { data: { user: User | null } }) => { const currentUser = data.user;
+      if (!currentUser) {
         router.replace("/auth/login");
       } else {
-        setUser(session.user);
+        setUser(currentUser);
         loadStats();
       }
     });
@@ -35,15 +36,15 @@ export default function DashboardPage() {
     if (data) {
       setStats({
         applications: data.length,
-        interviews: data.filter((a) => a.status === "interview").length,
-        offers: data.filter((a) => a.status === "offer").length,
+        interviews: data.filter((a: { status: string }) => a.status === "interview").length,
+        offers: data.filter((a: { status: string }) => a.status === "offer").length,
       });
     }
     setLoading(false);
   };
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
+    await (supabase.auth as any).signOut();
     router.replace("/auth/login");
   };
 
