@@ -60,11 +60,11 @@ export default function LandingPage() {
           
                 <section className="max-w-5xl mx-auto px-6 pt-20 pb-16 text-center">
                         <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
-                                  <span>🇪🇺</span>span> Built for the European job market
+                                  <span>🇪🇺</span></span> Built for the European job market
                         </div>div>
                         <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight mb-6">
                                   Land your EU role{" "}
-                                  <span className="bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">faster</span>span>
+                                  <span className="bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">faster</span></span>
                           {" "}with AI
                         </h1>h1>
                         <p className="text-xl text-gray-500 max-w-2xl mx-auto mb-10">
@@ -83,9 +83,9 @@ export default function LandingPage() {
                                   <div className="flex flex-wrap justify-center gap-3">
                                     {COUNTRIES.map((c) => (
                           <span key={c.code} className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-1.5 text-sm text-gray-700 font-medium shadow-sm">
-                                          <span className="text-xs font-bold text-gray-400">{c.code}</span>span>
+                                          <span className="text-xs font-bold text-gray-400">{c.code}</span></span>
                             {c.name}
-                          </span>span>
+                          </span></span>
                         ))}
                                   </div>div>
                         </div>div>
@@ -97,7 +97,7 @@ export default function LandingPage() {
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
                           {HOW_IT_WORKS.map((item) => (
                         <div key={item.step} className="flex flex-col items-start">
-                                      <span className="text-4xl font-extrabold text-indigo-100 mb-3">{item.step}</span>span>
+                                      <span className="text-4xl font-extrabold text-indigo-100 mb-3">{item.step}</span></span>
                                       <h3 className="font-bold text-gray-900 text-lg mb-2">{item.title}</h3>h3>
                                       <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>p>
                         </div>div>
@@ -133,7 +133,7 @@ export default function LandingPage() {
                                               </div>div>
                                               <ul className="space-y-2 text-sm text-gray-700">
                                                 {["Application tracker (unlimited)", "Kanban board + list view", "3 AI generations / month", "12 EU countries supported"].map((item) => (
-                            <li key={item} className="flex items-center gap-2"><span className="text-green-500 font-bold">✓</span>span>{item}</li>li>
+                            <li key={item} className="flex items-center gap-2"><span className="text-green-500 font-bold">✓</span></span>{item}</li>li>
                           ))}
                                               </ul>ul>
                                               <Link href="/auth/signup" className="block text-center border border-gray-200 hover:border-indigo-300 hover:bg-indigo-50 text-gray-700 hover:text-indigo-700 font-medium py-2.5 rounded-lg transition-colors text-sm">Get started free</Link>Link>
@@ -150,7 +150,7 @@ export default function LandingPage() {
                                               </div>div>
                                               <ul className="space-y-2 text-sm text-gray-700">
                                                 {["Everything in Free", "Unlimited AI generations", "CV adapter for all 12 countries", "Cover letter with feedback loop", "Follow-up & rejection emails", "Priority AI processing", "Early access to new features"].map((item) => (
-                            <li key={item} className="flex items-center gap-2"><span className="text-indigo-600 font-bold">✓</span>span>{item}</li>li>
+                            <li key={item} className="flex items-center gap-2"><span className="text-indigo-600 font-bold">✓</span></span>{item}</li>li>
                           ))}
                                               </ul>ul>
                                               <Link href="/auth/signup" className="block text-center bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-lg transition-colors text-sm">Start with Pro →</Link>Link>
@@ -165,10 +165,10 @@ export default function LandingPage() {
                                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                                     {BLOG_POSTS.map((post) => (
                           <Link key={post.title} href={post.href} className="bg-white rounded-2xl border p-6 hover:shadow-md transition-shadow flex flex-col gap-3">
-                                          <span className="text-xs font-semibold text-indigo-600 uppercase tracking-wide">{post.tag}</span>span>
+                                          <span className="text-xs font-semibold text-indigo-600 uppercase tracking-wide">{post.tag}</span></span>
                                           <h3 className="font-bold text-gray-900 leading-snug">{post.title}</h3>h3>
                                           <p className="text-sm text-gray-500 leading-relaxed flex-1">{post.desc}</p>p>
-                                          <span className="text-sm text-indigo-600 font-medium">Read guide →</span>span>
+                                          <span className="text-sm text-indigo-600 font-medium">Read guide →</span></span>
                           </Link>Link>
                         ))}
                                   </div>div>
@@ -183,7 +183,7 @@ export default function LandingPage() {
                           <details key={faq.q} className="group bg-white rounded-xl border px-6 py-4 cursor-pointer">
                                           <summary className="font-medium text-gray-900 list-none flex items-center justify-between gap-4">
                                             {faq.q}
-                                                            <span className="text-gray-400 group-open:rotate-180 transition-transform shrink-0">▼</span>span>
+                                                            <span className="text-gray-400 group-open:rotate-180 transition-transform shrink-0">▼</span></span>
                                           </summary>summary>
                                           <p className="mt-3 text-sm text-gray-500 leading-relaxed">{faq.a}</p>p>
                           </details>details>
@@ -206,7 +206,7 @@ export default function LandingPage() {
                         <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                                   <div className="flex items-center gap-2 text-sm text-gray-500">
                                               <img src="/ARROW.png" alt="" className="h-5 w-auto" />
-                                              <span>© {new Date().getFullYear()} EuroCareer AI</span>span>
+                                              <span>© {new Date().getFullYear()} EuroCareer AI</span></span>
                                   </div>div>
                                   <div className="flex items-center gap-6 text-sm text-gray-400">
                                               <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy</Link>Link>
