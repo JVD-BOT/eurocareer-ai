@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
 import type { Profile } from "@/lib/types";
@@ -99,7 +100,7 @@ export default function ProfilePage() {
       <nav className="bg-white border-b px-6 py-3 flex items-center justify-between sticky top-0 z-10">
         <div className="flex items-center gap-6">
           <Link href="/dashboard" className="text-blue-600 font-bold text-lg">
-            ★ EuroCareer AI
+            <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" />
           </Link>
           <div className="hidden sm:flex items-center gap-4 text-sm">
             <Link href="/applications" className="text-muted-foreground hover:text-gray-900 transition-colors">
