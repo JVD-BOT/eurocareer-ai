@@ -26,7 +26,7 @@ export function StarIcon({ size = 24, className = '' }: { size?: number; classNa
                 <circle fill="currentColor" cx="200" cy="268" r="10" />
                 <circle fill="currentColor" cx="138" cy="222" r="10" />
                 <circle fill="currentColor" cx="162" cy="148" r="10" />
-          </svg>svg>
+          </svg>
         );
 }
 
@@ -36,8 +36,8 @@ export function BrandLogo({ className = '', variant = 'dark' }: { className?: st
           <span className={`inline-flex items-center gap-1.5 ${className}`}>
                 <StarIcon size={24} className="text-[#636DF5]" />
                 <span className={`font-semibold text-lg tracking-tight ${textColor}`} style={{ fontFamily: "'Outfit', sans-serif" }}>
-                        EuroCareer<span className="text-[#636DF5]">AI</span>span>
-                </span>span>
-          </span>span>
+                        EuroCareer<span className="text-[#636DF5]">AI</span>
+                </span>
+          </span>
         );
-}</svg>
+}
