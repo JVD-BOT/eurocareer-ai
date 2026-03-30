@@ -1,10 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-white">
       <nav className="border-b px-6 py-3.5 flex items-center justify-between">
-        <Link href="/" className="text-indigo-600 font-bold text-lg">★ EuroCareer AI</Link>
+        <Link href="/" className="text-indigo-600 font-bold text-lg"><Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" /></Link>
         <Link href="/auth/login" className="text-sm text-gray-600 hover:text-gray-900">Sign in</Link>
       </nav>
 
