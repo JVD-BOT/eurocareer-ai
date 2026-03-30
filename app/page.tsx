@@ -13,7 +13,7 @@ const COUNTRIES = [
   { code: "IE", name: "Ireland", flag: "🇮🇪" },
   { code: "DK", name: "Denmark", flag: "🇩🇰" },
   { code: "BE", name: "Belgium", flag: "🇧🇪" },
-  { code: "AT", name: "Austria", flag: "🇦🇹" },hh
+  { code: "AT", name: "Austria", flag: "🇦🇹" },
   { code: "CH", name: "Switzerland", flag: "🇨🇭" },
   { code: "IT", name: "Italy", flag: "🇮🇹" },
   ];
