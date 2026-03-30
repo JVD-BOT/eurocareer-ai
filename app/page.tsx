@@ -13,7 +13,7 @@ const COUNTRIES = [
   { code: "IE", name: "Ireland", flag: "🇮🇪" },
   { code: "DK", name: "Denmark", flag: "🇩🇰" },
   { code: "BE", name: "Belgium", flag: "🇧🇪" },
-  { code: "AT", name: "Austria", flag: "🇦🇹" },
+  { code: "AT", name: "Austria", flag: "🇦🇹" },hh
   { code: "CH", name: "Switzerland", flag: "🇨🇭" },
   { code: "IT", name: "Italy", flag: "🇮🇹" },
   ];
@@ -69,7 +69,7 @@ export default function LandingPage() {
                 <nav className="border-b border-[#E2E1DC] bg-white/90 backdrop-blur-sm sticky top-0 z-50">
                         <div className="max-w-5xl mx-auto px-6 py-3.5 flex items-center justify-between">
                                   <Link href="/" className="flex items-center gap-2">
-                                              <Image src="/LOGO_PNG.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" />
+                                              <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" />
                                   </Link>
                                   <div className="hidden md:flex items-center gap-6 text-sm text-[#7A7F94]">
                                               <a href="#how-it-works" className="hover:text-[#0F1629] transition-colors">How it works</a>
