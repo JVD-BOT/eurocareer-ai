@@ -44,7 +44,7 @@ export default function LoginPage() {
                                     <Image src="/STAR.png" alt="" fill className="object-contain animate-slow-spin" style={{ filter: "invert(1)" }} />
                           </div>
                         <div className="relative">
-                                  <Image src="/LOGO_PNG.png" alt="EuroCareer AI" width={160} height={36} className="h-9 w-auto" style={{ filter: "brightness(0) invert(1)" }} />
+                                  <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={160} height={36} className="h-9 w-auto" style={{ filter: "brightness(0) invert(1)" }} />
                         </div>
                         <div className="relative space-y-6">
                                   <h2 className="text-3xl font-bold text-white leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
@@ -64,7 +64,7 @@ export default function LoginPage() {
               <div className="flex-1 flex items-center justify-center p-6 lg:p-12">
                       <div className="w-full max-w-md">
                                 <div className="lg:hidden flex justify-center mb-8">
-                                            <Image src="/LOGO_PNG.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" />
+                                            <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" />
                                 </div>
                       
                                 <Link href="/" className="inline-flex items-center gap-1 text-sm mb-8 transition-colors" style={{ color: "#7A7F94" }}>
