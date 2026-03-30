@@ -92,8 +92,7 @@ export default function DashboardPage() {
                             </div>
                             <div className="relative flex flex-col h-full">
                                       <div className="px-5 pt-5 pb-4 border-b border-white/5 flex items-center gap-2">
-                                                  <Image src="/STAR.png" alt="" width={28} height={28} style={{ filter: "brightness(0) invert(1)" }} className="opacity-90 shrink-0" />
-                                                  <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={130} height={30} className="h-7 w-auto" style={{ filter: "brightness(0) invert(1)" }} />
+                                                                                                    <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={130} height={30} className="h-7 w-auto" style={{ filter: "brightness(0) invert(1)" }} />
                                       </div>
                                       <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
                                           {NAV_ITEMS.map((item) => (
