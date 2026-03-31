@@ -96,6 +96,7 @@ export default function LandingPage() {
           muted
           loop
           playsInline
+                    preload="none"
           className="hero-video"
           style={{
             position: "absolute",
