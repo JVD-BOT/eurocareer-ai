@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 type User = any;
 
 interface Stats {
-      applications: number;h
+      applications: number;
       interviews: number;
       offers: number;
 }
