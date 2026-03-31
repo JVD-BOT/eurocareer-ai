@@ -19,16 +19,16 @@ const COUNTRIES = [
   ];
 
 const HOW_IT_WORKS = [
-  { step: "01", icon: "👤", title: "Create your profile", desc: "Add your CV once. EuroCareer AI stores it securely and uses it as the base for every adaptation and cover letter." },
-  { step: "02", icon: "📋", title: "Track your applications", desc: "Log every job across the Kanban board — Researching, Applied, Interview, Offer, Rejected." },
-  { step: "03", icon: "✨", title: "Generate with AI", desc: "Pick a country, click adapt. Get a country-specific CV and cover letter in seconds, ready to send." },
+  { step: "01", icon: "👤", title: "Create your profile", desc: "Upload your CV once and you're set. EuroCareer AI uses it as the foundation for every country-specific adaptation." },
+  { step: "02", icon: "📋", title: "Track your applications", desc: "See every application at a glance — track where you stand, from first look to final offer." },
+  { step: "03", icon: "✨", title: "Generate with AI", desc: "Pick a country, click adapt. In seconds your CV speaks the local language — formatted to the standards recruiters in that country actually expect." },
   ];
 
 const FEATURES = [
-  { emoji: "📋", title: "Application Tracker", desc: "Kanban board across 6 stages — Researching, Applied, Interview, Offer, Rejected. Filter by country or status.", tag: "Core" },
-  { emoji: "📄", title: "AI CV Adapter", desc: "One click and your CV is reformatted to the standards of Germany, Netherlands, France, Sweden, and 8 more.", tag: "AI" },
-  { emoji: "💌", title: "Cover Letter Generator", desc: "Choose formal, warm, or casual tone. Get a personalised letter in seconds — regenerate with feedback.", tag: "AI" },
-  { emoji: "🌍", title: "Country Intelligence", desc: "Built-in hiring norms for 12 EU countries: photo expectations, CV length, language conventions, and more.", tag: "Core" },
+  { emoji: "📋", title: "Application Tracker", desc: "See exactly where every application stands — at a glance. Filter by country or stage and never lose track of an opportunity.", tag: "Core" },
+  { emoji: "📄", title: "AI CV Adapter", desc: "One click and your CV is restructured for the country you're targeting — format, length, and photo norms all handled.", tag: "AI" },
+  { emoji: "💌", title: "Cover Letter Generator", desc: "Set your tone, get a personalised letter in seconds. Not happy? Regenerate with feedback until it's right.", tag: "AI" },
+  { emoji: "🌍", title: "Country Intelligence", desc: "Know exactly what recruiters in each country expect — photo rules, CV length, language conventions, and more.", tag: "Core" },
   ];
 
 const BLOG_POSTS = [
@@ -99,7 +99,7 @@ export default function LandingPage() {
                                             <span style={{ background: "linear-gradient(135deg, #636DF5, #7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>faster</span>
                                   {" "}with AI
                                 </h1>
-                                <p className="text-xl text-[#7A7F94] max-w-2xl mx-auto mb-10">Track every application, adapt your CV to local standards, and generate cover letters for 12 European markets — all in one place.</p>
+                                <p className="text-xl text-[#7A7F94] max-w-2xl mx-auto mb-10">Every EU country has different CV rules, photo norms, and cover letter styles. EuroCareer AI adapts your application to match — 12 markets, in seconds.</p>
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                                             <Link href="/auth/signup" className="font-semibold px-8 py-3.5 rounded-xl text-white transition-all hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto text-center" style={{ background: "#0F1629" }}>Start free →</Link>
                                             <a href="#how-it-works" className="text-[#636DF5] font-medium hover:underline">See how it works</a>
@@ -111,7 +111,7 @@ export default function LandingPage() {
           {/* ── COUNTRY BAR ── */}
               <section className="border-y border-[#E2E1DC] bg-white py-8">
                       <div className="max-w-5xl mx-auto px-6">
-                                <p className="text-xs font-semibold text-[#B0B4C5] uppercase tracking-widest text-center mb-5">Trusted by job seekers targeting 12 EU countries</p>
+                                <p className="text-xs font-semibold text-[#B0B4C5] uppercase tracking-widest text-center mb-5">Supporting job seekers applying to:</p>
                                 <div className="flex flex-wrap justify-center gap-2">
                                   {COUNTRIES.map((c) => (
                         <span key={c.code} className="inline-flex items-center gap-1.5 bg-[#F8F8F6] border border-[#E2E1DC] rounded-full px-3 py-1.5 text-sm text-[#3D4255] font-medium hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-colors cursor-default">
@@ -128,8 +128,8 @@ export default function LandingPage() {
                                 <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#636DF5] uppercase tracking-widest mb-3">
                                             <Image src="/STAR.png" alt="" width={14} height={14} className="opacity-60" /> How it works
                                 </div>
-                                <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Three steps to your next EU role</h2>
-                                <p className="text-[#7A7F94] mt-3">From signup to sent application in under 5 minutes.</p>
+                                <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>From signup to sent application in under 5 minutes</h2>
+                                <p className="text-[#7A7F94] mt-3">Three steps, zero guesswork.</p>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
                         {HOW_IT_WORKS.map((item, i) => (
@@ -150,8 +150,8 @@ export default function LandingPage() {
                                             <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#636DF5] uppercase tracking-widest mb-3">
                                                           <Image src="/STAR.png" alt="" width={14} height={14} className="opacity-60" /> Features
                                             </div>
-                                            <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Everything you need to win in Europe</h2>
-                                            <p className="text-[#7A7F94] mt-3">One platform from first application to signed offer.</p>
+                                            <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>From first application to signed offer</h2>
+                                            <p className="text-[#7A7F94] mt-3">One platform built for the European job market.</p>
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                   {FEATURES.map((f, i) => (
@@ -172,7 +172,7 @@ export default function LandingPage() {
               <section id="pricing" className="py-20 max-w-5xl mx-auto px-6">
                       <div ref={addReveal} className="reveal text-center mb-12">
                                 <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Outfit', sans-serif" }}>Simple, transparent pricing</h2>
-                                <p className="text-[#7A7F94] mt-3">Start free. Upgrade when you need more AI power.</p>
+                                <p className="text-[#7A7F94] mt-3">Start free. Upgrade when your job search gets serious.</p>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
                                 <div ref={addReveal} className="reveal rounded-2xl border border-[#E2E1DC] bg-white p-8 space-y-4">
@@ -252,8 +252,8 @@ export default function LandingPage() {
                       </div>
                       <div className="relative max-w-xl mx-auto px-6">
                                 <Image src="/STAR.png" alt="" width={36} height={36} className="mx-auto mb-5 opacity-60" style={{ filter: "invert(1)" }} />
-                                <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ fontFamily: "'Outfit', sans-serif" }}>Ready to land your EU role?</h2>
-                                <p className="text-[#7A7F94] mb-8">Join job seekers using AI to stand out across 12 European markets.</p>
+                                <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ fontFamily: "'Outfit', sans-serif" }}>Your next EU role is closer than you think.</h2>
+                                <p className="text-[#7A7F94] mb-8">Stop guessing what European recruiters want. Start free today — no credit card needed.</p>
                                 <Link href="/auth/signup" className="inline-block bg-white text-[#0F1629] text-base font-semibold px-10 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg">Start free →</Link>
                                 <p className="mt-4 text-sm text-[#7A7F94]">No credit card required</p>
                       </div>
