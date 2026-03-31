@@ -102,3 +102,10 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+/* ── HERO VIDEO – hide on mobile, solid dark bg fallback ── */
+@media (max-width: 767px) {
+        .hero-video {
+                    display: none;
+        }
+}
