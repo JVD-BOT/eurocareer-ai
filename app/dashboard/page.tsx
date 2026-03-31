@@ -13,7 +13,7 @@ interface Stats {
       applications: number;
       interviews: number;
       offers: number;
-}h
+}
 
 const NAV_ITEMS = [
     { label: "Applications", icon: "📋", href: "/applications" },
