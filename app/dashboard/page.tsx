@@ -13,7 +13,7 @@ interface Stats {
       applications: number;
       interviews: number;
       offers: number;
-}
+}h
 
 const NAV_ITEMS = [
     { label: "Applications", icon: "📋", href: "/applications" },
@@ -25,7 +25,7 @@ const QUICK_ACTIONS = [
     { label: "Track applications", desc: "Kanban board + list view", emoji: "📋", href: "/applications" },
     { label: "AI CV Adapter", desc: "Adapt your CV for any EU country", emoji: "📄", href: "#" },
     { label: "Cover Letter", desc: "Generate in seconds with AI", emoji: "💌", href: "#" },
-    { label: "Country Intel", desc: "Hiring norms for 12 EU markets", emoji: "🌍", href: "#" },
+      { label: "Country Intel", desc: "Hiring norms for 12 EU markets", emoji: "🌍", href: "/dashboard/country-intel" },
     ];
 
 export default function DashboardPage() {
