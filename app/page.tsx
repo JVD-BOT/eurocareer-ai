@@ -85,28 +85,93 @@ export default function LandingPage() {
                 </nav>
         
           {/* ── HERO ── */}
-              <section className="max-w-5xl mx-auto px-6 pt-20 pb-16 text-center relative">
-                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03]">
-                                <Image src="/STAR.png" alt="" width={400} height={400} className="animate-slow-spin" />
-                      </div>
-                      <div className="relative">
-                                <div className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-6 border border-[#E2E1DC] bg-white text-[#636DF5]">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-[#636DF5] animate-pulse-dot" />
-                                            Built for the European job market
-                                </div>
-                                <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight tracking-tight mb-6" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                                            Land your EU role{" "}
-                                            <span style={{ background: "linear-gradient(135deg, #636DF5, #7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>faster</span>
-                                  {" "}with AI
-                                </h1>
-                                <p className="text-xl text-[#7A7F94] max-w-2xl mx-auto mb-10">Every EU country has different CV rules, photo norms, and cover letter styles. EuroCareer AI adapts your application to match — 12 markets, in seconds.</p>
-                                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                            <Link href="/auth/signup" className="font-semibold px-8 py-3.5 rounded-xl text-white transition-all hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto text-center" style={{ background: "#0F1629" }}>Start free →</Link>
-                                            <a href="#how-it-works" className="text-[#636DF5] font-medium hover:underline">See how it works</a>
-                                </div>
-                                <p className="mt-4 text-sm text-[#B0B4C5]">No credit card required</p>
-                      </div>
-              </section>
+      <section
+        className="relative overflow-hidden text-center"
+        style={{ minHeight: "max(100vh, 600px)", background: "#0f172a" }}
+      >
+        {/* Background video – hidden on mobile (<768px) via .hero-video CSS */}
+        <video
+          src="/hero-loop.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="hero-video"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: 0,
+          }}
+        />
+
+        {/* Dark overlay – rgba(15, 23, 42, 0.72) */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "rgba(15, 23, 42, 0.72)",
+            zIndex: 1,
+          }}
+        />
+
+        {/* Hero content – sits above video + overlay */}
+        <div
+          className="relative max-w-5xl mx-auto px-6 pt-20 pb-16"
+          style={{ zIndex: 2 }}
+        >
+          <div className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-6 border border-white/20 bg-white/10 text-white">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse-dot" />
+            Built for the European job market
+          </div>
+          <h1
+            className="text-5xl sm:text-6xl font-extrabold leading-tight tracking-tight mb-6"
+            style={{ fontFamily: "'Outfit', sans-serif", color: "#FAFAFA" }}
+          >
+            Land your EU role{" "}
+            <span
+              style={{
+                background: "linear-gradient(135deg, #818cf8, #a78bfa)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              faster
+            </span>
+            {" "}with AI
+          </h1>
+          <p
+            className="text-xl max-w-2xl mx-auto mb-10"
+            style={{ color: "#cbd5e1" }}
+          >
+            Every EU country has different CV rules, photo norms, and cover letter styles. EuroCareer AI adapts your application to match — 12 markets, in seconds.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/auth/signup"
+              className="font-semibold px-8 py-3.5 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto text-center"
+              style={{ background: "#FAFAFA", color: "#0F1629" }}
+            >
+              Start free →
+            </Link>
+            <a
+              href="#how-it-works"
+              className="font-medium hover:underline"
+              style={{ color: "#818cf8" }}
+            >
+              See how it works
+            </a>
+          </div>
+          <p className="mt-4 text-sm" style={{ color: "#94a3b8" }}>No credit card required</p>
+        </div>
+      </section>
         
           {/* ── COUNTRY BAR ── */}
               <section className="border-y border-[#E2E1DC] bg-white py-8">
