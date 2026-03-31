@@ -47,7 +47,7 @@ function CountryCard({
                           className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 group"
                         >
                         <div className="flex items-center gap-3 min-w-0">
-                                  <span className="text-3xl flex-shrink-0">{country.flag}</span>span>
+                                  <span className="text-3xl flex-shrink-0">{country.flag}</span>
                                   <div className="min-w-0">
                                               <p
                                                               className="font-bold text-base truncate"
@@ -57,12 +57,12 @@ function CountryCard({
                                                               }}
                                                             >
                                                 {country.name}
-                                              </p>p>
+                                              </p>
                                               <p className="text-xs truncate" style={{ color: "#7A7F94" }}>
                                                 {country.cvLength}
-                                              </p>p>
-                                  </div>div>
-                        </div>div>
+                                              </p>
+                                  </div>
+                        </div>
                 
                         <div className="flex items-center gap-2 flex-shrink-0">
                                   <span
@@ -71,7 +71,7 @@ function CountryCard({
                                                               )}`}
                                               >
                                               Photo: {country.photoExpectation}
-                                  </span>span>
+                                  </span>
                                   <svg
                                                 className={`w-4 h-4 transition-transform ${
                                                                 isOpen ? "rotate-180" : ""
@@ -87,9 +87,9 @@ function CountryCard({
                                                               strokeWidth={2}
                                                               d="M19 9l-7 7-7-7"
                                                             />
-                                  </svg>svg>
-                        </div>div>
-                </button>button>
+                                  </svg>
+                        </div>
+                </button>
           
             {/* Expandable detail section */}
             {isOpen && (
@@ -102,41 +102,41 @@ function CountryCard({
                                                                           style={{ color: "#7A7F94" }}
                                                                         >
                                                                         Formality
-                                                        </p>p>
+                                                        </p>
                                                         <span
                                                                           className={`text-xs font-semibold px-2 py-0.5 rounded-full ${formalityBadge(
                                                                                               country.formality
                                                                                             )}`}
                                                                         >
                                                           {country.formality}
-                                                        </span>span>
-                                          </div>div>
+                                                        </span>
+                                          </div>
                                           <div className="rounded-xl p-3 bg-[#F8F8F6]">
                                                         <p
                                                                           className="text-[11px] font-semibold uppercase tracking-wider mb-1"
                                                                           style={{ color: "#7A7F94" }}
                                                                         >
                                                                         CV Language
-                                                        </p>p>
+                                                        </p>
                                                         <p className="text-sm font-medium" style={{ color: "#0F1629" }}>
                                                           {country.language}
-                                                        </p>p>
-                                          </div>div>
+                                                        </p>
+                                          </div>
                                           <div className="rounded-xl p-3 bg-[#F8F8F6]">
                                                         <p
                                                                           className="text-[11px] font-semibold uppercase tracking-wider mb-1"
                                                                           style={{ color: "#7A7F94" }}
                                                                         >
                                                                         Sign-off
-                                                        </p>p>
+                                                        </p>
                                                         <p
                                                                           className="text-sm font-medium italic"
                                                                           style={{ color: "#0F1629" }}
                                                                         >
                                                           {country.signOff}
-                                                        </p>p>
-                                          </div>div>
-                              </div>div>
+                                                        </p>
+                                          </div>
+                              </div>
                     
                       {/* Key norms */}
                               <div>
@@ -145,16 +145,16 @@ function CountryCard({
                                                           style={{ color: "#7A7F94" }}
                                                         >
                                                         Key hiring norms
-                                          </p>p>
+                                          </p>
                                           <ul className="space-y-1.5">
                                             {country.keyNorms.map((norm, i) => (
                                       <li key={i} className="flex items-start gap-2 text-sm">
                                                         <span className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#636DF5]" />
-                                                        <span style={{ color: "#3D4255" }}>{norm}</span>span>
-                                      </li>li>
+                                                        <span style={{ color: "#3D4255" }}>{norm}</span>
+                                      </li>
                                     ))}
-                                          </ul>ul>
-                              </div>div>
+                                          </ul>
+                              </div>
                     
                       {/* Cover letter style */}
                               <div>
@@ -163,11 +163,11 @@ function CountryCard({
                                                           style={{ color: "#7A7F94" }}
                                                         >
                                                         Cover letter style
-                                          </p>p>
+                                          </p>
                                           <p className="text-sm" style={{ color: "#3D4255" }}>
                                             {country.coverLetterStyle}
-                                          </p>p>
-                              </div>div>
+                                          </p>
+                              </div>
                     
                       {/* Top tip */}
                               <div
@@ -179,14 +179,14 @@ function CountryCard({
                                           >
                                           <p className="text-sm font-semibold mb-1" style={{ color: "#636DF5" }}>
                                                         Top tip
-                                          </p>p>
+                                          </p>
                                           <p className="text-sm" style={{ color: "#3D4255" }}>
                                             {country.topTip}
-                                          </p>p>
-                              </div>div>
-                    </div>div>
+                                          </p>
+                              </div>
+                    </div>
                 )}
-          </div>div>
+          </div>
         );
 }
 
@@ -226,8 +226,8 @@ export default function CountryIntelPage() {
                                                                               strokeWidth={2}
                                                                               d="M15 19l-7-7 7-7"
                                                                             />
-                                              </svg>svg>
-                                  </Link>Link>
+                                              </svg>
+                                  </Link>
                                   <h1
                                                 className="font-bold text-lg"
                                                 style={{
@@ -236,9 +236,9 @@ export default function CountryIntelPage() {
                                                 }}
                                               >
                                               Country Intelligence
-                                  </h1>h1>
-                        </div>div>
-                </header>header>
+                                  </h1>
+                        </div>
+                </header>
           
                 <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
                   {/* Intro */}
@@ -256,8 +256,8 @@ export default function CountryIntelPage() {
                                                               style={{ color: "#7A7F94" }}
                                                             >
                                                             12 EU markets
-                                              </p>p>
-                                  </div>div>
+                                              </p>
+                                  </div>
                                   <h2
                                                 className="text-2xl font-bold mb-2"
                                                 style={{
@@ -266,12 +266,12 @@ export default function CountryIntelPage() {
                                                 }}
                                               >
                                               Hiring norms by country
-                                  </h2>h2>
+                                  </h2>
                                   <p className="text-sm" style={{ color: "#7A7F94" }}>
                                               Photo expectations, CV length, language conventions, formality
                                               level, and more — everything you need to tailor your application.
-                                  </p>p>
-                        </div>div>
+                                  </p>
+                        </div>
                 
                   {/* Search */}
                         <div className="mb-6">
@@ -283,7 +283,7 @@ export default function CountryIntelPage() {
                                                 className="w-full sm:w-72 px-4 py-2.5 rounded-xl border border-[#E2E1DC] text-sm focus:outline-none focus:border-[#636DF5] focus:ring-2 focus:ring-[#636DF5]/20 transition-all"
                                                 style={{ background: "#fff", color: "#0F1629" }}
                                               />
-                        </div>div>
+                        </div>
                 
                   {/* Country cards */}
                         <div className="space-y-3">
@@ -291,8 +291,8 @@ export default function CountryIntelPage() {
                               <div className="text-center py-12">
                                             <p className="text-sm" style={{ color: "#B0B4C5" }}>
                                                             No countries match your search.
-                                            </p>p>
-                              </div>div>
+                                            </p>
+                              </div>
                                   )}
                           {filtered.map((country) => (
                               <CountryCard
@@ -304,8 +304,8 @@ export default function CountryIntelPage() {
                                               }
                                             />
                             ))}
-                        </div>div>
-                </main>main>
-          </div>div>
+                        </div>
+                </main>
+          </div>
         );
-}</div>
+}
