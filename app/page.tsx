@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -50,6 +50,7 @@ const FAQS = [
 
 export default function LandingPage() {
     const revealRefs = useRef<HTMLElement[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
         const observer = new IntersectionObserver(
@@ -58,6 +59,10 @@ export default function LandingPage() {
               );
         revealRefs.current.forEach((el) => el && observer.observe(el));
         return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
   }, []);
 
   const addReveal = (el: HTMLElement | null) => {
@@ -76,6 +81,7 @@ export default function LandingPage() {
         style={{ minHeight: "max(100vh, 600px)", background: "#0f172a" }}
       >
         {/* Background video – hidden on mobile (<768px) via .hero-video CSS */}
+        {!isMobile && (
         <video
           src="/hero-loop.mp4"
           autoPlay
@@ -94,6 +100,7 @@ export default function LandingPage() {
             zIndex: 0,
           }}
         />
+      )}
 
         {/* Dark overlay – rgba(15, 23, 42, 0.72) */}
         <div
@@ -235,7 +242,7 @@ export default function LandingPage() {
                           <li key={item} className="flex items-center gap-2"><span className="text-[#16A34A] font-bold">✓</span>{item}</li>
                         ))}
                                             </ul>
-                                            <Link href="/auth/signup" className="block text-center border border-[#E2E1DC] hover:border-[#636DF5] hover:bg-[#EEEFFE] text-[#3D4255] font-medium py-2.5 rounded-xl transition-colors text-sm">Start for free — no card needed</Link>
+                                            <Link href="/auth/signup" className="block text-center border border-[#E2E1DC] hover:border-[#636DF5] hover:bg-[#EEEFFE] text-[#3D4255] font-medium py-2.5 rounded-xl transition-colors text-sm">Start free</Link>
                                 </div>
                                 <div ref={addReveal} className="reveal rounded-2xl border-2 bg-white p-8 space-y-4 relative" style={{ borderColor: "#636DF5" }}>
                                             <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-white text-xs font-semibold px-3 py-1 rounded-full" style={{ background: "#636DF5" }}>Most popular</div>
