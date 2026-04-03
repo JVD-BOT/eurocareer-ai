@@ -34,7 +34,7 @@ export const metadata: Metadata = {
                 siteName: "EuroCareer AI",
                 images: [
                         {
-                                url: "/LOGO_NEW.png",
+                                url: "/og-image.png.png",
                                 width: 1200,
                                 height: 630,
                                 alt: "EuroCareer AI — CV Adapter for Europe",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
                 card: "summary_large_image",
                 title: "CV Adapter for Europe | EuroCareer AI",
                 description: "Adapt your CV for any EU country in seconds.",
-                images: ["/LOGO_NEW.png"],
+                images: ["/og-image.png.png"],
         },
         robots: {
                 index: true,
