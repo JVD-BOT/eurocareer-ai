@@ -16,11 +16,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-        scrolled
-          ? 'bg-slate-950/90 backdrop-blur-md border-b border-slate-800/60 shadow-lg shadow-black/20'
-          : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-white border-b border-slate-100 ${scrolled ? 'shadow-sm' : ''}`}
     >
       <nav className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
@@ -30,16 +26,16 @@ export default function Navbar() {
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
-          <Link href="/#how-it-works" className="text-sm text-slate-400 hover:text-white transition-colors">How it works</Link>
-          <Link href="/#features" className="text-sm text-slate-400 hover:text-white transition-colors">Features</Link>
-          <Link href="/#pricing" className="text-sm text-slate-400 hover:text-white transition-colors">Pricing</Link>
-          <Link href="/blog" className="text-sm text-slate-400 hover:text-white transition-colors">Guides</Link>
-          <Link href="/#faq" className="text-sm text-slate-400 hover:text-white transition-colors">FAQ</Link>
+          <Link href="/#how-it-works" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">How it works</Link>
+          <Link href="/#features" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">Features</Link>
+          <Link href="/#pricing" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">Pricing</Link>
+          <Link href="/blog" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">Guides</Link>
+          <Link href="/#faq" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">FAQ</Link>
         </div>
 
         {/* Desktop CTAs */}
         <div className="hidden md:flex items-center gap-3">
-          <Link href="/auth/login" className="text-sm text-slate-400 hover:text-white transition-colors px-3 py-1.5">
+          <Link href="/auth/login" className="text-sm text-slate-600 hover:text-slate-900 transition-colors px-3 py-1.5">
             Sign in
           </Link>
           <Link
@@ -53,7 +49,7 @@ export default function Navbar() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+          className="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-800 transition-colors"
           aria-label="Toggle menu"
         >
           {mobileOpen ? (
@@ -70,15 +66,15 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-slate-950/95 backdrop-blur-md border-b border-slate-800">
+        <div className="md:hidden bg-white border-b border-slate-100">
           <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-1">
-            <Link href="/#how-it-works" onClick={() => setMobileOpen(false)} className="text-sm text-slate-400 hover:text-white py-2.5 transition-colors">How it works</Link>
-            <Link href="/#features" onClick={() => setMobileOpen(false)} className="text-sm text-slate-400 hover:text-white py-2.5 transition-colors">Features</Link>
-            <Link href="/#pricing" onClick={() => setMobileOpen(false)} className="text-sm text-slate-400 hover:text-white py-2.5 transition-colors">Pricing</Link>
-            <Link href="/blog" onClick={() => setMobileOpen(false)} className="text-sm text-slate-400 hover:text-white py-2.5 transition-colors">Guides</Link>
-            <Link href="/#faq" onClick={() => setMobileOpen(false)} className="text-sm text-slate-400 hover:text-white py-2.5 transition-colors">FAQ</Link>
-            <div className="pt-3 mt-1 border-t border-slate-800 flex flex-col gap-2">
-              <Link href="/auth/login" onClick={() => setMobileOpen(false)} className="text-sm text-slate-400 hover:text-white py-2 transition-colors">Sign in</Link>
+            <Link href="/#how-it-works" onClick={() => setMobileOpen(false)} className="text-sm text-slate-600 hover:text-slate-900 py-2.5 transition-colors">How it works</Link>
+            <Link href="/#features" onClick={() => setMobileOpen(false)} className="text-sm text-slate-600 hover:text-slate-900 py-2.5 transition-colors">Features</Link>
+            <Link href="/#pricing" onClick={() => setMobileOpen(false)} className="text-sm text-slate-600 hover:text-slate-900 py-2.5 transition-colors">Pricing</Link>
+            <Link href="/blog" onClick={() => setMobileOpen(false)} className="text-sm text-slate-600 hover:text-slate-900 py-2.5 transition-colors">Guides</Link>
+            <Link href="/#faq" onClick={() => setMobileOpen(false)} className="text-sm text-slate-600 hover:text-slate-900 py-2.5 transition-colors">FAQ</Link>
+            <div className="pt-3 mt-1 border-t border-slate-100 flex flex-col gap-2">
+              <Link href="/auth/login" onClick={() => setMobileOpen(false)} className="text-sm text-slate-600 hover:text-slate-900 py-2 transition-colors">Sign in</Link>
               <Link
                 href="/auth/signup"
                 onClick={() => setMobileOpen(false)}
