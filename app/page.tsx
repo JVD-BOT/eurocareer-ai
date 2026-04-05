@@ -78,7 +78,7 @@ export default function LandingPage() {
           {/* ── HERO ── */}
       <section
         className="relative overflow-hidden text-center"
-        style={{ minHeight: "max(100vh, 600px)", background: "#0f172a" }}
+        style={{ minHeight: "max(100vh, 600px)", background: "#0f172a", display: "flex", flexDirection: "column", justifyContent: "center" }}
       >
         {/* Background video – hidden on mobile (<768px) via .hero-video CSS */}
         {!isMobile && (
@@ -118,11 +118,11 @@ export default function LandingPage() {
 
         {/* Hero content – sits above video + overlay */}
         <div
-          className="relative max-w-5xl mx-auto px-6 pt-20 pb-16"
+          className="relative max-w-5xl mx-auto px-6 pt-20 pb-16"h
           style={{ zIndex: 2 }}
         >
           <div className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-6 border border-white/20 bg-white/10 text-white">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse-dot" />
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-phulse-dot" />
             Built for the European job market
           </div>
           <h1
