@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+mport Anthropic from "@anthropic-ai/sdk";
 import { createClient } from "@supabase/supabase-js";
 import { NextRequest } from "next/server";
 import { buildCVPrompt, buildCoverLetterPrompt, buildFollowUpPrompt } from "@/lib/ai-prompts";
@@ -6,7 +6,6 @@ import { FREE_AI_LIMIT } from "@/lib/types";
 
 export async function POST(request: NextRequest) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  console.log("[AI] ANTHROPIC_API_KEY first 10 chars:", apiKey?.slice(0, 10) ?? "UNDEFINED");
   const anthropic = new Anthropic({ apiKey });
   try {
     const body = await request.json();
