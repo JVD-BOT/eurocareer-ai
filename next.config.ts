@@ -30,6 +30,15 @@ const nextConfig: NextConfig = {
     STRIPE_PRO_PRICE_ID: e("STRIPE_PRO_PRICE_ID"),
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: e("NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY"),
   },
+    async redirects() {
+          return [
+            {
+                      source: '/pricing',
+                      destination: '/#pricing',
+                      permanent: false,
+            },
+                ];
+    },
 };
 
 export default nextConfig;
