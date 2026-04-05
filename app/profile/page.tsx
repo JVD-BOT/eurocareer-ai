@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -21,13 +20,10 @@ export default function ProfilePage() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-
-  // Editable fields
   const [resumeText, setResumeText] = useState("");
   const [languages, setLanguages] = useState("");
   const [nationality, setNationality] = useState("");
   const [workAuth, setWorkAuth] = useState("");
-
   const router = useRouter();
 
   useEffect(() => {
@@ -47,7 +43,6 @@ export default function ProfilePage() {
       .select("*")
       .eq("id", userId)
       .maybeSingle();
-
     if (data) {
       setProfile(data as Profile);
       setResumeText(data.resume_text ?? "");
@@ -88,8 +83,11 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="w-10 h-10 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#F8F8F6" }}>
+        <div className="flex flex-col items-center gap-3">
+          <Image src="/STAR.png" alt="" width={40} height={40} className="animate-slow-spin opacity-40" />
+          <p className="text-sm" style={{ color: "#7A7F94" }}>Loading…</p>
+        </div>
       </div>
     );
   }
@@ -152,10 +150,13 @@ export default function ProfilePage() {
                 />
               </div>
             </div>
+            {/* Fix: added Link wrapper so button navigates to billing page */}
             {!isPro && (
-              <Button size="sm" className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white text-xs">
-                Upgrade to Pro — €9/mo
-              </Button>
+              <Link href="/settings/billing">
+                <Button size="sm" className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white text-xs">
+                  Upgrade to Pro — €9/mo
+                </Button>
+              </Link>
             )}
           </div>
         </div>
