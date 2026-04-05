@@ -71,3 +71,52 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/blog/austria-cv-format`,
+      lastModified: new Date("2026-04-05"),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/belgium-cv-format`,
+      lastModified: new Date("2026-04-05"),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/cover-letter-europe`,
+      lastModified: new Date("2026-04-05"),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/denmark-cv-format`,
+      lastModified: new Date("2026-04-05"),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/eu-work-visa-guide`,
+      lastModified: new Date("2026-04-05"),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/ireland-cv-format`,
+      lastModified: new Date("2026-04-05"),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/italy-cv-format`,
+      lastModified: new Date("2026-04-05"),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/switzerland-cv-format`,
+      lastModified: new Date("2026-04-05"),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+  ]
+}
