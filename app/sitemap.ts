@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: baseUrl,
       lastModified: new Date("2026-04-05"),
       changeFrequency: 'weekly',
-      priority: 1,h
+      priority: 1,
     },
     {
       url: `${baseUrl}/blog`,
