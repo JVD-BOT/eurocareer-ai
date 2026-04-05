@@ -78,7 +78,7 @@ export default function LandingPage() {
           {/* ── HERO ── */}
       <section
         className="relative overflow-hidden text-center"
-        style={{ minHeight: "max(100vh, 600px)", background: "#0f172a", display: "flex", flexDirection: "column", justifyContent: "center" }}
+        style={{ minHeight: "max(100vh, 600px)", background: "#0f172a" }}
       >
         {/* Background video – hidden on mobile (<768px) via .hero-video CSS */}
         {!isMobile && (
