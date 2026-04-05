@@ -24,9 +24,6 @@ export const metadata: Metadata = {
         },
         description: "EuroCareer AI adapts your CV for Germany, Netherlands, France, Sweden, UK, Spain and 6 more EU markets in seconds. Free to start, no credit card needed.",
         metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://eurocareerai.com"),
-        alternates: {
-                canonical: "/",
-        },
         openGraph: {
                 title: "CV Adapter for Europe | EuroCareer AI",
                 description: "Adapt your CV for any EU country in seconds. Covers Germany, Netherlands, France, Sweden, UK, Spain, and 6 more markets.",
@@ -34,7 +31,7 @@ export const metadata: Metadata = {
                 siteName: "EuroCareer AI",
                 images: [
                         {
-                                url: "/og-image.png.png",
+                                url: "/og-image.png",
                                 width: 1200,
                                 height: 630,
                                 alt: "EuroCareer AI — CV Adapter for Europe",
@@ -47,7 +44,7 @@ export const metadata: Metadata = {
                 card: "summary_large_image",
                 title: "CV Adapter for Europe | EuroCareer AI",
                 description: "Adapt your CV for any EU country in seconds.",
-                images: ["/og-image.png.png"],
+                images: ["/og-image.png"],
         },
         robots: {
                 index: true,
