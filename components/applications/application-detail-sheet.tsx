@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { COUNTRIES, COLUMNS } from "@/lib/constants";
-import type { Application, Profile, FREE_AI_LIMIT } from "@/lib/types";
+import type { Application, Profile } from "@/lib/types";
 import { FREE_AI_LIMIT as LIMIT } from "@/lib/types";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
