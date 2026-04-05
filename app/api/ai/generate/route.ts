@@ -7,6 +7,7 @@ import { FREE_AI_LIMIT } from "@/lib/types";
 export async function POST(request: NextRequest) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   const anthropic = new Anthropic({ apiKey });
+
   try {
     const body = await request.json();
     const {
@@ -27,9 +28,7 @@ export async function POST(request: NextRequest) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
     }
 
-    // ── Auth ──────────────────────────────────────────────────
-    // Use the access token as the Authorization header so all subsequent
-    // DB queries run under the user's identity (RLS-aware).
+    // ── Auth ────────────────────────────────────────────────────────────────
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -41,9 +40,8 @@ export async function POST(request: NextRequest) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
     }
 
-    // ── Profile & rate limiting ───────────────────────────────
-    const currentMonth = new Date().toISOString().slice(0, 7); // "2025-03"
-
+    // ── Profile & rate limiting ─────────────────────────────────────────────
+    const currentMonth = new Date().toISOString().slice(0, 7);
     let { data: profile } = await supabase
       .from("profiles")
       .select("*")
@@ -77,7 +75,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // ── Fetch application ─────────────────────────────────────
+    // ── Fetch application ───────────────────────────────────────────────────
     const { data: application } = await supabase
       .from("applications")
       .select("*")
@@ -88,9 +86,10 @@ export async function POST(request: NextRequest) {
       return new Response(JSON.stringify({ error: "Application not found" }), { status: 404 });
     }
 
-    // ── Build prompt ──────────────────────────────────────────
-    let prompt: string;
+    // ── Build prompt ────────────────────────────────────────────────────────
+    // Fix: maxTokens variable was computed but never used — now passed to anthropic.messages.create
     const maxTokens = type === "follow_up_email" ? 600 : 2048;
+    let prompt: string;
 
     if (type === "cv_adapter") {
       prompt = buildCVPrompt(application, resumeText ?? "", country ?? application.country ?? "GB");
@@ -110,16 +109,17 @@ export async function POST(request: NextRequest) {
       return new Response(JSON.stringify({ error: "Invalid generation type" }), { status: 400 });
     }
 
-    // ── Call Anthropic ────────────────────────────────────────
-    console.log("[AI] calling Anthropic, model: claude-sonnet-4-6, type:", type);
+    // ── Call Anthropic ──────────────────────────────────────────────────────
+    console.log("[AI] calling Anthropic, model: claude-sonnet-4-6, type:", type, "maxTokens:", maxTokens);
     const response = await anthropic.messages.create({
       model: "claude-sonnet-4-6",
-      max_tokens: 1024,
+      max_tokens: maxTokens,
       messages: [{ role: "user", content: prompt }],
     });
-
     console.log("[AI] Anthropic response received, stop_reason:", response.stop_reason);
-    const text = response.content[0].type === "text" ? response.content[0].text : "";
+
+    const text =
+      response.content[0].type === "text" ? response.content[0].text : "";
 
     // Save generation record and increment credits (fire & forget)
     Promise.all([
@@ -142,9 +142,9 @@ export async function POST(request: NextRequest) {
     console.error("[AI] generate error — message:", e?.message);
     console.error("[AI] generate error — status:", e?.status);
     console.error("[AI] generate error — stack:", e?.stack);
-    return new Response(JSON.stringify({ error: "Internal server error", message: e?.message, status: e?.status }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({ error: "Internal server error", message: e?.message, status: e?.status }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
   }
 }
