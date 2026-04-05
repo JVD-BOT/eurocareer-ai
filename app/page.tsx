@@ -204,7 +204,7 @@ export default function LandingPage() {
                                   <div className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-6 border border-white/20 bg-white/10 text-white">
                                               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse-dot" />
                                               Built for the European job market
-                                  </div>div>
+                                  </div>
                         
                                   <h1
                                                 className="text-5xl sm:text-6xl font-extrabold leading-tight tracking-tight mb-6"
@@ -219,14 +219,14 @@ export default function LandingPage() {
                                                               }}
                                                             >
                                                             faster
-                                              </span>span>{" "}
+                                              </span>{" "}
                                               with AI
-                                  </h1>h1>
+                                  </h1>
                         
                                   <p className="text-xl max-w-2xl mx-auto mb-10" style={{ color: "#cbd5e1" }}>
                                               Every EU country has different CV rules, photo norms, and cover letter styles.
                                               EuroCareer AI adapts your application to match — 12 markets, in seconds.
-                                  </p>p>
+                                  </p>
                         
                                   <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                                               <Link
@@ -235,35 +235,35 @@ export default function LandingPage() {
                                                               style={{ background: "#FAFAFA", color: "#0F1629" }}
                                                             >
                                                             Start free →
-                                              </Link>Link>
+                                              </Link>
                                               <a href="#how-it-works" className="font-medium hover:underline" style={{ color: "#818cf8" }}>
                                                             See how it works
-                                              </a>a>
-                                  </div>div>
+                                              </a>
+                                  </div>
                         
-                                  <p className="mt-4 text-sm" style={{ color: "#94a3b8" }}>No credit card required</p>p>
-                        </div>div>
-                </section>section>
+                                  <p className="mt-4 text-sm" style={{ color: "#94a3b8" }}>No credit card required</p>
+                        </div>
+                </section>
         
           {/* COUNTRY BAR */}
               <section className="border-y border-[#E2E1DC] bg-white py-8">
                       <div className="max-w-5xl mx-auto px-6">
                                 <p className="text-xs font-semibold text-[#B0B4C5] uppercase tracking-widest text-center mb-5">
                                             Supporting job seekers applying to:
-                                </p>p>
+                                </p>
                                 <div className="flex flex-wrap justify-center gap-2">
                                   {COUNTRIES.map((c) => (
                         <span
                                           key={c.code}
                                           className="inline-flex items-center gap-1.5 bg-[#F8F8F6] border border-[#E2E1DC] rounded-full px-3 py-1.5 text-sm text-[#3D4255] font-medium hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-colors cursor-default"
                                         >
-                                        <span>{c.flag}</span>span>
+                                        <span>{c.flag}</span>
                           {c.name}
-                        </span>span>
+                        </span>
                       ))}
-                                </div>div>
-                      </div>div>
-              </section>section>
+                                </div>
+                      </div>
+              </section>
         
           {/* HOW IT WORKS */}
               <section id="how-it-works" className="py-20 max-w-5xl mx-auto px-6">
@@ -271,15 +271,15 @@ export default function LandingPage() {
                                 <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#636DF5] uppercase tracking-widest mb-3">
                                             <Image src="/STAR.png" alt="" width={14} height={14} className="opacity-60" />
                                             How it works
-                                </div>div>
+                                </div>
                                 <h2
                                               className="text-3xl sm:text-4xl font-bold"
                                               style={{ fontFamily: "'Outfit', sans-serif" }}
                                             >
                                             From signup to sent application in under 5 minutes
-                                </h2>h2>
-                                <p className="text-[#7A7F94] mt-3">Three steps, zero guesswork.</p>p>
-                      </div>div>
+                                </h2>
+                                <p className="text-[#7A7F94] mt-3">Three steps, zero guesswork.</p>
+                      </div>
               
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
                         {HOW_IT_WORKS.map((item, i) => (
@@ -291,19 +291,19 @@ export default function LandingPage() {
                                     >
                                     <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4 border border-[#E2E1DC] bg-white shadow-sm">
                                       {item.icon}
-                                    </div>div>
-                                    <span className="text-xs font-bold text-[#B0B4C5] mb-2">{item.step}</span>span>
+                                    </div>
+                                    <span className="text-xs font-bold text-[#B0B4C5] mb-2">{item.step}</span>
                                     <h3
                                                       className="font-bold text-[#0F1629] text-lg mb-2"
                                                       style={{ fontFamily: "'Outfit', sans-serif" }}
                                                     >
                                       {item.title}
-                                    </h3>h3>
-                                    <p className="text-sm text-[#7A7F94] leading-relaxed">{item.desc}</p>p>
-                      </div>div>
+                                    </h3>
+                                    <p className="text-sm text-[#7A7F94] leading-relaxed">{item.desc}</p>
+                      </div>
                     ))}
-                      </div>div>
-              </section>section>
+                      </div>
+              </section>
         
           {/* FEATURES */}
               <section id="features" className="bg-white border-y border-[#E2E1DC] py-20">
@@ -312,15 +312,15 @@ export default function LandingPage() {
                                             <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#636DF5] uppercase tracking-widest mb-3">
                                                           <Image src="/STAR.png" alt="" width={14} height={14} className="opacity-60" />
                                                           Features
-                                            </div>div>
+                                            </div>
                                             <h2
                                                             className="text-3xl sm:text-4xl font-bold"
                                                             style={{ fontFamily: "'Outfit', sans-serif" }}
                                                           >
                                                           From first application to signed offer
-                                            </h2>h2>
-                                            <p className="text-[#7A7F94] mt-3">One platform built for the European job market.</p>p>
-                                </div>div>
+                                            </h2>
+                                            <p className="text-[#7A7F94] mt-3">One platform built for the European job market.</p>
+                                </div>
                       
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                   {FEATURES.map((f, i) => (
@@ -331,7 +331,7 @@ export default function LandingPage() {
                                           style={{ transitionDelay: `${i * 0.08}s` }}
                                         >
                                         <div className="flex items-start justify-between mb-3">
-                                                          <span className="text-3xl">{f.emoji}</span>span>
+                                                          <span className="text-3xl">{f.emoji}</span>
                                                           <span
                                                                                 className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
                                                                                                         f.tag === "AI"
@@ -340,20 +340,20 @@ export default function LandingPage() {
                                                                                   }`}
                                                                               >
                                                             {f.tag === "AI" ? "✨ AI" : f.tag}
-                                                          </span>span>
-                                        </div>div>
+                                                          </span>
+                                        </div>
                                         <h3
                                                             className="font-semibold text-[#0F1629] mb-2"
                                                             style={{ fontFamily: "'Outfit', sans-serif" }}
                                                           >
                                           {f.title}
-                                        </h3>h3>
-                                        <p className="text-sm text-[#7A7F94] leading-relaxed">{f.desc}</p>p>
-                        </div>div>
+                                        </h3>
+                                        <p className="text-sm text-[#7A7F94] leading-relaxed">{f.desc}</p>
+                        </div>
                       ))}
-                                </div>div>
-                      </div>div>
-              </section>section>
+                                </div>
+                      </div>
+              </section>
         
           {/* PRICING */}
               <section id="pricing" className="py-20 max-w-5xl mx-auto px-6">
@@ -363,17 +363,17 @@ export default function LandingPage() {
                                               style={{ fontFamily: "'Outfit', sans-serif" }}
                                             >
                                             Simple, transparent pricing
-                                </h2>h2>
-                                <p className="text-[#7A7F94] mt-3">Start free. Upgrade when your job search gets serious.</p>p>
-                      </div>div>
+                                </h2>
+                                <p className="text-[#7A7F94] mt-3">Start free. Upgrade when your job search gets serious.</p>
+                      </div>
               
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
                         {/* Free */}
                                 <div ref={addReveal} className="reveal rounded-2xl border border-[#E2E1DC] bg-white p-8 space-y-4">
-                                            <p className="text-xs font-bold text-[#B0B4C5] uppercase tracking-widest">Free</p>p>
+                                            <p className="text-xs font-bold text-[#B0B4C5] uppercase tracking-widest">Free</p>
                                             <p className="text-4xl font-extrabold" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                                           €0
-                                            </p>p>
+                                            </p>
                                             <ul className="space-y-2 text-sm text-[#3D4255]">
                                               {[
                           "Application tracker (unlimited)",
@@ -382,18 +382,18 @@ export default function LandingPage() {
                           "12 EU countries",
                         ].map((item) => (
                                           <li key={item} className="flex items-center gap-2">
-                                                            <span className="text-[#16A34A] font-bold">✓</span>span>
+                                                            <span className="text-[#16A34A] font-bold">✓</span>
                                             {item}
-                                          </li>li>
+                                          </li>
                                         ))}
-                                            </ul>ul>
+                                            </ul>
                                             <Link
                                                             href="/auth/signup"
                                                             className="block text-center border border-[#E2E1DC] hover:border-[#636DF5] hover:bg-[#EEEFFE] text-[#3D4255] font-medium py-2.5 rounded-xl transition-colors text-sm"
                                                           >
                                                           Start free
-                                            </Link>Link>
-                                </div>div>
+                                            </Link>
+                                </div>
                       
                         {/* Pro */}
                                 <div
@@ -406,14 +406,14 @@ export default function LandingPage() {
                                                             style={{ background: "#636DF5" }}
                                                           >
                                                           Most popular
-                                            </div>div>
+                                            </div>
                                             <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#636DF5" }}>
                                                           Pro
-                                            </p>p>
+                                            </p>
                                             <p className="text-4xl font-extrabold" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                                           €9{" "}
-                                                          <span className="text-base text-[#B0B4C5] font-normal">/ month</span>span>
-                                            </p>p>
+                                                          <span className="text-base text-[#B0B4C5] font-normal">/ month</span>
+                                            </p>
                                             <ul className="space-y-2 text-sm text-[#3D4255]">
                                               {[
                                                               "Everything in Free",
@@ -424,22 +424,22 @@ export default function LandingPage() {
                                                               "Priority AI processing",
                                                             ].map((item) => (
                                                                               <li key={item} className="flex items-center gap-2">
-                                                                                                <span className="font-bold" style={{ color: "#636DF5" }}>✓</span>span>
+                                                                                                <span className="font-bold" style={{ color: "#636DF5" }}>✓</span>
                                                                                 {item}
-                                                                              </li>li>
+                                                                              </li>
                                                                             ))}
-                                            </ul>ul>
+                                            </ul>
                                             <Link
                                                             href="/auth/signup?plan=pro"
                                                             className="block text-center text-white font-semibold py-2.5 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-md text-sm"
                                                             style={{ background: "#636DF5" }}
                                                           >
                                                           Upgrade to Pro — €9/month
-                                            </Link>Link>
-                                            <p className="text-xs text-slate-500 mt-1 text-center">Cancel anytime · No lock-in</p>p>
-                                </div>div>
-                      </div>div>
-              </section>section>
+                                            </Link>
+                                            <p className="text-xs text-slate-500 mt-1 text-center">Cancel anytime · No lock-in</p>
+                                </div>
+                      </div>
+              </section>
         
           {/* BLOG */}
               <section className="bg-white border-y border-[#E2E1DC] py-20">
@@ -449,21 +449,21 @@ export default function LandingPage() {
                                                           <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#636DF5] uppercase tracking-widest mb-2">
                                                                           <Image src="/STAR.png" alt="" width={14} height={14} className="opacity-60" />
                                                                           Guides
-                                                          </div>div>
+                                                          </div>
                                                           <h2
                                                                             className="text-2xl sm:text-3xl font-bold"
                                                                             style={{ fontFamily: "'Outfit', sans-serif" }}
                                                                           >
                                                                           EU job search guides
-                                                          </h2>h2>
-                                            </div>div>
+                                                          </h2>
+                                            </div>
                                             <Link
                                                             href="/blog"
                                                             className="text-sm font-medium text-[#636DF5] hover:underline hidden sm:block"
                                                           >
                                                           View all →
-                                            </Link>Link>
-                                </div>div>
+                                            </Link>
+                                </div>
                       
                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                                   {BLOG_POSTS.map((post, i) => (
@@ -474,23 +474,23 @@ export default function LandingPage() {
                                           className="reveal group rounded-2xl border border-[#E2E1DC] bg-[#F8F8F6] p-6 hover:border-[#636DF5] hover:shadow-md transition-all hover:-translate-y-0.5 flex flex-col gap-3"
                                           style={{ transitionDelay: `${i * 0.08}s` }}
                                         >
-                                        <div className="text-2xl">{post.flag}</div>div>
-                                        <span className="text-xs font-semibold text-[#636DF5] uppercase">{post.tag}</span>span>
+                                        <div className="text-2xl">{post.flag}</div>
+                                        <span className="text-xs font-semibold text-[#636DF5] uppercase">{post.tag}</span>
                                         <h3
                                                             className="font-bold text-[#0F1629] leading-snug text-sm"
                                                             style={{ fontFamily: "'Outfit', sans-serif" }}
                                                           >
                                           {post.title}
-                                        </h3>h3>
-                                        <p className="text-xs text-[#7A7F94] flex-1">{post.desc}</p>p>
+                                        </h3>
+                                        <p className="text-xs text-[#7A7F94] flex-1">{post.desc}</p>
                                         <span className="text-sm font-medium text-[#636DF5] group-hover:underline">
                                                           Read guide →
-                                        </span>span>
-                        </Link>Link>
+                                        </span>
+                        </Link>
                       ))}
-                                </div>div>
-                      </div>div>
-              </section>section>
+                                </div>
+                      </div>
+              </section>
         
           {/* FAQ */}
               <section id="faq" className="py-20">
@@ -501,8 +501,8 @@ export default function LandingPage() {
                                                             style={{ fontFamily: "'Outfit', sans-serif" }}
                                                           >
                                                           Frequently asked questions
-                                            </h2>h2>
-                                </div>div>
+                                            </h2>
+                                </div>
                       
                                 <div className="space-y-3">
                                   {FAQS.map((faq, i) => (
@@ -516,14 +516,14 @@ export default function LandingPage() {
                                           {faq.q}
                                                           <span className="text-[#B0B4C5] group-open:rotate-180 transition-transform shrink-0 text-xs">
                                                                               ▼
-                                                          </span>span>
-                                        </summary>summary>
-                                        <p className="mt-3 text-sm text-[#7A7F94] leading-relaxed">{faq.a}</p>p>
-                        </details>details>
+                                                          </span>
+                                        </summary>
+                                        <p className="mt-3 text-sm text-[#7A7F94] leading-relaxed">{faq.a}</p>
+                        </details>
                       ))}
-                                </div>div>
-                      </div>div>
-              </section>section>
+                                </div>
+                      </div>
+              </section>
         
           {/* CTA */}
               <section
@@ -539,7 +539,7 @@ export default function LandingPage() {
                                               className="animate-slow-spin"
                                               style={{ filter: "invert(1)" }}
                                             />
-                      </div>div>
+                      </div>
                       <div className="relative max-w-xl mx-auto px-6">
                                 <Image
                                               src="/STAR.png"
@@ -554,22 +554,22 @@ export default function LandingPage() {
                                               style={{ fontFamily: "'Outfit', sans-serif" }}
                                             >
                                             Your next EU role is closer than you think.
-                                </h2>h2>
+                                </h2>
                                 <p className="text-[#7A7F94] mb-8">
                                             Stop guessing what European recruiters want. Start free today — no credit card needed.
-                                </p>p>
+                                </p>
                                 <Link
                                               href="/auth/signup"
                                               className="inline-block bg-white text-[#0F1629] text-base font-semibold px-10 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg"
                                             >
                                             Start free →
-                                </Link>Link>
-                                <p className="mt-4 text-sm text-[#7A7F94]">No credit card required</p>p>
-                      </div>div>
-              </section>section>
+                                </Link>
+                                <p className="mt-4 text-sm text-[#7A7F94]">No credit card required</p>
+                      </div>
+              </section>
         
           {/* FOOTER */}
               <Footer />
-        </div>div>
+        </div>
       );
-}</section>
+}
