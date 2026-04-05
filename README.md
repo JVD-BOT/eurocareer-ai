@@ -46,3 +46,5 @@ eurocareer-ai/
 ```bash
 npx shadcn@latest add <component-name>
 ```
+
+<!-- Build test 2026-04-05T08:26:55.068Z -->
