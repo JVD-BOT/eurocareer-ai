@@ -1,5 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Terms of Service",
+    description: "EuroCareer AI terms of service — your rights and obligations when using the platform.",
+};
 
 export default function TermsPage() {
   return (
@@ -11,7 +17,7 @@ export default function TermsPage() {
 
       <main className="max-w-2xl mx-auto px-6 py-12 prose prose-gray prose-sm">
         <h1>Terms of Service</h1>
-        <p className="text-gray-500">Last updated: {new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</p>
+        <p className="text-gray-500">Last updated: 5 April 2026</p>
 
         <h2>1. Acceptance</h2>
         <p>By creating an account or using EuroCareer AI ("the Service"), you agree to these Terms. If you do not agree, do not use the Service.</p>
