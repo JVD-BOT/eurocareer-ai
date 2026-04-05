@@ -1,5 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Privacy Policy",
+    description: "EuroCareer AI privacy policy — how we collect, use, and protect your data.",
+};
 
 export default function PrivacyPage() {
   return (
@@ -11,7 +17,7 @@ export default function PrivacyPage() {
 
       <main className="max-w-2xl mx-auto px-6 py-12 prose prose-gray prose-sm">
         <h1>Privacy Policy</h1>
-        <p className="text-gray-500">Last updated: {new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</p>
+        <p className="text-gray-500">Last updated: 5 April 2026</p>
 
         <h2>1. Who we are</h2>
         <p>EuroCareer AI ("we", "us", "our") operates the EuroCareer AI platform at this domain. We are the data controller for the personal data described in this policy.</p>
