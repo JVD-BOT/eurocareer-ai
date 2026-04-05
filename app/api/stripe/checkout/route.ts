@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
       customer: customerId,
       mode: "subscription",
       payment_method_types: ["card"],
-      line_items: [{ price: process.env.STRIPE_PRO_PRICE_ID!, quantity: 1 }],
+          line_items: [{ price: process.env.STRIPE_PRO_PRICE_ID! }],
       success_url: `${origin}/settings/billing?success=1`,
       cancel_url: `${origin}/settings/billing?canceled=1`,
       metadata: { supabase_user_id: user.id },
