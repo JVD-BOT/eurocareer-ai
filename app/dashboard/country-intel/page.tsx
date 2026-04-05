@@ -277,7 +277,7 @@ export default function CountryIntelPage() {
                         <div className="mb-6">
                                   <input
                                                 type="text"
-                                                placeholder="Search countries\u2026"
+                                                placeholder="Search countries…"
                                                 value={search}
                                                 onChange={(e) => setSearch(e.target.value)}
                                                 className="w-full sm:w-72 px-4 py-2.5 rounded-xl border border-[#E2E1DC] text-sm focus:outline-none focus:border-[#636DF5] focus:ring-2 focus:ring-[#636DF5]/20 transition-all"
