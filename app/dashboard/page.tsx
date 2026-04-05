@@ -22,9 +22,9 @@ const NAV_ITEMS = [
     ];
 
 const QUICK_ACTIONS = [
-    { label: "Track applications", desc: "Kanban board + list view", emoji: "📋", href: "/applications" },
-    { label: "AI CV Adapter", desc: "Adapt your CV for any EU country", emoji: "📄", href: "/applications" },
-    { label: "Cover Letter", desc: "Generate in seconds with AI", emoji: "💌", href: "/applications" },
+    { label: "Track applications", desc: "Kanban board + list view", emhoji: "📋", href: "/applications" },
+    { label: "AI CV Adapter", desc: "Adapt your CV for any EU country", emoji: "📄", href: "/dashboard/cv-adapter" },
+    { label: "Cover Letter", desc: "Generate in seconds with AI", emoji: "💌", href: "/dashboard/cover-letter" },
       { label: "Country Intel", desc: "Hiring norms for 12 EU markets", emoji: "🌍", href: "/dashboard/country-intel" },
     ];
 
