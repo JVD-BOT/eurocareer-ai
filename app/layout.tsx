@@ -11,7 +11,7 @@ const outfit = Outfit({
         display: "swap",
 });
 
-const dmSans = DM_Sans({
+const dmSans = DM_Sans({h
         subsets: ["latin"],
         variable: "--font-dm-sans",
         display: "swap",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
                 template: "%s | EuroCareer AI",
         },
         description: "EuroCareer AI adapts your CV for Germany, Netherlands, France, Sweden, UK, Spain and 6 more EU markets in seconds. Free to start, no credit card needed.",
-        metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://eurocareerai.com"),
+                metadataBase: new URL("https://eurocareerai.com"),
         openGraph: {
                 title: "CV Adapter for Europe | EuroCareer AI",
                 description: "Adapt your CV for any EU country in seconds. Covers Germany, Netherlands, France, Sweden, UK, Spain, and 6 more markets.",
