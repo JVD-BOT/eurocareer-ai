@@ -11,7 +11,7 @@ const outfit = Outfit({
         display: "swap",
 });
 
-const dmSans = DM_Sans({h
+const dmSans = DM_Sans({
         subsets: ["latin"],
         variable: "--font-dm-sans",
         display: "swap",
