@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
       await supabase.from("profiles").upsert({ id: user.id, stripe_customer_id: customerId });
     }
 
-    const origin = request.headers.get("origin") ?? "http://localhost:3000";
+    const origin = request.headers.get("origin") || process.env.NEXT_PUBLIC_APP_URL || "https://eurocareerai.com";
 
     const session = await stripe.checkout.sessions.create({
       customer: customerId,

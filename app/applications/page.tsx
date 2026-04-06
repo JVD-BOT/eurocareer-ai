@@ -30,14 +30,15 @@ export default function ApplicationsPage() {
         return;
       }
       setUser(session.user);
-      loadApplications();
+      loadApplications(session.user.id);
     });
   }, [router]);
 
-  const loadApplications = async () => {
+  const loadApplications = async (userId: string) => {
     const { data } = await supabase
       .from("applications")
       .select("*")
+      .eq("user_id", userId)
       .order("created_at", { ascending: false });
     if (data) setApplications(data as Application[]);
     setLoading(false);

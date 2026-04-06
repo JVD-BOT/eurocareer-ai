@@ -109,6 +109,7 @@ export function ApplicationDetailSheet({
     setSaving(true);
     setError("");
 
+    const { data: { session } } = await supabase.auth.getSession();
     const { data, error } = await supabase
       .from("applications")
       .update({
@@ -126,6 +127,7 @@ export function ApplicationDetailSheet({
         follow_up_date: form.follow_up_date || null,
       })
       .eq("id", application.id)
+      .eq("user_id", session?.user.id ?? "")
       .select()
       .single();
 
@@ -141,7 +143,8 @@ export function ApplicationDetailSheet({
   const handleDelete = async () => {
     if (!application) return;
     setDeleting(true);
-    const { error } = await supabase.from("applications").delete().eq("id", application.id);
+    const { data: { session } } = await supabase.auth.getSession();
+    const { error } = await supabase.from("applications").delete().eq("id", application.id).eq("user_id", session?.user.id ?? "");
     if (error) {
       setError(error.message);
       setDeleting(false);

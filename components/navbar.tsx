@@ -40,7 +40,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/auth/signup"
-            className="text-sm font-medium bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg transition-colors"
+            className="text-sm font-medium bg-[#636DF5] hover:bg-[#5560E0] text-white px-4 py-2 rounded-lg transition-colors"
           >
             Start free
           </Link>
@@ -49,7 +49,7 @@ export default function Navbar() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-800 transition-colors"
+          className="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
           aria-label="Toggle menu"
         >
           {mobileOpen ? (
@@ -78,7 +78,7 @@ export default function Navbar() {
               <Link
                 href="/auth/signup"
                 onClick={() => setMobileOpen(false)}
-                className="text-sm font-medium bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-lg text-center transition-colors"
+                className="text-sm font-medium bg-[#636DF5] hover:bg-[#5560E0] text-white px-4 py-2.5 rounded-lg text-center transition-colors"
               >
                 Start free
               </Link>

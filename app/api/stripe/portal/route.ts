@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     }
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-    const origin = request.headers.get("origin") ?? "http://localhost:3000";
+    const origin = request.headers.get("origin") || process.env.NEXT_PUBLIC_APP_URL || "https://eurocareerai.com";
 
     const portalSession = await stripe.billingPortal.sessions.create({
       customer: profile.stripe_customer_id,

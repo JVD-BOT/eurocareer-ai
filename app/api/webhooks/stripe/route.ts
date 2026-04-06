@@ -42,6 +42,17 @@ export async function POST(request: NextRequest) {
         break;
       }
 
+      case "customer.subscription.updated": {
+        const sub = event.data.object as Stripe.Subscription;
+        const customerId = sub.customer as string;
+        const plan = sub.status === "active" ? "pro" : "free";
+        await supabase
+          .from("profiles")
+          .update({ plan })
+          .eq("stripe_customer_id", customerId);
+        break;
+      }
+
       case "customer.subscription.deleted": {
         const sub = event.data.object as Stripe.Subscription;
         const customerId = sub.customer as string;

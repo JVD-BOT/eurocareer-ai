@@ -11,9 +11,19 @@ export default function AuthCallbackPage() {
     const handleCallback = async () => {
       const params = new URLSearchParams(window.location.search);
       const code = params.get("code");
+      const error = params.get("error");
+
+      if (error) {
+        router.replace(`/auth/login?error=${encodeURIComponent(error)}`);
+        return;
+      }
 
       if (code) {
-        await supabase.auth.exchangeCodeForSession(code);
+        const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
+        if (exchangeError) {
+          router.replace(`/auth/login?error=${encodeURIComponent(exchangeError.message)}`);
+          return;
+        }
       }
 
       router.replace("/dashboard");

@@ -41,11 +41,14 @@ function BillingContent() {
   useEffect(() => {
     if (searchParams.get("success") === "1") {
       toast.success("You're now on Pro! Enjoy unlimited AI generations.");
+      // Re-fetch profile to reflect the updated plan after checkout
+      if (user) loadProfile(user.id);
     }
     if (searchParams.get("canceled") === "1") {
       toast.info("Checkout canceled. You're still on the free plan.");
     }
-  }, [searchParams]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, user]);
 
   const loadProfile = async (userId: string) => {
     const { data } = await supabase.from("profiles").select("*").eq("id", userId).maybeSingle();

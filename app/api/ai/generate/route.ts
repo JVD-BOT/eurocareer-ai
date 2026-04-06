@@ -6,7 +6,13 @@ import { FREE_AI_LIMIT } from "@/lib/types";
 
 export async function POST(request: NextRequest) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  const anthropic = new Anthropic({ apiKey });
+  if (!apiKey) {
+    return new Response(
+      JSON.stringify({ error: "AI service not configured" }),
+      { status: 503, headers: { "Content-Type": "application/json" } }
+    );
+  }
+  const anthropic = new Anthropic({ apiKey, timeout: 30000 });
 
   try {
     const body = await request.json();
@@ -57,14 +63,15 @@ export async function POST(request: NextRequest) {
       profile = data;
     }
 
-    // Monthly reset
+    // Monthly reset (atomic: only reset if still on old month to prevent race condition)
     let creditsUsed = profile?.ai_credits_used ?? 0;
     if (profile?.ai_credits_month !== currentMonth) {
-      creditsUsed = 0;
       await supabase
         .from("profiles")
         .update({ ai_credits_used: 0, ai_credits_month: currentMonth })
-        .eq("id", user.id);
+        .eq("id", user.id)
+        .neq("ai_credits_month", currentMonth);
+      creditsUsed = 0;
     }
 
     const isPro = profile?.plan === "pro";
@@ -80,6 +87,7 @@ export async function POST(request: NextRequest) {
       .from("applications")
       .select("*")
       .eq("id", applicationId)
+      .eq("user_id", user.id)
       .single();
 
     if (!application) {
@@ -110,19 +118,25 @@ export async function POST(request: NextRequest) {
     }
 
     // ── Call Anthropic ──────────────────────────────────────────────────────
-    console.log("[AI] calling Anthropic, model: claude-sonnet-4-6, type:", type, "maxTokens:", maxTokens);
+    const model = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-6";
+    console.log("[AI] calling Anthropic, model:", model, "type:", type, "maxTokens:", maxTokens);
     const response = await anthropic.messages.create({
-      model: "claude-sonnet-4-6",
+      model,
       max_tokens: maxTokens,
       messages: [{ role: "user", content: prompt }],
     });
     console.log("[AI] Anthropic response received, stop_reason:", response.stop_reason);
 
-    const text =
-      response.content[0].type === "text" ? response.content[0].text : "";
+    if (!response.content[0] || response.content[0].type !== "text") {
+      return new Response(
+        JSON.stringify({ error: "Unexpected response from AI model" }),
+        { status: 502, headers: { "Content-Type": "application/json" } }
+      );
+    }
+    const text = response.content[0].text;
 
-    // Save generation record and increment credits (fire & forget)
-    Promise.all([
+    // Save generation record and increment credits
+    await Promise.all([
       supabase.from("ai_generations").insert({
         user_id: user.id,
         application_id: applicationId,
@@ -134,7 +148,7 @@ export async function POST(request: NextRequest) {
         .from("profiles")
         .update({ ai_credits_used: creditsUsed + 1, ai_credits_month: currentMonth })
         .eq("id", user.id),
-    ]).catch(console.error);
+    ]);
 
     return Response.json({ content: text });
   } catch (error: unknown) {

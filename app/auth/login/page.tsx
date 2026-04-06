@@ -22,7 +22,7 @@ export default function LoginPage() {
         setError("");
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) { setError(error.message); setLoading(false); }
-        else { router.push("/dashboard"); }
+        else { setLoading(false); router.push("/dashboard"); }
   };
 
   const handleGoogleLogin = async () => {
@@ -105,7 +105,7 @@ export default function LoginPage() {
                                             <div className="space-y-1.5">
                                                           <div className="flex items-center justify-between">
                                                                           <Label htmlFor="password" className="text-sm font-medium" style={{ color: "#3D4255" }}>Password</Label>
-                                                                          <Link href="/auth/forgot-password" className="text-xs hover:underline" style={{ color: "#636DF5" }}>Forgot password?</Link>
+                                                                          <button type="button" onClick={async () => { if (!email) { setError("Enter your email first"); return; } const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/auth/callback` }); if (error) setError(error.message); else setError(""); alert("Check your email for a password reset link."); }} className="text-xs hover:underline" style={{ color: "#636DF5" }}>Forgot password?</button>
                                                           </div>
                                                           <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required disabled={loading || googleLoading} className="h-11 rounded-xl border-[#E2E1DC] focus:border-[#636DF5] focus:ring-[#636DF5]/20" />
                                             </div>
