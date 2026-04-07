@@ -145,7 +145,7 @@ export default function DashboardPage() {
                   {/* ── MAIN ── */}
                     <div className="flex-1 flex flex-col min-w-0">
                         {/* Top bar */}
-                            <header className="bg-white border-b border-[#E2E1DC] px-6 py-4 flex items-center justify-between sticky top-0 z-30">
+                            <header className="bg-white border-b border-[#E2E8F0] px-6 py-4 flex items-center justify-between sticky top-0 z-30">
                                       <div className="flex items-center gap-3">
                                                   <button
                                                                     onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -162,7 +162,7 @@ export default function DashboardPage() {
                                                                     variant="outline"
                                                                     size="sm"
                                                                     onClick={handleSignOut}
-                                                                    className="rounded-lg border-[#E2E1DC] text-sm font-medium hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-all"
+                                                                    className="rounded-lg border-[#E2E8F0] text-sm font-medium hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-all"
                                                                     style={{ color: "#3D4255" }}
                                                                   >
                                                                 Sign out
@@ -186,7 +186,7 @@ export default function DashboardPage() {
                   { label: "Offers", value: stats.offers, icon: "🎯", color: "#16A34A" },
                   { label: "AI Gens", value: stats.aiGens, icon: null, color: "#636DF5", star: true },
                               ].map((stat) => (
-                                                <div key={stat.label} className="bg-white rounded-2xl border border-[#E2E1DC] p-5 flex items-center gap-3 hover:border-[#636DF5] hover:shadow-sm transition-all">
+                                                <div key={stat.label} className="bg-white rounded-2xl border border-[#E2E8F0] p-5 flex items-center gap-3 hover:border-[#636DF5] hover:shadow-sm transition-all">
                                                     {stat.star ? (
                                                                       <Image src="/STAR.png" alt="" width={28} height={28} style={{ opacity: 0.5 }} />
                                                                     ) : (
@@ -201,7 +201,7 @@ export default function DashboardPage() {
                                       </div>
                             
                                 {/* Quick actions */}
-                                      <div className="bg-white rounded-2xl border border-[#E2E1DC] p-6 mb-6">
+                                      <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6 mb-6">
                                                   <div className="flex items-center gap-2 mb-5">
                                                                 <Image src="/STAR.png" alt="" width={16} height={16} style={{ opacity: 0.5 }} />
                                                                 <h3 className="font-bold" style={{ fontFamily: "'Sora', sans-serif", color: "#0F1629" }}>Quick actions</h3>
@@ -211,7 +211,7 @@ export default function DashboardPage() {
                                   <Link
                                                         key={action.label}
                                                         href={action.href}
-                                                        className="flex items-center gap-3 p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-all group"
+                                                        className="flex items-center gap-3 p-4 rounded-xl border border-[#E2E8F0] hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-all group"
                                                       >
                                                     <span className="text-2xl">{action.emoji}</span>
                                                     <div>
@@ -224,7 +224,7 @@ export default function DashboardPage() {
                                       </div>
                             
                                 {/* Recent applications link */}
-                                      <div className="bg-white rounded-2xl border border-[#E2E1DC] p-6">
+                                      <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6">
                                                   <div className="flex items-center justify-between mb-4">
                                                                 <h3 className="font-bold" style={{ fontFamily: "'Sora', sans-serif", color: "#0F1629" }}>Applications</h3>
                                                                 <Link href="/applications" className="text-sm font-medium hover:underline" style={{ color: "#636DF5" }}>View all →</Link>

@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#E2E1DC] bg-white mt-auto">
+    <footer className="border-t border-[#E2E8F0] bg-white mt-auto">
       <div className="max-w-6xl mx-auto px-4 py-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo + copyright */}
@@ -18,7 +18,7 @@ export default function Footer() {
             <Link href="/terms" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">Terms</Link>
             <Link href="/blog" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">Guides</Link>
             <Link href="/auth/login" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">Sign in</Link>
-            <Link href="/auth/signup" className="text-sm font-medium text-indigo-600 hover:text-indigo-800 transition-colors">Start free →</Link>
+            <Link href="/auth/signup" className="text-sm font-medium text-[#6366f1] hover:text-[#4f46e5] transition-colors">Start free →</Link>
           </div>
         </div>
       </div>

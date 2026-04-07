@@ -81,7 +81,7 @@ export default function LoginPage() {
                                 <Button
                                               type="button"
                                               variant="outline"
-                                              className="w-full h-11 font-medium mb-4 rounded-xl border-[#E2E1DC] hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-all"
+                                              className="w-full h-11 font-medium mb-4 rounded-xl border-[#E2E8F0] hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-all"
                                               onClick={handleGoogleLogin}
                                               disabled={googleLoading || loading}
                                             >
@@ -93,21 +93,21 @@ export default function LoginPage() {
                                 </Button>
                       
                                 <div className="relative mb-4">
-                                            <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-[#E2E1DC]" /></div>
+                                            <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-[#E2E8F0]" /></div>
                                             <div className="relative flex justify-center text-xs uppercase"><span className="px-2 text-[#B0B4C5]" style={{ background: "#F8F8F6" }}>or continue with email</span></div>
                                 </div>
                       
                                 <form onSubmit={handleLogin} className="space-y-4">
                                             <div className="space-y-1.5">
                                                           <Label htmlFor="email" className="text-sm font-medium" style={{ color: "#3D4255" }}>Email</Label>
-                                                          <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required disabled={loading || googleLoading} className="h-11 rounded-xl border-[#E2E1DC] focus:border-[#636DF5] focus:ring-[#636DF5]/20" />
+                                                          <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required disabled={loading || googleLoading} className="h-11 rounded-xl border-[#E2E8F0] focus:border-[#636DF5] focus:ring-[#636DF5]/20" />
                                             </div>
                                             <div className="space-y-1.5">
                                                           <div className="flex items-center justify-between">
                                                                           <Label htmlFor="password" className="text-sm font-medium" style={{ color: "#3D4255" }}>Password</Label>
                                                                           <Link href="/auth/forgot-password" className="text-xs hover:underline" style={{ color: "#636DF5" }}>Forgot password?</Link>
                                                           </div>
-                                                          <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required disabled={loading || googleLoading} className="h-11 rounded-xl border-[#E2E1DC] focus:border-[#636DF5] focus:ring-[#636DF5]/20" />
+                                                          <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required disabled={loading || googleLoading} className="h-11 rounded-xl border-[#E2E8F0] focus:border-[#636DF5] focus:ring-[#636DF5]/20" />
                                             </div>
                                             <Button type="submit" className="w-full h-11 font-semibold rounded-xl text-white transition-all hover:-translate-y-0.5 hover:shadow-md" style={{ background: "#636DF5" }} disabled={loading || googleLoading}>
                                               {loading ? (

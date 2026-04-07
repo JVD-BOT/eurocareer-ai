@@ -246,7 +246,7 @@ export default function LandingPage() {
                 </section>
         
           {/* COUNTRY BAR */}
-              <section className="border-y border-[#E2E1DC] bg-white py-8">
+              <section className="border-y border-[#E2E8F0] bg-white py-8">
                       <div className="max-w-5xl mx-auto px-6">
                                 <p className="text-xs font-semibold text-[#B0B4C5] uppercase tracking-widest text-center mb-5">
                                             Supporting job seekers applying to:
@@ -255,7 +255,7 @@ export default function LandingPage() {
                                   {COUNTRIES.map((c) => (
                         <span
                                           key={c.code}
-                                          className="inline-flex items-center gap-1.5 bg-[#F8F8F6] border border-[#E2E1DC] rounded-full px-3 py-1.5 text-sm text-[#3D4255] font-medium hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-colors cursor-default"
+                                          className="inline-flex items-center gap-1.5 bg-[#F8F8F6] border border-[#E2E8F0] rounded-full px-3 py-1.5 text-sm text-[#3D4255] font-medium hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-colors cursor-default"
                                         >
                                         <span>{c.flag}</span>
                           {c.name}
@@ -289,7 +289,7 @@ export default function LandingPage() {
                                       className="reveal flex flex-col items-start"
                                       style={{ transitionDelay: `${i * 0.1}s` }}
                                     >
-                                    <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4 border border-[#E2E1DC] bg-white shadow-sm">
+                                    <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4 border border-[#E2E8F0] bg-white shadow-sm">
                                       {item.icon}
                                     </div>
                                     <span className="text-xs font-bold text-[#B0B4C5] mb-2">{item.step}</span>
@@ -306,7 +306,7 @@ export default function LandingPage() {
               </section>
         
           {/* FEATURES */}
-              <section id="features" className="bg-white border-y border-[#E2E1DC] py-20">
+              <section id="features" className="bg-white border-y border-[#E2E8F0] py-20">
                       <div className="max-w-5xl mx-auto px-6">
                                 <div ref={addReveal} className="reveal text-center mb-12">
                                             <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#636DF5] uppercase tracking-widest mb-3">
@@ -327,7 +327,7 @@ export default function LandingPage() {
                         <div
                                           key={f.title}
                                           ref={addReveal}
-                                          className="reveal rounded-2xl border border-[#E2E1DC] bg-[#F8F8F6] p-6 hover:border-[#636DF5] hover:shadow-md transition-all hover:-translate-y-0.5"
+                                          className="reveal rounded-2xl border border-[#E2E8F0] bg-[#F8F8F6] p-6 hover:border-[#636DF5] hover:shadow-md transition-all hover:-translate-y-0.5"
                                           style={{ transitionDelay: `${i * 0.08}s` }}
                                         >
                                         <div className="flex items-start justify-between mb-3">
@@ -369,7 +369,7 @@ export default function LandingPage() {
               
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
                         {/* Free */}
-                                <div ref={addReveal} className="reveal rounded-2xl border border-[#E2E1DC] bg-white p-8 space-y-4">
+                                <div ref={addReveal} className="reveal rounded-2xl border border-[#E2E8F0] bg-white p-8 space-y-4">
                                             <p className="text-xs font-bold text-[#B0B4C5] uppercase tracking-widest">Free</p>
                                             <p className="text-4xl font-extrabold" style={{ fontFamily: "'Sora', sans-serif" }}>
                                                           €0
@@ -389,7 +389,7 @@ export default function LandingPage() {
                                             </ul>
                                             <Link
                                                             href="/auth/signup"
-                                                            className="block text-center border border-[#E2E1DC] hover:border-[#636DF5] hover:bg-[#EEEFFE] text-[#3D4255] font-medium py-2.5 rounded-xl transition-colors text-sm"
+                                                            className="block text-center border border-[#E2E8F0] hover:border-[#636DF5] hover:bg-[#EEEFFE] text-[#3D4255] font-medium py-2.5 rounded-xl transition-colors text-sm"
                                                           >
                                                           Start free
                                             </Link>
@@ -442,7 +442,7 @@ export default function LandingPage() {
               </section>
         
           {/* BLOG */}
-              <section className="bg-white border-y border-[#E2E1DC] py-20">
+              <section className="bg-white border-y border-[#E2E8F0] py-20">
                       <div className="max-w-5xl mx-auto px-6">
                                 <div ref={addReveal} className="reveal flex items-center justify-between mb-10">
                                             <div>
@@ -471,7 +471,7 @@ export default function LandingPage() {
                                           key={post.title}
                                           href={post.href}
                                           ref={addReveal}
-                                          className="reveal group rounded-2xl border border-[#E2E1DC] bg-[#F8F8F6] p-6 hover:border-[#636DF5] hover:shadow-md transition-all hover:-translate-y-0.5 flex flex-col gap-3"
+                                          className="reveal group rounded-2xl border border-[#E2E8F0] bg-[#F8F8F6] p-6 hover:border-[#636DF5] hover:shadow-md transition-all hover:-translate-y-0.5 flex flex-col gap-3"
                                           style={{ transitionDelay: `${i * 0.08}s` }}
                                         >
                                         <div className="text-2xl">{post.flag}</div>
@@ -509,7 +509,7 @@ export default function LandingPage() {
                         <details
                                           key={faq.q}
                                           ref={addReveal}
-                                          className="reveal group rounded-xl border border-[#E2E1DC] bg-white px-6 py-4 cursor-pointer"
+                                          className="reveal group rounded-xl border border-[#E2E8F0] bg-white px-6 py-4 cursor-pointer"
                                           style={{ transitionDelay: `${i * 0.05}s` }}
                                         >
                                         <summary className="font-medium text-[#0F1629] list-none flex items-center justify-between gap-4 text-sm">

@@ -40,7 +40,7 @@ function CountryCard({
     onToggle: () => void;
 }) {
     return (
-          <div className="bg-white rounded-2xl border border-[#E2E1DC] overflow-hidden hover:border-[#636DF5] transition-all">
+          <div className="bg-white rounded-2xl border border-[#E2E8F0] overflow-hidden hover:border-[#636DF5] transition-all">
             {/* Header — always visible */}
                 <button
                           onClick={onToggle}
@@ -93,7 +93,7 @@ function CountryCard({
           
             {/* Expandable detail section */}
             {isOpen && (
-                    <div className="px-5 pb-5 border-t border-[#E2E1DC] pt-4 space-y-4 animate-fade-up">
+                    <div className="px-5 pb-5 border-t border-[#E2E8F0] pt-4 space-y-4 animate-fade-up">
                       {/* Quick stats row */}
                               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                           <div className="rounded-xl p-3 bg-[#F8F8F6]">
@@ -207,7 +207,7 @@ export default function CountryIntelPage() {
                   style={{ background: "#F8F8F6" }}
                 >
             {/* Top bar */}
-                <header className="bg-white border-b border-[#E2E1DC] px-6 py-4 flex items-center justify-between sticky top-0 z-30">
+                <header className="bg-white border-b border-[#E2E8F0] px-6 py-4 flex items-center justify-between sticky top-0 z-30">
                         <div className="flex items-center gap-3">
                                   <Link
                                                 href="/dashboard"
@@ -280,7 +280,7 @@ export default function CountryIntelPage() {
                                                 placeholder="Search countries…"
                                                 value={search}
                                                 onChange={(e) => setSearch(e.target.value)}
-                                                className="w-full sm:w-72 px-4 py-2.5 rounded-xl border border-[#E2E1DC] text-sm focus:outline-none focus:border-[#636DF5] focus:ring-2 focus:ring-[#636DF5]/20 transition-all"
+                                                className="w-full sm:w-72 px-4 py-2.5 rounded-xl border border-[#E2E8F0] text-sm focus:outline-none focus:border-[#636DF5] focus:ring-2 focus:ring-[#636DF5]/20 transition-all"
                                                 style={{ background: "#fff", color: "#0F1629" }}
                                               />
                         </div>

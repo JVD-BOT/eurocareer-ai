@@ -195,7 +195,7 @@ function GuideCard({
         {title}
       </h2>
       <p className="text-sm text-slate-500 leading-relaxed flex-1">{excerpt}</p>
-      <div className="mt-4 text-sm font-medium text-indigo-600 group-hover:text-indigo-800 flex items-center gap-1">
+      <div className="mt-4 text-sm font-medium text-[#6366f1] group-hover:text-[#4f46e5] flex items-center gap-1">
         Read guide
         <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -211,7 +211,7 @@ export default function BlogPage() {
       {/* Header */}
       <div className="bg-white border-b border-slate-100">
         <div className="max-w-5xl mx-auto px-6 py-16 sm:py-20">
-          <div className="flex items-center gap-2 text-indigo-600 text-sm font-semibold tracking-wide uppercase mb-4">
+          <div className="flex items-center gap-2 text-[#6366f1] text-sm font-semibold tracking-wide uppercase mb-4">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
@@ -261,7 +261,7 @@ export default function BlogPage() {
         </section>
 
         {/* CTA */}
-        <section className="bg-indigo-600 rounded-2xl p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <section className="bg-[#6366f1] rounded-2xl p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="text-xl font-bold text-white mb-1">Ready to adapt your CV?</h3>
             <p className="text-indigo-200 text-sm">EuroCareer AI rewrites your CV for any EU country in seconds.</p>

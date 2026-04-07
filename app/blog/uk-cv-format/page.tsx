@@ -84,7 +84,7 @@ export default function UKCVFormat() {
           <p className="mt-1 text-slate-400 text-sm">EuroCareer AI adapts your CV to UK standards — format, tone, right-to-work notes, and more — in seconds.</p>
           <Link
             href="/auth/signup"
-            className="mt-4 inline-block bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors"
+            className="mt-4 inline-block bg-[#6366f1] hover:bg-[#4f46e5] text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors"
           >
             Try EuroCareer AI free →
           </Link>

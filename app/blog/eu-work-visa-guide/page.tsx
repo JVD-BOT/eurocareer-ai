@@ -180,7 +180,7 @@ export default function EUWorkVisaGuide() {
 
           <p className="mt-1 text-slate-400 text-sm">EuroCareer AI helps you adapt your CV and cover letter to each EU country's standards — so your application stands out from the moment it lands.</p>
 
-          <Link href="/auth/signup" className="mt-4 inline-block bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors">
+          <Link href="/auth/signup" className="mt-4 inline-block bg-[#6366f1] hover:bg-[#4f46e5] text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors">
 
             Try EuroCareer AI free →
 

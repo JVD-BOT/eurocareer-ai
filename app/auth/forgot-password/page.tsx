@@ -96,7 +96,7 @@ export default function ForgotPasswordPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-1.5">
               <Label htmlFor="email" className="text-sm font-medium" style={{ color: "#3D4255" }}>Email</Label>
-              <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required disabled={loading} className="h-11 rounded-xl border-[#E2E1DC] focus:border-[#636DF5] focus:ring-[#636DF5]/20" />
+              <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required disabled={loading} className="h-11 rounded-xl border-[#E2E8F0] focus:border-[#636DF5] focus:ring-[#636DF5]/20" />
             </div>
             <Button type="submit" className="w-full h-11 font-semibold rounded-xl text-white transition-all hover:-translate-y-0.5 hover:shadow-md" style={{ background: "#636DF5" }} disabled={loading}>
               {loading ? (
