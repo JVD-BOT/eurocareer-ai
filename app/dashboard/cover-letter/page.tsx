@@ -9,7 +9,7 @@ export default function CoverLetterPage() {
         <div className="text-5xl mb-6">{"\u2764\uFE0F"}</div>
         <h1
           className="text-2xl font-bold mb-3"
-          style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}
+          style={{ fontFamily: "'Sora', sans-serif", color: "#0F1629" }}
         >
           AI Cover Letter
         </h1>

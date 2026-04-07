@@ -47,7 +47,7 @@ export default function LoginPage() {
                                   <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={160} height={36} className="h-9 w-auto" style={{ filter: "brightness(0) invert(1)" }} />
                         </div>
                         <div className="relative space-y-6">
-                                  <h2 className="text-3xl font-bold text-white leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                                  <h2 className="text-3xl font-bold text-white leading-tight" style={{ fontFamily: "'Sora', sans-serif" }}>
                                               Your EU job search,<br />
                                               <span style={{ background: "linear-gradient(135deg, #636DF5, #7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>powered by AI</span>
                                   </h2>
@@ -71,7 +71,7 @@ export default function LoginPage() {
                                             ← Back to home
                                 </Link>
                       
-                                <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Welcome back</h1>
+                                <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Sora', sans-serif", color: "#0F1629" }}>Welcome back</h1>
                                 <p className="text-sm mb-8" style={{ color: "#7A7F94" }}>Sign in to your EuroCareer AI account</p>
                       
                         {error && (

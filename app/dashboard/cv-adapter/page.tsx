@@ -9,7 +9,7 @@ export default function CVAdapterPage() {
         <div className="text-5xl mb-6">{"\u{1F4C4}"}</div>
         <h1
           className="text-2xl font-bold mb-3"
-          style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}
+          style={{ fontFamily: "'Sora', sans-serif", color: "#0F1629" }}
         >
           AI CV Adapter
         </h1>

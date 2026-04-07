@@ -13,6 +13,7 @@ interface Stats {
       applications: number;
       interviews: number;
       offers: number;
+      aiGens: number;
 }
 
 const NAV_ITEMS = [
@@ -22,7 +23,7 @@ const NAV_ITEMS = [
     ];
 
 const QUICK_ACTIONS = [
-    { label: "Track applications", desc: "Kanban board + list view", emhoji: "📋", href: "/applications" },
+    { label: "Track applications", desc: "Kanban board + list view", emoji: "📋", href: "/applications" },
     { label: "AI CV Adapter", desc: "Adapt your CV for any EU country", emoji: "📄", href: "/dashboard/cv-adapter" },
     { label: "Cover Letter", desc: "Generate in seconds with AI", emoji: "💌", href: "/dashboard/cover-letter" },
       { label: "Country Intel", desc: "Hiring norms for 12 EU markets", emoji: "🌍", href: "/dashboard/country-intel" },
@@ -31,7 +32,7 @@ const QUICK_ACTIONS = [
 export default function DashboardPage() {
       const [user, setUser] = useState<User | null>(null);
       const [loading, setLoading] = useState(true);
-      const [stats, setStats] = useState<Stats>({ applications: 0, interviews: 0, offers: 0 });
+      const [stats, setStats] = useState<Stats>({ applications: 0, interviews: 0, offers: 0, aiGens: 0 });
       const [sidebarOpen, setSidebarOpen] = useState(false);
       const router = useRouter();
 
@@ -50,11 +51,19 @@ export default function DashboardPage() {
 
   const loadStats = async () => {
           const { data } = await supabase.from("applications").select("status");
+          // Count AI generations for the current billing month
+          const now = new Date();
+          const monthStart = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+          const { count: aiCount } = await supabase
+                    .from("ai_generations")
+                    .select("*", { count: "exact", head: true })
+                    .gte("created_at", monthStart);
           if (data) {
                     setStats({
                                 applications: data.length,
                                 interviews: data.filter((a: { status: string }) => a.status === "interview").length,
                                 offers: data.filter((a: { status: string }) => a.status === "offer").length,
+                                aiGens: aiCount ?? 0,
                     });
           }
           setLoading(false);
@@ -112,7 +121,7 @@ export default function DashboardPage() {
                                                                 <Image src="/STAR.png" alt="" width={48} height={48} style={{ filter: "invert(1)" }} />
                                                   </div>
                                                   <p className="text-xs font-bold text-white/70 uppercase tracking-widest mb-1">AI Credits</p>
-                                                  <p className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>3 <span className="text-sm font-normal text-white/50">/ month</span></p>
+                                                  <p className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>3 <span className="text-sm font-normal text-white/50">/ month</span></p>
                                                   <div className="w-full h-1.5 rounded-full bg-white/20 mb-3">
                                                                 <div className="h-1.5 rounded-full bg-white" style={{ width: "100%" }} />
                                                   </div>
@@ -133,7 +142,7 @@ export default function DashboardPage() {
                                                                   >
                                                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
                                                   </button>
-                                                  <h1 className="font-bold text-lg" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Dashboard</h1>
+                                                  <h1 className="font-bold text-lg" style={{ fontFamily: "'Sora', sans-serif", color: "#0F1629" }}>Dashboard</h1>
                                       </div>
                                       <div className="flex items-center gap-3">
                                                   <span className="text-sm hidden sm:block" style={{ color: "#7A7F94" }}>{user?.email}</span>
@@ -153,7 +162,7 @@ export default function DashboardPage() {
                             <main className="flex-1 p-6 max-w-5xl w-full mx-auto">
                                 {/* Welcome */}
                                       <div className="mb-8 animate-fade-up">
-                                                  <h2 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Welcome back 👋</h2>
+                                                  <h2 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Sora', sans-serif", color: "#0F1629" }}>Welcome back 👋</h2>
                                                   <p className="text-sm" style={{ color: "#7A7F94" }}>Here&apos;s your EuroCareer AI overview</p>
                                       </div>
                             
@@ -163,7 +172,7 @@ export default function DashboardPage() {
                   { label: "Total", value: stats.applications, icon: "📋", color: "#636DF5" },
                   { label: "Interviews", value: stats.interviews, icon: "🎤", color: "#7C3AED" },
                   { label: "Offers", value: stats.offers, icon: "🎯", color: "#16A34A" },
-                  { label: "AI Gens", value: 3, icon: null, color: "#636DF5", star: true },
+                  { label: "AI Gens", value: stats.aiGens, icon: null, color: "#636DF5", star: true },
                               ].map((stat) => (
                                                 <div key={stat.label} className="bg-white rounded-2xl border border-[#E2E1DC] p-5 flex items-center gap-3 hover:border-[#636DF5] hover:shadow-sm transition-all">
                                                     {stat.star ? (
@@ -172,7 +181,7 @@ export default function DashboardPage() {
                                                                       <span className="text-2xl">{stat.icon}</span>
                                                                 )}
                                                                 <div>
-                                                                                  <p className="text-2xl font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>{stat.value}</p>
+                                                                                  <p className="text-2xl font-bold" style={{ fontFamily: "'Sora', sans-serif", color: "#0F1629" }}>{stat.value}</p>
                                                                                   <p className="text-xs" style={{ color: "#7A7F94" }}>{stat.label}</p>
                                                                 </div>
                                                 </div>
@@ -183,7 +192,7 @@ export default function DashboardPage() {
                                       <div className="bg-white rounded-2xl border border-[#E2E1DC] p-6 mb-6">
                                                   <div className="flex items-center gap-2 mb-5">
                                                                 <Image src="/STAR.png" alt="" width={16} height={16} style={{ opacity: 0.5 }} />
-                                                                <h3 className="font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Quick actions</h3>
+                                                                <h3 className="font-bold" style={{ fontFamily: "'Sora', sans-serif", color: "#0F1629" }}>Quick actions</h3>
                                                   </div>
                                                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                                       {QUICK_ACTIONS.map((action) => (
@@ -194,7 +203,7 @@ export default function DashboardPage() {
                                                       >
                                                     <span className="text-2xl">{action.emoji}</span>
                                                     <div>
-                                                                        <p className="font-semibold text-sm transition-colors" style={{ color: "#0F1629", fontFamily: "'Outfit', sans-serif" }}>{action.label}</p>
+                                                                        <p className="font-semibold text-sm transition-colors" style={{ color: "#0F1629", fontFamily: "'Sora', sans-serif" }}>{action.label}</p>
                                                                         <p className="text-xs" style={{ color: "#7A7F94" }}>{action.desc}</p>
                                                     </div>
                                   </Link>
@@ -205,7 +214,7 @@ export default function DashboardPage() {
                                 {/* Recent applications link */}
                                       <div className="bg-white rounded-2xl border border-[#E2E1DC] p-6">
                                                   <div className="flex items-center justify-between mb-4">
-                                                                <h3 className="font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Applications</h3>
+                                                                <h3 className="font-bold" style={{ fontFamily: "'Sora', sans-serif", color: "#0F1629" }}>Applications</h3>
                                                                 <Link href="/applications" className="text-sm font-medium hover:underline" style={{ color: "#636DF5" }}>View all →</Link>
                                                   </div>
                                           {stats.applications === 0 ? (

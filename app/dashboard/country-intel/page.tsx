@@ -52,7 +52,7 @@ function CountryCard({
                                               <p
                                                               className="font-bold text-base truncate"
                                                               style={{
-                                                                                fontFamily: "'Outfit', sans-serif",
+                                                                                fontFamily: "'Sora', sans-serif",
                                                                                 color: "#0F1629",
                                                               }}
                                                             >
@@ -231,7 +231,7 @@ export default function CountryIntelPage() {
                                   <h1
                                                 className="font-bold text-lg"
                                                 style={{
-                                                                fontFamily: "'Outfit', sans-serif",
+                                                                fontFamily: "'Sora', sans-serif",
                                                                 color: "#0F1629",
                                                 }}
                                               >
@@ -261,7 +261,7 @@ export default function CountryIntelPage() {
                                   <h2
                                                 className="text-2xl font-bold mb-2"
                                                 style={{
-                                                                fontFamily: "'Outfit', sans-serif",
+                                                                fontFamily: "'Sora', sans-serif",
                                                                 color: "#0F1629",
                                                 }}
                                               >

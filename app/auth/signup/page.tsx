@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
@@ -9,7 +9,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+import { Suspense } from "react";
+
 export default function SignupPage() {
+  return (
+    <Suspense>
+      <SignupContent />
+    </Suspense>
+  );
+}
+
+function SignupContent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -18,6 +28,13 @@ export default function SignupPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (searchParams.get("plan") === "pro") {
+      localStorage.setItem("eurocareer_signup_plan", "pro");
+    }
+  }, [searchParams]);
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,7 +83,7 @@ export default function SignupPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Check your email</h1>
+          <h1 className="text-2xl font-bold" style={{ fontFamily: "'Sora', sans-serif", color: "#0F1629" }}>Check your email</h1>
           <p className="text-sm" style={{ color: "#7A7F94" }}>
             We sent a confirmation link to <strong style={{ color: "#3D4255" }}>{email}</strong>. Click it to activate your account.
           </p>
@@ -88,7 +105,7 @@ export default function SignupPage() {
           <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={160} height={36} className="h-9 w-auto" style={{ filter: "brightness(0) invert(1)" }} />
         </div>
         <div className="relative space-y-6">
-          <h2 className="text-3xl font-bold text-white leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+          <h2 className="text-3xl font-bold text-white leading-tight" style={{ fontFamily: "'Sora', sans-serif" }}>
             Your EU job search,<br />
             <span style={{ background: "linear-gradient(135deg, #636DF5, #7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               powered by AI
@@ -111,7 +128,7 @@ export default function SignupPage() {
           <Link href="/" className="inline-flex items-center gap-1 text-sm mb-8 transition-colors" style={{ color: "#7A7F94" }}>
             &larr; Back to home
           </Link>
-          <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Create your account</h1>
+          <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Sora', sans-serif", color: "#0F1629" }}>Create your account</h1>
           <p className="text-sm mb-8" style={{ color: "#7A7F94" }}>Join EuroCareer AI &mdash; it&apos;s free</p>
           {error && (
             <div className="mb-5 text-sm px-4 py-3 rounded-xl border" style={{ background: "#FEE2E2", borderColor: "#DC2626", color: "#DC2626" }}>

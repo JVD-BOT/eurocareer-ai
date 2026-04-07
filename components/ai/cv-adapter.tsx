@@ -135,7 +135,7 @@ export function CVAdapter({ application, profile, onUpdate, onCreditUsed }: CVAd
       <Button
         onClick={generate}
         disabled={streaming}
-        className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white gap-2 h-9"
+        className="w-full bg-[#6366f1] hover:bg-[#4f46e5] text-white gap-2 h-9"
         size="sm"
       >
         <Wand2 className="h-3.5 w-3.5" />

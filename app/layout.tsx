@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Outfit, DM_Sans } from "next/font/google";
+import { Sora, Manrope } from "next/font/google";
 import { Toaster } from "sonner";
 import { CookieBanner } from "@/components/cookie-banner";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import "./globals.css";
 
-const outfit = Outfit({
+const sora = Sora({
         subsets: ["latin"],
-        variable: "--font-outfit",
+        variable: "--font-sora",
         display: "swap",
 });
 
-const dmSans = DM_Sans({
+const manrope = Manrope({
         subsets: ["latin"],
-        variable: "--font-dm-sans",
+        variable: "--font-manrope",
         display: "swap",
 });
 
@@ -95,14 +95,14 @@ export default function RootLayout({
         children: React.ReactNode;
 }>) {
         return (
-                  <html lang="en" className={`${outfit.variable} ${dmSans.variable}`}>
+                  <html lang="en" className={`${sora.variable} ${manrope.variable}`}>
                               <head>
                                 <script
                                   type="application/ld+json"
                                   dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
                                 />
                               </head>
-                              <body className={dmSans.className}>
+                              <body className={manrope.className}>
                                             <GoogleAnalytics />
                                     {children}
                                             <Toaster position="bottom-right" richColors />

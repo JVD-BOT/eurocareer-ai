@@ -47,6 +47,13 @@ function BillingContent() {
     }
   }, [searchParams]);
 
+  // Auto-trigger checkout when redirected from signup with plan=pro
+  useEffect(() => {
+    if (searchParams.get("upgrade") === "1" && !loading && profile && profile.plan !== "pro") {
+      handleUpgrade();
+    }
+  }, [searchParams, loading, profile]);
+
   const loadProfile = async (userId: string) => {
     const { data } = await supabase.from("profiles").select("*").eq("id", userId).maybeSingle();
     setProfile(data as Profile | null);
@@ -191,7 +198,7 @@ function BillingContent() {
             <Button
               onClick={handleUpgrade}
               disabled={checkoutLoading}
-              className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white gap-2"
+              className="bg-[#6366f1] hover:bg-[#4f46e5] text-white gap-2"
             >
               <CreditCard className="h-4 w-4" />
               {checkoutLoading ? "Redirecting…" : "Upgrade to Pro — €9/month"}

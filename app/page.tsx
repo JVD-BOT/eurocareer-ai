@@ -208,7 +208,7 @@ export default function LandingPage() {
                         
                                   <h1
                                                 className="text-5xl sm:text-6xl font-extrabold leading-tight tracking-tight mb-6"
-                                                style={{ fontFamily: "'Outfit', sans-serif", color: "#FAFAFA" }}
+                                                style={{ fontFamily: "'Sora', sans-serif", color: "#FAFAFA" }}
                                               >
                                               Land your EU role{" "}
                                               <span
@@ -274,7 +274,7 @@ export default function LandingPage() {
                                 </div>
                                 <h2
                                               className="text-3xl sm:text-4xl font-bold"
-                                              style={{ fontFamily: "'Outfit', sans-serif" }}
+                                              style={{ fontFamily: "'Sora', sans-serif" }}
                                             >
                                             From signup to sent application in under 5 minutes
                                 </h2>
@@ -295,7 +295,7 @@ export default function LandingPage() {
                                     <span className="text-xs font-bold text-[#B0B4C5] mb-2">{item.step}</span>
                                     <h3
                                                       className="font-bold text-[#0F1629] text-lg mb-2"
-                                                      style={{ fontFamily: "'Outfit', sans-serif" }}
+                                                      style={{ fontFamily: "'Sora', sans-serif" }}
                                                     >
                                       {item.title}
                                     </h3>
@@ -315,7 +315,7 @@ export default function LandingPage() {
                                             </div>
                                             <h2
                                                             className="text-3xl sm:text-4xl font-bold"
-                                                            style={{ fontFamily: "'Outfit', sans-serif" }}
+                                                            style={{ fontFamily: "'Sora', sans-serif" }}
                                                           >
                                                           From first application to signed offer
                                             </h2>
@@ -344,7 +344,7 @@ export default function LandingPage() {
                                         </div>
                                         <h3
                                                             className="font-semibold text-[#0F1629] mb-2"
-                                                            style={{ fontFamily: "'Outfit', sans-serif" }}
+                                                            style={{ fontFamily: "'Sora', sans-serif" }}
                                                           >
                                           {f.title}
                                         </h3>
@@ -360,7 +360,7 @@ export default function LandingPage() {
                       <div ref={addReveal} className="reveal text-center mb-12">
                                 <h2
                                               className="text-3xl sm:text-4xl font-bold"
-                                              style={{ fontFamily: "'Outfit', sans-serif" }}
+                                              style={{ fontFamily: "'Sora', sans-serif" }}
                                             >
                                             Simple, transparent pricing
                                 </h2>
@@ -371,7 +371,7 @@ export default function LandingPage() {
                         {/* Free */}
                                 <div ref={addReveal} className="reveal rounded-2xl border border-[#E2E1DC] bg-white p-8 space-y-4">
                                             <p className="text-xs font-bold text-[#B0B4C5] uppercase tracking-widest">Free</p>
-                                            <p className="text-4xl font-extrabold" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                                            <p className="text-4xl font-extrabold" style={{ fontFamily: "'Sora', sans-serif" }}>
                                                           €0
                                             </p>
                                             <ul className="space-y-2 text-sm text-[#3D4255]">
@@ -410,7 +410,7 @@ export default function LandingPage() {
                                             <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#636DF5" }}>
                                                           Pro
                                             </p>
-                                            <p className="text-4xl font-extrabold" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                                            <p className="text-4xl font-extrabold" style={{ fontFamily: "'Sora', sans-serif" }}>
                                                           €9{" "}
                                                           <span className="text-base text-[#B0B4C5] font-normal">/ month</span>
                                             </p>
@@ -452,7 +452,7 @@ export default function LandingPage() {
                                                           </div>
                                                           <h2
                                                                             className="text-2xl sm:text-3xl font-bold"
-                                                                            style={{ fontFamily: "'Outfit', sans-serif" }}
+                                                                            style={{ fontFamily: "'Sora', sans-serif" }}
                                                                           >
                                                                           EU job search guides
                                                           </h2>
@@ -478,7 +478,7 @@ export default function LandingPage() {
                                         <span className="text-xs font-semibold text-[#636DF5] uppercase">{post.tag}</span>
                                         <h3
                                                             className="font-bold text-[#0F1629] leading-snug text-sm"
-                                                            style={{ fontFamily: "'Outfit', sans-serif" }}
+                                                            style={{ fontFamily: "'Sora', sans-serif" }}
                                                           >
                                           {post.title}
                                         </h3>
@@ -498,7 +498,7 @@ export default function LandingPage() {
                                 <div ref={addReveal} className="reveal text-center mb-12">
                                             <h2
                                                             className="text-3xl font-bold"
-                                                            style={{ fontFamily: "'Outfit', sans-serif" }}
+                                                            style={{ fontFamily: "'Sora', sans-serif" }}
                                                           >
                                                           Frequently asked questions
                                             </h2>
@@ -551,7 +551,7 @@ export default function LandingPage() {
                                             />
                                 <h2
                                               className="text-3xl sm:text-4xl font-bold mb-4"
-                                              style={{ fontFamily: "'Outfit', sans-serif" }}
+                                              style={{ fontFamily: "'Sora', sans-serif" }}
                                             >
                                             Your next EU role is closer than you think.
                                 </h2>

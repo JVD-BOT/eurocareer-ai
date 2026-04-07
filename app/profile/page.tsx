@@ -153,7 +153,7 @@ export default function ProfilePage() {
             {/* Fix: added Link wrapper so button navigates to billing page */}
             {!isPro && (
               <Link href="/settings/billing">
-                <Button size="sm" className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white text-xs">
+                <Button size="sm" className="bg-[#6366f1] hover:bg-[#4f46e5] text-white text-xs">
                   Upgrade to Pro — €9/mo
                 </Button>
               </Link>
@@ -225,7 +225,7 @@ export default function ProfilePage() {
           <Button
             onClick={handleSave}
             disabled={saving}
-            className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white gap-2"
+            className="bg-[#6366f1] hover:bg-[#4f46e5] text-white gap-2"
           >
             <Save className="h-4 w-4" />
             {saving ? "Saving…" : "Save Profile"}

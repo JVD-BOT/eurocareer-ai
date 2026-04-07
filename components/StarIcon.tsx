@@ -35,7 +35,7 @@ export function BrandLogo({ className = '', variant = 'dark' }: { className?: st
     return (
           <span className={`inline-flex items-center gap-1.5 ${className}`}>
                 <StarIcon size={24} className="text-[#636DF5]" />
-                <span className={`font-semibold text-lg tracking-tight ${textColor}`} style={{ fontFamily: "'Outfit', sans-serif" }}>
+                <span className={`font-semibold text-lg tracking-tight ${textColor}`} style={{ fontFamily: "'Sora', sans-serif" }}>
                         EuroCareer<span className="text-[#636DF5]">AI</span>
                 </span>
           </span>

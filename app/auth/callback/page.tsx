@@ -16,6 +16,14 @@ export default function AuthCallbackPage() {
         await supabase.auth.exchangeCodeForSession(code);
       }
 
+      // If user signed up via ?plan=pro, redirect to Stripe checkout
+      const signupPlan = localStorage.getItem("eurocareer_signup_plan");
+      if (signupPlan === "pro") {
+        localStorage.removeItem("eurocareer_signup_plan");
+        router.replace("/settings/billing?upgrade=1");
+        return;
+      }
+
       router.replace("/dashboard");
     };
 
