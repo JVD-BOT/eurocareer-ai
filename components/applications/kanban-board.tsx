@@ -104,7 +104,7 @@ function ApplicationCard({ app }: { app: Application }) {
   const country = COUNTRIES.find((c) => c.code === app.country);
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-3 cursor-pointer hover:border-blue-300 hover:shadow-sm transition-all select-none">
+    <div className="bg-white rounded-xl border border-gray-200 p-3 cursor-pointer hover:border-[#a5b4fc] hover:shadow-sm transition-all select-none">
       <div className="flex items-start justify-between gap-1 mb-1">
         <p className="font-semibold text-sm text-gray-900 line-clamp-1 flex-1">{app.company_name}</p>
         {country && <span className="text-base leading-none flex-shrink-0">{country.flag}</span>}
