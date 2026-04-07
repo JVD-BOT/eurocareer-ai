@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
+import { FREE_AI_LIMIT } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -34,6 +35,8 @@ export default function DashboardPage() {
       const [loading, setLoading] = useState(true);
       const [stats, setStats] = useState<Stats>({ applications: 0, interviews: 0, offers: 0, aiGens: 0 });
       const [sidebarOpen, setSidebarOpen] = useState(false);
+      const [creditsUsed, setCreditsUsed] = useState(0);
+      const [isPro, setIsPro] = useState(false);
       const router = useRouter();
 
   useEffect(() => {
@@ -45,6 +48,7 @@ export default function DashboardPage() {
                           } else {
                                       setUser(currentUser);
                                       loadStats();
+                                      loadProfile();
                           }
                 });
   }, [router]);
@@ -67,6 +71,14 @@ export default function DashboardPage() {
                     });
           }
           setLoading(false);
+  };
+
+  const loadProfile = async () => {
+          const { data } = await supabase.from("profiles").select("plan, ai_credits_used").maybeSingle();
+          if (data) {
+                    setIsPro(data.plan === "pro");
+                    setCreditsUsed(data.ai_credits_used ?? 0);
+          }
   };
 
   const handleSignOut = async () => {
@@ -121,11 +133,11 @@ export default function DashboardPage() {
                                                                 <Image src="/STAR.png" alt="" width={48} height={48} style={{ filter: "invert(1)" }} />
                                                   </div>
                                                   <p className="text-xs font-bold text-white/70 uppercase tracking-widest mb-1">AI Credits</p>
-                                                  <p className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>3 <span className="text-sm font-normal text-white/50">/ month</span></p>
+                                                  <p className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>{isPro ? "∞" : `${FREE_AI_LIMIT - creditsUsed}`} <span className="text-sm font-normal text-white/50">{isPro ? "unlimited" : `/ ${FREE_AI_LIMIT}`}</span></p>
                                                   <div className="w-full h-1.5 rounded-full bg-white/20 mb-3">
-                                                                <div className="h-1.5 rounded-full bg-white" style={{ width: "100%" }} />
+                                                                <div className="h-1.5 rounded-full bg-white" style={{ width: isPro ? "100%" : `${Math.min((creditsUsed / FREE_AI_LIMIT) * 100, 100)}%` }} />
                                                   </div>
-                                                  <Link href="/settings/billing" className="block text-center text-xs font-semibold text-white bg-white/15 hover:bg-white/25 rounded-lg py-1.5 transition-colors">Upgrade to Pro →</Link>
+                                                  {!isPro && <Link href="/settings/billing" className="block text-center text-xs font-semibold text-white bg-white/15 hover:bg-white/25 rounded-lg py-1.5 transition-colors">Upgrade to Pro →</Link>}
                                       </div>
                             </div>
                     </aside>

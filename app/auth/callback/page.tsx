@@ -31,9 +31,9 @@ export default function AuthCallbackPage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="min-h-screen flex items-center justify-center" style={{ background: "#F8F8F6" }}>
       <div className="text-center space-y-4">
-        <div className="mx-auto w-12 h-12 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
+        <div className="mx-auto w-12 h-12 rounded-full border-4 border-[#6366f1] border-t-transparent animate-spin" />
         <p className="text-muted-foreground text-sm">Signing you in…</p>
       </div>
     </div>

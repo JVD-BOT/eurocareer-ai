@@ -89,7 +89,7 @@ export function FollowUpEmail({ application, onCreditUsed }: FollowUpEmailProps)
               onClick={() => setEmailType(t.id)}
               className={`flex items-center gap-2 text-xs py-2 px-3 rounded-lg border font-medium transition-colors text-left ${
                 emailType === t.id
-                  ? "bg-blue-50 text-blue-700 border-blue-300"
+                  ? "bg-[#EEF2FF] text-[#6366f1] border-[#a5b4fc]"
                   : "bg-white text-gray-600 border-gray-200 hover:border-gray-300"
               }`}
             >

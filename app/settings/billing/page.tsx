@@ -105,17 +105,17 @@ function BillingContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="w-10 h-10 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#F8F8F6" }}>
+        <div className="w-10 h-10 rounded-full border-4 border-[#6366f1] border-t-transparent animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ background: "#F8F8F6" }}>
       <nav className="bg-white border-b px-6 py-3 flex items-center justify-between sticky top-0 z-10">
         <div className="flex items-center gap-6">
-          <Link href="/dashboard" className="text-blue-600 font-bold text-lg"><Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" /></Link>
+          <Link href="/dashboard" className="text-[#6366f1] font-bold text-lg"><Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" /></Link>
           <div className="hidden sm:flex items-center gap-4 text-sm">
             <Link href="/applications" className="text-muted-foreground hover:text-gray-900 transition-colors">Applications</Link>
             <Link href="/profile" className="text-muted-foreground hover:text-gray-900 transition-colors">Profile</Link>
@@ -138,7 +138,7 @@ function BillingContent() {
         <div className="bg-white rounded-xl border p-6 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Zap className="h-4 w-4 text-blue-600" />
+              <Zap className="h-4 w-4 text-[#6366f1]" />
               <h2 className="font-semibold text-sm">Current Plan</h2>
             </div>
             <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${

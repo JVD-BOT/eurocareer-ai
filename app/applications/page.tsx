@@ -85,18 +85,18 @@ export default function ApplicationsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="w-10 h-10 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#F8F8F6" }}>
+        <div className="w-10 h-10 rounded-full border-4 border-[#6366f1] border-t-transparent animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ background: "#F8F8F6" }}>
       {/* Nav */}
       <nav className="bg-white border-b px-6 py-3 flex items-center justify-between sticky top-0 z-10">
         <div className="flex items-center gap-6">
-          <Link href="/dashboard" className="text-blue-600 font-bold text-lg">
+          <Link href="/dashboard" className="text-[#6366f1] font-bold text-lg">
             <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" />
           </Link>
           <span className="text-sm font-semibold text-gray-900">Applications</span>

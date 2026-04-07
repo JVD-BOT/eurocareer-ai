@@ -58,7 +58,7 @@ export function UpgradeModal({ open, onClose }: UpgradeModalProps) {
               "Early access to new features",
             ].map((f) => (
               <li key={f} className="flex items-center gap-2">
-                <span className="text-blue-600 font-bold">✓</span>
+                <span className="text-[#6366f1] font-bold">✓</span>
                 {f}
               </li>
             ))}

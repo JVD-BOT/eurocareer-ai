@@ -93,11 +93,11 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ background: "#F8F8F6" }}>
       {/* Nav */}
       <nav className="bg-white border-b px-6 py-3 flex items-center justify-between sticky top-0 z-10">
         <div className="flex items-center gap-6">
-          <Link href="/dashboard" className="text-blue-600 font-bold text-lg">
+          <Link href="/dashboard" className="text-[#6366f1] font-bold text-lg">
             <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" />
           </Link>
           <div className="hidden sm:flex items-center gap-4 text-sm">
@@ -129,7 +129,7 @@ export default function ProfilePage() {
         {/* Plan & credits */}
         <div className="bg-white rounded-xl border p-5 space-y-3">
           <div className="flex items-center gap-2">
-            <Zap className="h-4 w-4 text-blue-600" />
+            <Zap className="h-4 w-4 text-[#6366f1]" />
             <h2 className="text-sm font-semibold">Plan & AI Credits</h2>
           </div>
           <div className="flex items-center justify-between">
@@ -164,7 +164,7 @@ export default function ProfilePage() {
         {/* Personal info */}
         <div className="bg-white rounded-xl border p-5 space-y-4">
           <div className="flex items-center gap-2">
-            <User className="h-4 w-4 text-blue-600" />
+            <User className="h-4 w-4 text-[#6366f1]" />
             <h2 className="text-sm font-semibold">Personal Info</h2>
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -201,7 +201,7 @@ export default function ProfilePage() {
         {/* Resume */}
         <div className="bg-white rounded-xl border p-5 space-y-4">
           <div className="flex items-center gap-2">
-            <FileText className="h-4 w-4 text-blue-600" />
+            <FileText className="h-4 w-4 text-[#6366f1]" />
             <h2 className="text-sm font-semibold">Resume / CV</h2>
           </div>
           <p className="text-xs text-muted-foreground">
