@@ -2,86 +2,128 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'How to Write a CV for France in 2026 | EuroCareer AI',
-  description: 'Everything you need to know about French CV format — photo conventions, the lettre de motivation, and how to present yourself to French recruiters.',
+  title: 'How to Write a CV for France in 2026',
+  description: 'French CV conventions explained — the CV format, photo norms, and what Parisian employers actually expect. Includes tips on the lettre de motivation.',
   openGraph: {
     title: 'How to Write a CV for France in 2026',
-    description: 'Everything you need to know about French CV format and recruiter expectations.',
+    description: 'French CV format — photo, structure, and the lettre de motivation explained.',
     url: 'https://eurocareerai.com/blog/france-cv-format',
     type: 'article',
     images: [{ url: 'https://eurocareerai.com/LOGO_NEW.png' }],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'How to Write a CV for France in 2026',
-    description: 'Everything you need to know about French CV format and recruiter expectations.',
-  },
-  alternates: {
-    canonical: 'https://eurocareerai.com/blog/france-cv-format',
-  },
+  twitter: { card: 'summary_large_image', title: 'How to Write a CV for France in 2026', description: 'French CV format — photo, structure, and the lettre de motivation explained.' },
+  alternates: { canonical: 'https://eurocareerai.com/blog/france-cv-format' },
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://eurocareerai.com' },
+    { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://eurocareerai.com/blog' },
+    { '@type': 'ListItem', position: 3, name: 'France CV Format', item: 'https://eurocareerai.com/blog/france-cv-format' },
+  ],
 }
 
 export default function FranceCVFormat() {
   return (
     <article className="max-w-2xl mx-auto px-4 py-16">
-      <div className="mb-8">
-        <span className="text-sm font-medium text-indigo-400 uppercase tracking-wide">🇫🇷 CV Guide · France</span>
-        <h1 className="mt-3 text-3xl font-bold text-white leading-tight">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <nav aria-label="breadcrumb">
+        <div className="flex items-center gap-2 text-sm text-[#7A7F94] mb-8">
+          <Link href="/" className="hover:text-[#636DF5] transition-colors">Home</Link>
+          <span>/</span>
+          <Link href="/blog" className="hover:text-[#636DF5] transition-colors">Guides</Link>
+          <span>/</span>
+          <span className="text-[#0F1629]">France CV Format</span>
+        </div>
+      </nav>
+
+      <div className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-sm font-medium text-indigo-600 uppercase tracking-wide">FR CV Guide</span>
+          <span className="text-sm text-[#7A7F94]">Last updated: April 2026</span>
+          <span className="text-sm text-[#7A7F94]">&middot; ~6 min read</span>
+        </div>
+        <h1 className="mt-3 text-3xl font-bold text-[#0F1629] leading-tight">
           How to Write a CV for France in 2026
         </h1>
-        <p className="mt-4 text-slate-400 text-lg">
-          France has distinct hiring conventions that differ significantly from the UK and US. Here is what French recruiters actually expect.
+        <p className="mt-4 text-[#3D4255] text-lg">
+          The French CV has specific conventions around photo, structure, and the accompanying lettre de motivation. Here is what Parisian employers actually expect.
         </p>
       </div>
 
-      <div className="prose prose-invert prose-slate max-w-none">
-        <h2>The French CV at a glance</h2>
-        <p>
-          A French CV (curriculum vitae) is typically one page for junior candidates and two pages maximum for senior professionals. It is almost always accompanied by a <em>lettre de motivation</em> — the French equivalent of a cover letter — which is taken very seriously and often given as much weight as the CV itself.
+      <div className="prose prose-slate max-w-none space-y-6">
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">French workplace culture</h2>
+        <p className="text-slate-600 leading-relaxed">
+          France has a formal, hierarchical workplace culture — particularly in traditional sectors like finance, law, and the civil service. Startups and tech companies in Paris are increasingly casual, but for most roles in France, presenting yourself professionally and formally in your application materials is essential.
         </p>
 
-        <h2>Photo convention</h2>
-        <p>
-          Including a professional headshot is standard and widely expected in France, unlike the Netherlands or Nordic countries. Use a recent, professional photo — typically placed in the top right corner of the CV. Avoid casual or informal photos.
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Photo and personal details</h2>
+        <p className="text-slate-600 leading-relaxed">
+          A professional photo is standard practice in France and is widely expected. Personal details — name, address, phone, email, date of birth, and nationality — are typically included. Marital status and number of children are becoming less common but still appear occasionally. Always include your LinkedIn profile URL.
         </p>
 
-        <h2>What to include</h2>
-        <ul>
-          <li><strong>Personal details:</strong> Name, address, phone, email. Date of birth is sometimes included but not required. Nationality is optional.</li>
-          <li><strong>Professional summary:</strong> A short <em>profil</em> section (3–4 lines) is common at the top.</li>
-          <li><strong>Work experience:</strong> Reverse chronological. French CVs tend to include the company name, your title, dates, and bullet points of responsibilities and achievements.</li>
-          <li><strong>Education:</strong> French employers place high value on educational credentials, particularly <em>grandes écoles</em> and engineering schools. List degrees clearly with institution and year.</li>
-          <li><strong>Languages:</strong> Specify level (débutant / intermédiaire / courant / bilingue / langue maternelle).</li>
-          <li><strong>Interests:</strong> Including a short hobbies section is more common in France than in many other EU countries and is seen as part of your overall profile.</li>
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Structure and format</h2>
+        <ul className="text-slate-600 space-y-2 list-disc list-inside">
+          <li><strong className="text-[#0F1629]">Length:</strong> One page is strongly preferred in France. Two pages for very experienced candidates only.</li>
+          <li><strong className="text-[#0F1629]">Layout:</strong> Clean and classical. French employers value elegance and clarity. Subtle design is acceptable — flashy templates are not.</li>
+          <li><strong className="text-[#0F1629]">Work experience:</strong> Reverse chronological. Include company, role, dates, and specific achievements. French employers appreciate precise descriptions.</li>
+          <li><strong className="text-[#0F1629]">Education:</strong> The Grande École system carries significant prestige. If you attended a top French institution, list it prominently. For international candidates, explain your qualifications clearly.</li>
+          <li><strong className="text-[#0F1629]">Languages:</strong> French proficiency is crucial for most roles. Even for international companies, demonstrating French language skills is highly advantageous.</li>
         </ul>
 
-        <h2>The lettre de motivation</h2>
-        <p>
-          Do not skip this. In France, submitting a CV without a cover letter is often seen as a lack of effort or interest. The letter should be formal in tone, addressed to the hiring manager where possible, and structured as: why this company, why this role, what you bring. Keep it to one page and avoid repeating your CV verbatim.
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">The lettre de motivation</h2>
+        <p className="text-slate-600 leading-relaxed">
+          A cover letter is not optional in France — it is expected and taken seriously. The lettre de motivation should be formal, address a specific person, and demonstrate genuine knowledge of the company. French employers value intellectual engagement; show that you have researched the company deeply. Keep it to one page and follow formal French letter-writing conventions.
         </p>
 
-        <h2>Language requirements</h2>
-        <p>
-          French language ability is often essential — even for international companies based in Paris. Many roles require at least B2 French. International tech companies (particularly startups) sometimes hire in English only, but this is the exception rather than the rule outside major tech hubs. Be honest about your level.
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Language</h2>
+        <p className="text-slate-600 leading-relaxed">
+          For French companies, always write your CV and cover letter in French. Even if the job posting is in English, submitting application materials in French shows respect and commitment. For multinational companies based in France, English is often acceptable — follow the language of the job posting.
         </p>
 
-        <h2>Common mistakes</h2>
-        <ul>
-          <li>Sending a CV without a lettre de motivation</li>
-          <li>Using an American-style resume format</li>
-          <li>Omitting a photo when one is expected</li>
-          <li>Being too informal in tone — French professional communication is formal</li>
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Common mistakes</h2>
+        <ul className="text-slate-600 space-y-2 list-disc list-inside">
+          <li>Sending a CV that exceeds one page</li>
+          <li>Omitting a photo (it signals unfamiliarity with French norms)</li>
+          <li>Writing a generic lettre de motivation</li>
+          <li>Applying to a French company in English without checking expectations</li>
+          <li>Using an overly casual tone in your cover letter</li>
         </ul>
 
         <div className="mt-12 p-6 rounded-xl bg-indigo-950 border border-indigo-800">
           <p className="text-white font-semibold">Ready to adapt your CV for France?</p>
-          <p className="mt-1 text-slate-400 text-sm">EuroCareer AI formats your CV to French standards — photo placement, structure, tone, and more — in seconds.</p>
-          <Link
-            href="/auth/signup"
-            className="mt-4 inline-block bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors"
-          >
-            Try EuroCareer AI free →
+          <p className="mt-1 text-slate-400 text-sm">EuroCareer AI reformats your CV to French standards — one page, structured, and with the right professional tone.</p>
+          <Link href="/auth/signup" className="mt-4 inline-block bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors">
+            Try EuroCareer AI free
           </Link>
+        </div>
+
+        <div className="mt-12 border-t border-[#E2E1DC] pt-8">
+          <h2 className="text-lg font-semibold text-[#0F1629] mb-4">Related guides</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/blog/belgium-cv-format" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+              <span className="text-2xl">be</span>
+              <p className="mt-2 text-sm font-semibold text-[#0F1629]">Belgium CV Format</p>
+              <p className="text-xs text-[#7A7F94] mt-1">Similar French-language conventions</p>
+            </Link>
+            <Link href="/blog/cover-letter-europe" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+              <span className="text-2xl">eu</span>
+              <p className="mt-2 text-sm font-semibold text-[#0F1629]">Cover Letters in Europe</p>
+              <p className="text-xs text-[#7A7F94] mt-1">Country-by-country guide</p>
+            </Link>
+            <Link href="/blog/germany-cv-format" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+              <span className="text-2xl">de</span>
+              <p className="mt-2 text-sm font-semibold text-[#0F1629]">German CV Format</p>
+              <p className="text-xs text-[#7A7F94] mt-1">Another formal European market</p>
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <Link href="/blog" className="text-indigo-600 hover:text-indigo-500 text-sm transition-colors">Back to all guides</Link>
         </div>
       </div>
     </article>
