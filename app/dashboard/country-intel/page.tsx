@@ -203,7 +203,7 @@ export default function CountryIntelPage() {
   
     return (
           <div
-                  className="min-h-screen"
+                  className=""
                   style={{ background: "#F8F8F6" }}
                 >
             {/* Top bar */}
