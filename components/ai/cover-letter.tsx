@@ -1,6 +1,6 @@
-import ReactMarkdown from 'react-markdown';
 "use client";
 
+import ReactMarkdown from 'react-markdown';
 import { useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
