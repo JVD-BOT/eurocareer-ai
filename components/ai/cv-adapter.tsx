@@ -1,3 +1,4 @@
+import ReactMarkdown from 'react-markdown';
 "use client";
 
 import { useState } from "react";
@@ -156,7 +157,7 @@ export function CVAdapter({ application, profile, onUpdate, onCreditUsed }: CVAd
             <>
               <div className="bg-gray-50 border rounded-lg p-3 max-h-64 overflow-y-auto">
                 <pre className="text-xs whitespace-pre-wrap font-sans text-gray-800 leading-relaxed">
-                  {result}
+                  <ReactMarkdown className="prose prose-sm prose-slate max-w-none">{result}</ReactMarkdown>
                 </pre>
               </div>
               {!streaming && (
