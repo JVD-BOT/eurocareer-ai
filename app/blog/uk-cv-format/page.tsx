@@ -2,92 +2,133 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'How to Write a CV for the UK in 2026 | EuroCareer AI',
-  description: 'UK CV format explained — what to include, what to skip, visa requirements, and how to stand out to British recruiters in 2026.',
+  title: 'How to Write a CV for the UK in 2026',
+  description: 'UK CV conventions explained — no photo, two pages, achievement-focused. Learn what London employers actually expect from your CV in 2026.',
   openGraph: {
     title: 'How to Write a CV for the UK in 2026',
-    description: 'UK CV format explained — what to include, what to skip, and how to stand out.',
+    description: 'UK CV format — no photo, two pages, achievement-focused.',
     url: 'https://eurocareerai.com/blog/uk-cv-format',
     type: 'article',
     images: [{ url: 'https://eurocareerai.com/LOGO_NEW.png' }],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'How to Write a CV for the UK in 2026',
-    description: 'UK CV format explained — what to include, what to skip, and how to stand out.',
-  },
-  alternates: {
-    canonical: 'https://eurocareerai.com/blog/uk-cv-format',
-  },
+  twitter: { card: 'summary_large_image', title: 'How to Write a CV for the UK in 2026', description: 'UK CV format — no photo, two pages, achievement-focused.' },
+  alternates: { canonical: 'https://eurocareerai.com/blog/uk-cv-format' },
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://eurocareerai.com' },
+    { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://eurocareerai.com/blog' },
+    { '@type': 'ListItem', position: 3, name: 'UK CV Format', item: 'https://eurocareerai.com/blog/uk-cv-format' },
+  ],
 }
 
 export default function UKCVFormat() {
   return (
     <article className="max-w-2xl mx-auto px-4 py-16">
-      <div className="mb-8">
-        <span className="text-sm font-medium text-indigo-400 uppercase tracking-wide">🇬🇧 CV Guide · United Kingdom</span>
-        <h1 className="mt-3 text-3xl font-bold text-white leading-tight">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <nav aria-label="breadcrumb">
+        <div className="flex items-center gap-2 text-sm text-[#7A7F94] mb-8">
+          <Link href="/" className="hover:text-[#636DF5] transition-colors">Home</Link>
+          <span>/</span>
+          <Link href="/blog" className="hover:text-[#636DF5] transition-colors">Guides</Link>
+          <span>/</span>
+          <span className="text-[#0F1629]">UK CV Format</span>
+        </div>
+      </nav>
+
+      <div className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-sm font-medium text-indigo-600 uppercase tracking-wide">UK CV Guide</span>
+          <span className="text-sm text-[#7A7F94]">Last updated: April 2026</span>
+          <span className="text-sm text-[#7A7F94]">&middot; ~5 min read</span>
+        </div>
+        <h1 className="mt-3 text-3xl font-bold text-[#0F1629] leading-tight">
           How to Write a CV for the UK in 2026
         </h1>
-        <p className="mt-4 text-slate-400 text-lg">
-          The UK uses a "CV" not a "resume" — and while it shares similarities with US formats, there are key differences that matter to British recruiters.
+        <p className="mt-4 text-[#3D4255] text-lg">
+          The UK CV follows a distinct set of conventions — no photo, no age, achievement-focused, and two pages maximum. Here is the complete guide.
         </p>
       </div>
 
-      <div className="prose prose-invert prose-slate max-w-none">
-        <h2>CV vs resume: what's the difference?</h2>
-        <p>
-          In the UK, always call it a CV — using the word "resume" immediately marks you as unfamiliar with the local market. Beyond the terminology, UK CVs tend to be more detailed than US resumes, typically two pages, with a personal profile section at the top rather than an objective statement.
+      <div className="prose prose-slate max-w-none space-y-6">
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">UK vs US job application culture</h2>
+        <p className="text-slate-600 leading-relaxed">
+          While both are English-speaking markets, UK CV conventions differ significantly from US norms. UK CVs are typically two pages (not one), use the term "CV" rather than "resume", and place greater emphasis on education. US resume conventions like objective statements are unusual in the UK. However, UK CVs share the US norm of excluding photos and personal details.
         </p>
 
-        <h2>Format and length</h2>
-        <p>
-          Two pages is the standard for most roles. One page is acceptable for very junior candidates. Three pages is occasionally acceptable for highly senior or academic roles. Use a clean, professional layout — readable fonts, clear section headers, and logical flow.
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Photo and personal details</h2>
+        <p className="text-slate-600 leading-relaxed">
+          Never include a photo on a UK CV — it is considered discriminatory practice and will often lead your application to be rejected. Do not include date of birth, nationality, or marital status. Your name, address (or just city and postcode), phone number, email, and LinkedIn profile are all you need.
         </p>
 
-        <h2>No photo required</h2>
-        <p>
-          Do not include a photo on a UK CV. Unlike France or Germany, photos are not expected and can actually create issues due to anti-discrimination hiring practices. Leave it out entirely.
-        </p>
-
-        <h2>What to include</h2>
-        <ul>
-          <li><strong>Personal details:</strong> Name, phone, email, LinkedIn, and city (not full address). Include your right to work status if you are not a UK/EU citizen.</li>
-          <li><strong>Personal profile:</strong> 3–5 sentences summarising who you are, your key skills, and what you are looking for. This replaces the US-style objective statement.</li>
-          <li><strong>Work experience:</strong> Reverse chronological. Job title, company, dates, and 3–5 bullet points per role. Use strong action verbs and quantify outcomes where possible.</li>
-          <li><strong>Education:</strong> Degree, university, years, grade if strong (e.g. First Class Honours, 2:1). A-levels optional unless you are a recent graduate.</li>
-          <li><strong>Skills:</strong> Technical skills, software, languages. Keep it relevant.</li>
-          <li><strong>References:</strong> Do not include "references available on request" — this is outdated. Leave references off entirely.</li>
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Structure and format</h2>
+        <ul className="text-slate-600 space-y-2 list-disc list-inside">
+          <li><strong className="text-[#0F1629]">Length:</strong> Two pages is the UK standard. One page for very junior roles. Three pages is acceptable for very senior executives.</li>
+          <li><strong className="text-[#0F1629]">Personal statement:</strong> A 3-4 line profile at the top summarising who you are, your key skills, and what you are looking for is standard UK practice.</li>
+          <li><strong className="text-[#0F1629]">Work experience:</strong> Reverse chronological. Include company, job title, dates, and 4-6 bullet points per role focused on specific achievements and impact.</li>
+          <li><strong className="text-[#0F1629]">Education:</strong> After work experience (for experienced candidates) or before (for graduates). Include degree, institution, grade, and year.</li>
+          <li><strong className="text-[#0F1629]">Skills:</strong> A skills section is helpful. Include technical skills, languages, and relevant certifications.</li>
         </ul>
 
-        <h2>Right to work — post-Brexit reality</h2>
-        <p>
-          Since Brexit, EU/EEA citizens no longer have automatic right to work in the UK. You will need either settled/pre-settled status (if you were in the UK before June 2021) or a Skilled Worker visa sponsored by your employer. UK employers are experienced with this process, but you should be upfront about your visa requirements early in the process to avoid wasted time on both sides.
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">The covering letter</h2>
+        <p className="text-slate-600 leading-relaxed">
+          A covering letter is expected in the UK, though for digital applications through portals it is often optional. When writing one, keep it to one page, professional in tone, and focused on why you are suited to this specific role. UK employers appreciate confidence but not arrogance. Proofread carefully — British employers pay close attention to written English.
         </p>
 
-        <h2>British CV tone</h2>
-        <p>
-          UK CVs sit between the formality of French CVs and the directness of Dutch ones. Professional but not stuffy. Confident but not boastful. Subtle humour is appreciated in cover letters but keep CVs factual. Avoid Americanisms — spell "colour" not "color," "organised" not "organized."
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">London vs other UK cities</h2>
+        <p className="text-slate-600 leading-relaxed">
+          London accounts for a disproportionate share of the UK's professional job market, particularly in finance, tech, media, and consulting. Edinburgh has a significant financial sector. Manchester, Bristol, and Leeds have growing tech scenes. For non-London roles, research the local market — salary expectations and competition levels differ significantly.
         </p>
 
-        <h2>Common mistakes</h2>
-        <ul>
-          <li>Including a photo</li>
-          <li>Writing "resume" instead of "CV"</li>
-          <li>Using US spelling throughout</li>
-          <li>Including date of birth or marital status — these are not expected</li>
-          <li>Going over two pages without good reason</li>
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Post-Brexit work rights</h2>
+        <p className="text-slate-600 leading-relaxed">
+          Since Brexit, EU citizens no longer have automatic right to work in the UK. Most EU nationals will need to apply through the UK Skilled Worker Visa route, which requires an employer sponsor, a role on the eligible occupations list, and a minimum salary threshold. Check the UK government's immigration website for current requirements.
+        </p>
+
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Common mistakes</h2>
+        <ul className="text-slate-600 space-y-2 list-disc list-inside">
+          <li>Including a photo (a major red flag to UK employers)</li>
+          <li>Using a one-page American resume format</li>
+          <li>Using an "objective statement" instead of a personal profile</li>
+          <li>Omitting quantified achievements</li>
+          <li>Spelling errors — UK English differs from US English (colour vs color, organisation vs organization)</li>
         </ul>
 
         <div className="mt-12 p-6 rounded-xl bg-indigo-950 border border-indigo-800">
           <p className="text-white font-semibold">Ready to adapt your CV for the UK?</p>
-          <p className="mt-1 text-slate-400 text-sm">EuroCareer AI adapts your CV to UK standards — format, tone, right-to-work notes, and more — in seconds.</p>
-          <Link
-            href="/auth/signup"
-            className="mt-4 inline-block bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors"
-          >
-            Try EuroCareer AI free →
+          <p className="mt-1 text-slate-400 text-sm">EuroCareer AI reformats your CV to UK standards — two pages, achievement-focused, no photo, in British English.</p>
+          <Link href="/auth/signup" className="mt-4 inline-block bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors">
+            Try EuroCareer AI free
           </Link>
+        </div>
+
+        <div className="mt-12 border-t border-[#E2E1DC] pt-8">
+          <h2 className="text-lg font-semibold text-[#0F1629] mb-4">Related guides</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/blog/ireland-cv-format" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+              <span className="text-2xl">ie</span>
+              <p className="mt-2 text-sm font-semibold text-[#0F1629]">Ireland CV Format</p>
+              <p className="text-xs text-[#7A7F94] mt-1">Very similar to UK conventions</p>
+            </Link>
+            <Link href="/blog/eu-vs-us-resume" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+              <span className="text-2xl">eu</span>
+              <p className="mt-2 text-sm font-semibold text-[#0F1629]">EU vs US Resume</p>
+              <p className="text-xs text-[#7A7F94] mt-1">Key differences explained</p>
+            </Link>
+            <Link href="/blog/eu-work-visa-guide" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+              <span className="text-2xl">eu</span>
+              <p className="mt-2 text-sm font-semibold text-[#0F1629]">EU Work Visa Guide</p>
+              <p className="text-xs text-[#7A7F94] mt-1">Working in Europe legally</p>
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <Link href="/blog" className="text-indigo-600 hover:text-indigo-500 text-sm transition-colors">Back to all guides</Link>
         </div>
       </div>
     </article>
