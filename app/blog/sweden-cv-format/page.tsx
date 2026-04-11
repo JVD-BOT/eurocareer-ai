@@ -2,91 +2,128 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'How to Write a CV for Sweden in 2026 | EuroCareer AI',
-  description: 'Learn what Swedish recruiters expect in a CV — minimal design, humble tone, and the specific format conventions that set you apart in the Nordic job market.',
+  title: 'How to Write a CV for Sweden in 2026',
+  description: 'Swedish CV conventions explained — clean design, no photo, flat hierarchy. Learn what Stockholm employers actually expect in 2026.',
   openGraph: {
     title: 'How to Write a CV for Sweden in 2026',
-    description: 'What Swedish recruiters expect in a CV — format, tone, and Nordic conventions explained.',
+    description: 'Swedish CV format — minimal, photo-free, and achievement-focused.',
     url: 'https://eurocareerai.com/blog/sweden-cv-format',
     type: 'article',
     images: [{ url: 'https://eurocareerai.com/LOGO_NEW.png' }],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'How to Write a CV for Sweden in 2026',
-    description: 'What Swedish recruiters expect in a CV — format, tone, and Nordic conventions explained.',
-  },
-  alternates: {
-    canonical: 'https://eurocareerai.com/blog/sweden-cv-format',
-  },
+  twitter: { card: 'summary_large_image', title: 'How to Write a CV for Sweden in 2026', description: 'Swedish CV format — minimal, photo-free, and achievement-focused.' },
+  alternates: { canonical: 'https://eurocareerai.com/blog/sweden-cv-format' },
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://eurocareerai.com' },
+    { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://eurocareerai.com/blog' },
+    { '@type': 'ListItem', position: 3, name: 'Sweden CV Format', item: 'https://eurocareerai.com/blog/sweden-cv-format' },
+  ],
 }
 
 export default function SwedenCVFormat() {
   return (
     <article className="max-w-2xl mx-auto px-4 py-16">
-      <div className="mb-8">
-        <span className="text-sm font-medium text-indigo-400 uppercase tracking-wide">🇸🇪 CV Guide · Sweden</span>
-        <h1 className="mt-3 text-3xl font-bold text-white leading-tight">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <nav aria-label="breadcrumb">
+        <div className="flex items-center gap-2 text-sm text-[#7A7F94] mb-8">
+          <Link href="/" className="hover:text-[#636DF5] transition-colors">Home</Link>
+          <span>/</span>
+          <Link href="/blog" className="hover:text-[#636DF5] transition-colors">Guides</Link>
+          <span>/</span>
+          <span className="text-[#0F1629]">Sweden CV Format</span>
+        </div>
+      </nav>
+
+      <div className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-sm font-medium text-indigo-600 uppercase tracking-wide">SE CV Guide</span>
+          <span className="text-sm text-[#7A7F94]">Last updated: April 2026</span>
+          <span className="text-sm text-[#7A7F94]">&middot; ~5 min read</span>
+        </div>
+        <h1 className="mt-3 text-3xl font-bold text-[#0F1629] leading-tight">
           How to Write a CV for Sweden in 2026
         </h1>
-        <p className="mt-4 text-slate-400 text-lg">
-          Sweden has a distinctive workplace culture that directly shapes what recruiters expect to see in a CV. Here is how to get it right.
+        <p className="mt-4 text-[#3D4255] text-lg">
+          Sweden's flat workplace hierarchy and emphasis on equality shapes its CV conventions. Here is what Stockholm and Gothenburg employers actually expect.
         </p>
       </div>
 
-      <div className="prose prose-invert prose-slate max-w-none">
-        <h2>Swedish CV culture: lagom</h2>
-        <p>
-          The Swedish concept of <em>lagom</em> — meaning just the right amount — applies directly to job applications. Swedish CVs are expected to be modest, clear, and free of self-promotion. Avoid language like "exceptional achiever" or "top performer." Present your experience factually and let the work speak for itself.
+      <div className="prose prose-slate max-w-none space-y-6">
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Swedish workplace culture</h2>
+        <p className="text-slate-600 leading-relaxed">
+          Sweden has one of the most egalitarian workplace cultures in the world. Lagom — the concept of "just the right amount" — applies to everything from portion sizes to self-promotion. Over-selling yourself will work against you. Swedish employers value results, collaborative spirit, and work-life balance. Your CV should reflect this: factual, achievement-focused, and appropriately modest.
         </p>
 
-        <h2>Format and length</h2>
-        <p>
-          One to two pages is standard. Swedish CVs are clean and minimal — plenty of white space, clear section headers, and a simple font. Flashy or heavily designed CVs can work against you in more traditional industries. For creative roles, a clean portfolio link is more effective than a designed CV.
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Photo and personal details</h2>
+        <p className="text-slate-600 leading-relaxed">
+          Photos are not expected on Swedish CVs — in fact, many Swedish employers actively prefer not to receive them due to anti-discrimination considerations. Include your name, email, phone number, LinkedIn profile, and city. Date of birth and personal ID numbers are not needed.
         </p>
 
-        <h2>Photo convention</h2>
-        <p>
-          Including a photo is common but not required. If you include one, use a professional but approachable headshot. Sweden has strong anti-discrimination norms in hiring, so some companies actively prefer anonymous applications.
-        </p>
-
-        <h2>What to include</h2>
-        <ul>
-          <li><strong>Contact details:</strong> Name, city, phone, email, LinkedIn. No full address required.</li>
-          <li><strong>Summary:</strong> Optional but useful. Keep it factual — two to three sentences about your background and what you are looking for.</li>
-          <li><strong>Work experience:</strong> Reverse chronological. Include employer, title, dates, and 3–4 bullet points of responsibilities and outcomes. Avoid inflating your role.</li>
-          <li><strong>Education:</strong> Degree, institution, years. Swedish employers respect formal education but do not over-index on it compared to France.</li>
-          <li><strong>Language skills:</strong> Swedish proficiency is a significant differentiator. Even intermediate Swedish shows genuine interest. Specify level using CEFR (A1–C2).</li>
-          <li><strong>Personal interests:</strong> Common to include and seen positively — it shows you are a whole person, which aligns with Swedish work-life balance values.</li>
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Structure and format</h2>
+        <ul className="text-slate-600 space-y-2 list-disc list-inside">
+          <li><strong className="text-[#0F1629]">Length:</strong> One to two pages. Swedes value brevity. Every sentence should earn its place.</li>
+          <li><strong className="text-[#0F1629]">Layout:</strong> Clean and minimal. Good typography, white space, and clear section headers. Avoid cluttered designs.</li>
+          <li><strong className="text-[#0F1629]">Work experience:</strong> Reverse chronological. Quantify your achievements where possible. Show impact, not just responsibilities.</li>
+          <li><strong className="text-[#0F1629]">Education:</strong> List formal qualifications. Sweden has excellent universities — local degrees carry weight, but international qualifications are widely respected.</li>
+          <li><strong className="text-[#0F1629]">Languages:</strong> Swedish proficiency is a significant advantage for most roles. English is almost universal in Swedish professional environments. List both with CEFR levels.</li>
         </ul>
 
-        <h2>Swedish workplace values to signal</h2>
-        <p>
-          Swedish employers value flat hierarchies, collaboration, and independence. In your experience bullets, highlight times you worked cross-functionally, took initiative without being told, or improved a process. Avoid implying you only performed tasks under direction.
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">The cover letter</h2>
+        <p className="text-slate-600 leading-relaxed">
+          A cover letter (personligt brev) is generally expected. Keep it to one page and focus on three things: why you are qualified, why you want this specific role, and why you want to work at this specific company. Swedish employers appreciate authenticity and directness. Show your personality — Swedish workplace culture values genuine people, not polished performances.
         </p>
 
-        <h2>Language requirements</h2>
-        <p>
-          Many Swedish companies — especially in tech, fintech, and startups — operate primarily in English. But Swedish fluency opens up far more roles, particularly in the public sector, healthcare, retail, and mid-sized companies outside Stockholm. If you are actively learning Swedish, mention it.
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Sweden's tech and startup scene</h2>
+        <p className="text-slate-600 leading-relaxed">
+          Stockholm is home to Spotify, Klarna, King, and dozens of other major tech companies. The city is sometimes called "the tech capital of Europe" and consistently produces more billion-dollar companies per capita than any other region outside Silicon Valley. For tech roles, English CVs are standard and often preferred.
         </p>
 
-        <h2>Common mistakes</h2>
-        <ul>
-          <li>Over-selling yourself — this reads as arrogant in Swedish culture</li>
-          <li>Using aggressive US-style action verbs ("crushed," "dominated," "slayed")</li>
-          <li>Leaving out Swedish language level entirely</li>
-          <li>Sending a very long CV — two pages is the hard limit</li>
+        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Common mistakes</h2>
+        <ul className="text-slate-600 space-y-2 list-disc list-inside">
+          <li>Including a photo (not expected or desired in Sweden)</li>
+          <li>Over-selling yourself — Swedish culture values modesty</li>
+          <li>Ignoring the importance of Swedish language skills for non-tech roles</li>
+          <li>Sending a generic personligt brev</li>
+          <li>Using a CV clearly designed for another market</li>
         </ul>
 
         <div className="mt-12 p-6 rounded-xl bg-indigo-950 border border-indigo-800">
           <p className="text-white font-semibold">Ready to adapt your CV for Sweden?</p>
-          <p className="mt-1 text-slate-400 text-sm">EuroCareer AI rewrites your CV to match Swedish tone, format, and recruiter expectations — in seconds.</p>
-          <Link
-            href="/auth/signup"
-            className="mt-4 inline-block bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors"
-          >
-            Try EuroCareer AI free →
+          <p className="mt-1 text-slate-400 text-sm">EuroCareer AI reformats your CV to Swedish standards — clean, photo-free, and appropriately direct.</p>
+          <Link href="/auth/signup" className="mt-4 inline-block bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors">
+            Try EuroCareer AI free
           </Link>
+        </div>
+
+        <div className="mt-12 border-t border-[#E2E1DC] pt-8">
+          <h2 className="text-lg font-semibold text-[#0F1629] mb-4">Related guides</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/blog/denmark-cv-format" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+              <span className="text-2xl">dk</span>
+              <p className="mt-2 text-sm font-semibold text-[#0F1629]">Denmark CV Format</p>
+              <p className="text-xs text-[#7A7F94] mt-1">Similar Scandinavian approach</p>
+            </Link>
+            <Link href="/blog/netherlands-cv-format" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+              <span className="text-2xl">nl</span>
+              <p className="mt-2 text-sm font-semibold text-[#0F1629]">Netherlands CV Format</p>
+              <p className="text-xs text-[#7A7F94] mt-1">Another direct, flat-hierarchy culture</p>
+            </Link>
+            <Link href="/blog/eu-work-visa-guide" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+              <span className="text-2xl">eu</span>
+              <p className="mt-2 text-sm font-semibold text-[#0F1629]">EU Work Visa Guide</p>
+              <p className="text-xs text-[#7A7F94] mt-1">Working in Europe legally</p>
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <Link href="/blog" className="text-indigo-600 hover:text-indigo-500 text-sm transition-colors">Back to all guides</Link>
         </div>
       </div>
     </article>
