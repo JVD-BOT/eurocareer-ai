@@ -163,7 +163,7 @@ export default function DashboardPage() {
                   { label: "Total", value: stats.applications, icon: "📋", color: "#636DF5" },
                   { label: "Interviews", value: stats.interviews, icon: "🎤", color: "#7C3AED" },
                   { label: "Offers", value: stats.offers, icon: "🎯", color: "#16A34A" },
-                  { label: "AI Gens", value: 3, icon: null, color: "#636DF5", star: true },
+                  { label: "AI Credits", value: stats.aiGenerations ?? 0, icon: null, color: "#636DF5", star: true },
                               ].map((stat) => (
                                                 <div key={stat.label} className="bg-white rounded-2xl border border-[#E2E1DC] p-5 flex items-center gap-3 hover:border-[#636DF5] hover:shadow-sm transition-all">
                                                     {stat.star ? (
@@ -171,9 +171,33 @@ export default function DashboardPage() {
                                                                     ) : (
                                                                       <span className="text-2xl">{stat.icon}</span>
                                                                 )}
-                                                                <div>
-                                                                                  <p className="text-2xl font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>{stat.value}</p>
-                                                                                  <p className="text-xs" style={{ color: "#7A7F94" }}>{stat.label}</p>
+                                                                {/* Issue #12: New user onboarding */}
+              {stats.applications === 0 && (
+                <div className="mb-6 p-6 rounded-2xl border border-[#636DF5]/30" style={{ background: "linear-gradient(135deg, #EEEFFE 0%, #F8F8FF 100%)" }}>
+                  <h2 className="font-bold text-lg mb-1" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>
+                    Welcome to EuroCareerAI — let's get started!
+                  </h2>
+                  <p className="text-sm mb-4" style={{ color: "#7A7F94" }}>
+                    Complete these three steps to get the most out of EuroCareer AI.
+                  </p>
+                  <div className="space-y-3">
+                    {[
+                      { step: 1, label: "Add your first application", href: "/applications" },
+                      { step: 2, label: "Adapt your CV for your target country", href: "/applications" },
+                      { step: 3, label: "Generate a tailored cover letter", href: "/applications" },
+                    ].map(({ step, label, href }) => (
+                      <a key={step} href={href} className="flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-[#F8F8F6] transition-colors border border-[#E2E1DC] group">
+                        <span className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold text-white" style={{ background: "#636DF5" }}>{step}</span>
+                        <span className="text-sm font-medium" style={{ color: "#0F1629" }}>{label}</span>
+                        <svg className="ml-auto w-4 h-4 text-[#7A7F94] group-hover:text-[#636DF5] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <div>
+                                                                                  <p className="text-2xl font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>{stat.label === "AI Credits" ? `${stat.value} of 3` : stat.value}</p>
+                                                                                  <p className="text-xs" style={{ color: "#7A7F94" }}>{stat.label === "AI Credits" ? "AI Credits used this month" : stat.label}</p>
                                                                 </div>
                                                 </div>
                                               ))}
