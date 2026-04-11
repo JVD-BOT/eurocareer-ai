@@ -128,7 +128,17 @@ export function FollowUpEmail({ application, onCreditUsed }: FollowUpEmailProps)
                 </pre>
               </div>
               {!streaming && (
-                <Button variant="outline" size="sm" className="gap-1.5 text-xs w-full" onClick={handleCopy}>
+                {/* Context summary - Issue #17 */}
+        <div className="mb-4 p-3 rounded-xl border border-[#E2E1DC] text-sm" style={{ background: "#F8F8F6" }}>
+          <p className="text-[#7A7F94]">
+            Generating for:{" "}
+            <strong className="text-[#0F1629]">{application.company_name || "Company"}</strong>
+            {" — "}
+            <strong className="text-[#0F1629]">{application.role_title || "Role"}</strong>
+            {application.created_at ? <span> — Applied: <strong className="text-[#0F1629]">{new Date(application.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</strong></span> : null}
+          </p>
+        </div>
+        <Button variant="outline" size="sm" className="gap-1.5 text-xs w-full" onClick={handleCopy}>
                   <Copy className="h-3 w-3" /> Copy to Clipboard
                 </Button>
               )}
