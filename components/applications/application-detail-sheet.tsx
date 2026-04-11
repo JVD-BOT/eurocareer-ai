@@ -91,6 +91,24 @@ export function ApplicationDetailSheet({
   useEffect(() => {
     if (open) fetchProfile();
   }, [open]);
+  // Issue #21: Escape key support to close drawer
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (isDirty) {
+          if (confirm("You have unsaved changes. Close without saving?")) {
+            onClose();
+          }
+        } else {
+          onClose();
+        }
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isDirty, onClose]);
+
+
 
   const fetchProfile = async () => {
     const { data: { session } } = await supabase.auth.getSession();
