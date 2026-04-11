@@ -46,7 +46,8 @@ export const metadata: Metadata = {
                 description: "Adapt your CV for any EU country in seconds.",
                 images: ["/og-image.png"],
         },
-        robots: {
+        alternates: { canonical: 'https://eurocareerai.com' },
+  robots: {
                 index: true,
                 follow: true,
                 googleBot: {
