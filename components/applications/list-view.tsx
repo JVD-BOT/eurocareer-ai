@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import { useMemo, useState } from "react";
 import type { Application } from "@/lib/types";
@@ -134,9 +135,16 @@ export function ListView({ applications, onRowClick }: ListViewProps) {
             {filtered.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={5} className="text-center text-muted-foreground py-12">
-                  {applications.length === 0
-                    ? 'No applications yet. Click "+ Add Application" to get started.'
-                    : "No results match your filters."}
+                  {applications.length === 0 ? (
+                    <div className="flex flex-col items-center gap-3 py-4">
+                      <div className="text-4xl">📋</div>
+                      <p className="font-medium text-[#0F1629]">No applications yet</p>
+                      <p className="text-sm text-[#7A7F94]">Start tracking your job applications to stay organised.</p>
+                      <Link href="/applications" className="inline-flex items-center gap-2 bg-[#636DF5] hover:bg-[#5560e0] text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all hover:-translate-y-0.5">
+                        Add your first application
+                      </Link>
+                    </div>
+                  ) : "No results match your filters."}
                 </TableCell>
               </TableRow>
             ) : (
