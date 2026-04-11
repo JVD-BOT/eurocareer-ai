@@ -2,10 +2,11 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'European Career Guides | EuroCareer AI',
+  title: 'European Career Guides',
   description: 'Practical guides on CVs, cover letters, job searching and work visas across European markets. Written for international professionals.',
+  alternates: { canonical: 'https://eurocareerai.com/blog' },
   openGraph: {
-    title: 'European Career Guides | EuroCareer AI',
+    title: 'European Career Guides',
     description: 'CV formats, job search tips, cover letters and visa guides for Europe — written for international professionals.',
     url: 'https://eurocareerai.com/blog',
     type: 'website',
