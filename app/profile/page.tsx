@@ -97,7 +97,7 @@ export default function ProfilePage() {
       {/* Nav */}
       <nav className="bg-white border-b px-6 py-3 flex items-center justify-between sticky top-0 z-10">
         <div className="flex items-center gap-6">
-          <Link href="/dashboard" className="text-blue-600 font-bold text-lg">
+          <Link href="/dashboard" aria-label="Go to dashboard" className="text-blue-600 font-bold text-lg">
             <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" />
           </Link>
           <div className="hidden sm:flex items-center gap-4 text-sm">
