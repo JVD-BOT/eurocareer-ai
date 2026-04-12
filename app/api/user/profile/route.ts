@@ -1,14 +1,11 @@
-import { createServerClient } from "@supabase/ssr";
+import { createClient } from "@supabase/supabase-js";
 import { NextRequest } from "next/server";
 
 function createSupabaseServer(accessToken: string) {
-  return createServerClient(
+  return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: { getAll: () => [], setAll: () => {} },
-      global: { headers: { Authorization: `Bearer ${accessToken}` } },
-    }
+    { global: { headers: { Authorization: `Bearer ${accessToken}` } } }
   );
 }
 
