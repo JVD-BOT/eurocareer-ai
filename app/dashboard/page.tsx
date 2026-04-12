@@ -45,20 +45,9 @@ export default function DashboardPage() {
       } else {
         setUser(currentUser);
         loadStats();
-        loadProfile(currentUser.id);
       }
     });
   }, [router]);
-
-  const loadProfile = async (userId: string) => {
-    const { data } = await supabase
-      .from("profiles")
-      .select("plan, payment_warning")
-      .eq("id", userId)
-      .maybeSingle();
-    if (data?.plan === "pro") setUserPlan("pro");
-    if (data?.payment_warning) setPaymentWarning(true);
-  };
 
   const handleUpdatePayment = async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -87,7 +76,7 @@ export default function DashboardPage() {
     if (!currentUser) return setLoading(false);
     const [{ data: apps }, { data: profile }] = await Promise.all([
       supabase.from("applications").select("status").eq("user_id", currentUser.id),
-      supabase.from("profiles").select("ai_credits_used").eq("id", currentUser.id).maybeSingle(),
+      supabase.from("profiles").select("ai_credits_used, plan, payment_warning").eq("id", currentUser.id).maybeSingle(),
     ]);
     setStats({
       applications: apps?.length ?? 0,
@@ -95,6 +84,8 @@ export default function DashboardPage() {
       offers: apps?.filter((a) => a.status === "offer").length ?? 0,
       aiGenerations: profile?.ai_credits_used ?? 0,
     });
+    if (profile?.plan === "pro") setUserPlan("pro");
+    if (profile?.payment_warning) setPaymentWarning(true);
     setLoading(false);
   };
 
