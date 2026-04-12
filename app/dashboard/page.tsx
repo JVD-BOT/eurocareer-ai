@@ -36,27 +36,24 @@ export default function DashboardPage() {
       const [paymentWarning, setPaymentWarning] = useState(false);
       const [dismissedWarning, setDismissedWarning] = useState(false);
       const [userPlan, setUserPlan] = useState<"free" | "pro">("free");
-      const settingSession = useRef(false);
+      const accessTokenRef = useRef<string | null>(null);
       const router = useRouter();
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        if (settingSession.current) return;
+      (event, session) => {
         if (event === "INITIAL_SESSION" || event === "SIGNED_IN") {
           if (!session) {
             router.replace("/auth/login");
           } else {
-            settingSession.current = true;
-            await supabase.auth.setSession({
-              access_token: session.access_token,
-              refresh_token: session.refresh_token,
-            });
-            settingSession.current = false;
+            accessTokenRef.current = session.access_token;
             setUser(session.user);
-            loadStats(session.user.id);
+            loadStats(session.access_token);
           }
+        } else if (event === "TOKEN_REFRESHED" && session) {
+          accessTokenRef.current = session.access_token;
         } else if (event === "SIGNED_OUT") {
+          accessTokenRef.current = null;
           router.replace("/auth/login");
         }
       }
@@ -78,28 +75,32 @@ export default function DashboardPage() {
 
   const handleDismissWarning = async () => {
     setDismissedWarning(true);
-    if (user) {
-      await supabase
-        .from("profiles")
-        .update({ payment_warning: false })
-        .eq("id", user.id);
+    if (accessTokenRef.current) {
+      await fetch("/api/user/profile", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessTokenRef.current}`,
+        },
+        body: JSON.stringify({ payment_warning: false }),
+      });
     }
   };
 
-  const loadStats = async (userId: string) => {
-    const [{ data: apps }, { data: profile }] = await Promise.all([
-      supabase.from("applications").select("status").eq("user_id", userId),
-      supabase.from("profiles").select("ai_credits_used, plan, payment_warning").eq("id", userId).maybeSingle(),
-    ]);
-    console.log("[loadStats] raw profile from Supabase:", profile);
-    setStats({
-      applications: apps?.length ?? 0,
-      interviews: apps?.filter((a) => a.status === "interview").length ?? 0,
-      offers: apps?.filter((a) => a.status === "offer").length ?? 0,
-      aiGenerations: profile?.ai_credits_used ?? 0,
+  const loadStats = async (accessToken: string) => {
+    const res = await fetch("/api/user/profile", {
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
-    if (profile?.plan === "pro") setUserPlan("pro");
-    if (profile?.payment_warning) setPaymentWarning(true);
+    if (!res.ok) return setLoading(false);
+    const data = await res.json();
+    setStats({
+      applications: data.applications,
+      interviews: data.interviews,
+      offers: data.offers,
+      aiGenerations: data.ai_credits_used,
+    });
+    if (data.plan === "pro") setUserPlan("pro");
+    if (data.payment_warning) setPaymentWarning(true);
     setLoading(false);
   };
 
