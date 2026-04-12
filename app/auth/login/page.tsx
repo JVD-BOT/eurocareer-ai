@@ -111,7 +111,7 @@ export default function LoginPage() {
                                             <div className="space-y-1.5">
                                                           <div className="flex items-center justify-between">
                                                                           <Label htmlFor="password" className="text-sm font-medium" style={{ color: "#3D4255" }}>Password</Label>
-                                                                          <Link href="/auth/forgot-password" className="text-xs hover:underline" style={{ color: "#636DF5" }}>Forgot password?</Link>
+                                                                          <button type="button" onClick={async () => { if (!email) { setError("Enter your email first, then click Forgot password."); return; } const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin + "/auth/callback" }); if (resetError) setError(resetError.message); else setError(""); alert("If that email exists, a reset link has been sent."); }} className="text-xs hover:underline" style={{ color: "#636DF5" }}>Forgot password?</button>
                                                           </div>
                                                           <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required disabled={loading || googleLoading} className="h-11 rounded-xl border-[#E2E1DC] focus:border-[#636DF5] focus:ring-[#636DF5]/20" />
                                             </div>

@@ -91,7 +91,7 @@ export default function ApplicationsPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="w-10 h-10 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
+        <div className="w-10 h-10 rounded-full border-4 border-indigo-500 border-t-transparent animate-spin" />
       </div>
     );
   }
@@ -144,7 +144,7 @@ export default function ApplicationsPage() {
               </TabsList>
               <Button
                 onClick={() => setShowAddModal(true)}
-                className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white gap-1.5"
+                className="bg-[#6366F1] hover:bg-[#4F46E5] text-white gap-1.5"
               >
                 <Plus className="h-4 w-4" />
                 Add Application

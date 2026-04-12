@@ -52,9 +52,9 @@ export function ListView({ applications, onRowClick }: ListViewProps) {
   const SortIcon = ({ field }: { field: SortField }) => {
     if (sortField !== field) return <ChevronsUpDown className="h-3.5 w-3.5 ml-1 opacity-40" />;
     return sortDir === "asc" ? (
-      <ChevronUp className="h-3.5 w-3.5 ml-1 text-blue-600" />
+      <ChevronUp className="h-3.5 w-3.5 ml-1 text-indigo-500" />
     ) : (
-      <ChevronDown className="h-3.5 w-3.5 ml-1 text-blue-600" />
+      <ChevronDown className="h-3.5 w-3.5 ml-1 text-indigo-500" />
     );
   };
 
@@ -160,7 +160,7 @@ export function ListView({ applications, onRowClick }: ListViewProps) {
                     <TableCell>
                       <p className="font-medium text-sm">{app.company_name}</p>
                       {app.visa_sponsorship && (
-                        <span className="text-xs text-blue-600 font-medium">🛂 Visa sponsor</span>
+                        <span className="text-xs text-indigo-600 font-medium">🛂 Visa sponsor</span>
                       )}
                     </TableCell>
                     <TableCell className="text-sm text-gray-600">{app.role_title}</TableCell>

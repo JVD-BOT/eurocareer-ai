@@ -111,7 +111,7 @@ function ApplicationCard({ app }: { app: Application }) {
   const country = COUNTRIES.find((c) => c.code === app.country);
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-3 cursor-pointer hover:border-blue-300 hover:shadow-sm transition-all select-none">
+    <div className="bg-white rounded-lg border border-gray-200 p-3 cursor-pointer hover:border-indigo-300 hover:shadow-sm transition-all select-none">
       <div className="flex items-start justify-between gap-1 mb-1">
         <p className="font-semibold text-sm text-gray-900 line-clamp-1 flex-1">{app.company_name}</p>
         {country && <span className="text-base leading-none flex-shrink-0">{country.flag}</span>}
@@ -130,7 +130,7 @@ function ApplicationCard({ app }: { app: Application }) {
           <span />
         )}
         {app.visa_sponsorship && (
-          <span className="text-xs bg-blue-50 text-blue-700 border border-blue-100 rounded-full px-2 py-0.5 font-medium whitespace-nowrap">
+          <span className="text-xs bg-indigo-50 text-indigo-700 border border-indigo-100 rounded-full px-2 py-0.5 font-medium whitespace-nowrap">
             🛂 Visa
           </span>
         )}
