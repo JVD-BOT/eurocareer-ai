@@ -35,6 +35,7 @@ export default function DashboardPage() {
       const [sidebarOpen, setSidebarOpen] = useState(false);
       const [paymentWarning, setPaymentWarning] = useState(false);
       const [dismissedWarning, setDismissedWarning] = useState(false);
+      const [userPlan, setUserPlan] = useState<"free" | "pro">("free");
       const router = useRouter();
 
   useEffect(() => {
@@ -52,9 +53,10 @@ export default function DashboardPage() {
   const loadProfile = async (userId: string) => {
     const { data } = await supabase
       .from("profiles")
-      .select("payment_warning")
+      .select("plan, payment_warning")
       .eq("id", userId)
       .maybeSingle();
+    if (data?.plan === "pro") setUserPlan("pro");
     if (data?.payment_warning) setPaymentWarning(true);
   };
 
@@ -147,11 +149,19 @@ export default function DashboardPage() {
                                                                 <Image src="/STAR.png" alt="" width={48} height={48} style={{ filter: "invert(1)" }} />
                                                   </div>
                                                   <p className="text-xs font-bold text-white/70 uppercase tracking-widest mb-1">AI Credits</p>
-                                                  <p className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>3 <span className="text-sm font-normal text-white/50">/ month</span></p>
+                                                  {userPlan === "pro" ? (
+                                                    <p className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>Unlimited</p>
+                                                  ) : (
+                                                    <p className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>3 <span className="text-sm font-normal text-white/50">/ month</span></p>
+                                                  )}
                                                   <div className="w-full h-1.5 rounded-full bg-white/20 mb-3">
                                                                 <div className="h-1.5 rounded-full bg-white" style={{ width: "100%" }} />
                                                   </div>
-                                                  <Link href="/settings/billing" className="block text-center text-xs font-semibold text-white bg-white/15 hover:bg-white/25 rounded-lg py-1.5 transition-colors">Upgrade to Pro →</Link>
+                                                  {userPlan === "pro" ? (
+                                                    <Link href="/settings/billing" className="block text-center text-xs font-semibold text-white bg-white/15 hover:bg-white/25 rounded-lg py-1.5 transition-colors">Manage plan →</Link>
+                                                  ) : (
+                                                    <Link href="/settings/billing" className="block text-center text-xs font-semibold text-white bg-white/15 hover:bg-white/25 rounded-lg py-1.5 transition-colors">Upgrade to Pro →</Link>
+                                                  )}
                                       </div>
                             </div>
                     </aside>
@@ -226,7 +236,7 @@ export default function DashboardPage() {
                   { label: "Total", value: stats.applications, icon: "📋", color: "#636DF5" },
                   { label: "Interviews", value: stats.interviews, icon: "🎤", color: "#7C3AED" },
                   { label: "Offers", value: stats.offers, icon: "🎯", color: "#16A34A" },
-                  { label: "AI Credits", value: stats.aiGenerations ?? 0, icon: null, color: "#636DF5", star: true },
+                  { label: "AI Credits", value: stats.aiGenerations ?? 0, icon: null, color: "#636DF5", star: true, isPro: userPlan === "pro" },
                               ].map((stat) => (
                                                 <div key={stat.label} className="bg-white rounded-2xl border border-[#E2E1DC] p-5 flex items-center gap-3 hover:border-[#636DF5] hover:shadow-sm transition-all">
                                                     {stat.star ? (
@@ -235,8 +245,8 @@ export default function DashboardPage() {
                                                                       <span className="text-2xl">{stat.icon}</span>
                                                                 )}
                                                                 <div>
-                                                                  <p className="text-2xl font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>{stat.label === "AI Credits" ? `${stat.value} of 3` : stat.value}</p>
-                                                                  <p className="text-xs" style={{ color: "#7A7F94" }}>{stat.label === "AI Credits" ? "AI Credits used this month" : stat.label}</p>
+                                                                  <p className="text-2xl font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>{stat.label === "AI Credits" ? (stat.isPro ? `${stat.value}` : `${stat.value} of 3`) : stat.value}</p>
+                                                                  <p className="text-xs" style={{ color: "#7A7F94" }}>{stat.label === "AI Credits" ? (stat.isPro ? "Unlimited AI credits" : "AI Credits used this month") : stat.label}</p>
                                                                 </div>
                                                 </div>
                                               ))}

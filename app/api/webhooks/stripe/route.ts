@@ -32,14 +32,45 @@ export async function POST(request: NextRequest) {
     switch (event.type) {
       case "checkout.session.completed": {
         const session = event.data.object as Stripe.Checkout.Session;
-        const userId = session.metadata?.supabase_user_id;
-        if (userId && session.customer) {
-          await supabase.from("profiles").upsert({
-            id: userId,
-            plan: "pro",
-            stripe_customer_id: session.customer as string,
-          });
+        const customerId = session.customer as string | null;
+        let userId = session.metadata?.supabase_user_id;
+
+        // Fallback: look up user by stripe_customer_id if metadata is missing
+        if (!userId && customerId) {
+          const { data: existing } = await supabase
+            .from("profiles")
+            .select("id")
+            .eq("stripe_customer_id", customerId)
+            .maybeSingle();
+          userId = existing?.id;
         }
+
+        // Fallback: look up user by email if still not found
+        if (!userId && session.customer_email) {
+          const { data: authUser } = await supabase.auth.admin.listUsers();
+          const match = authUser?.users?.find(
+            (u: { email?: string }) => u.email === session.customer_email
+          );
+          userId = match?.id;
+        }
+
+        if (!userId) {
+          console.error("[Stripe webhook] checkout.session.completed: could not resolve user. metadata:", session.metadata, "customer:", customerId, "email:", session.customer_email);
+          return new Response("Could not resolve user", { status: 400 });
+        }
+
+        const { error: upsertError } = await supabase.from("profiles").upsert({
+          id: userId,
+          plan: "pro",
+          stripe_customer_id: customerId ?? undefined,
+        });
+
+        if (upsertError) {
+          console.error("[Stripe webhook] failed to update plan to pro:", upsertError.message);
+          return new Response("Database update failed", { status: 500 });
+        }
+
+        console.log("[Stripe webhook] checkout.session.completed: set plan=pro for user", userId);
         break;
       }
 
@@ -47,20 +78,22 @@ export async function POST(request: NextRequest) {
         const subscription = event.data.object as Stripe.Subscription;
         const customerId = subscription.customer as string;
         const plan = subscription.status === "active" ? "pro" : "free";
-        await supabase
+        const { error: subUpdateErr } = await supabase
           .from("profiles")
           .update({ plan })
           .eq("stripe_customer_id", customerId);
+        if (subUpdateErr) console.error("[Stripe webhook] subscription.updated failed:", subUpdateErr.message);
         break;
       }
 
       case "customer.subscription.deleted": {
         const subscription = event.data.object as Stripe.Subscription;
         const customerId = subscription.customer as string;
-        await supabase
+        const { error: subDeleteErr } = await supabase
           .from("profiles")
           .update({ plan: "free" })
           .eq("stripe_customer_id", customerId);
+        if (subDeleteErr) console.error("[Stripe webhook] subscription.deleted failed:", subDeleteErr.message);
         break;
       }
 
@@ -68,20 +101,22 @@ export async function POST(request: NextRequest) {
         const invoice = event.data.object as Stripe.Invoice;
         const customerId = invoice.customer as string;
         console.warn("[Stripe webhook] payment failed for customer:", customerId);
-        await supabase
+        const { error: payFailErr } = await supabase
           .from("profiles")
           .update({ plan: "free", payment_warning: true })
           .eq("stripe_customer_id", customerId);
+        if (payFailErr) console.error("[Stripe webhook] invoice.payment_failed update failed:", payFailErr.message);
         break;
       }
 
       case "invoice.payment_succeeded": {
         const invoice = event.data.object as Stripe.Invoice;
         const customerId = invoice.customer as string;
-        await supabase
+        const { error: paySuccessErr } = await supabase
           .from("profiles")
           .update({ payment_warning: false })
           .eq("stripe_customer_id", customerId);
+        if (paySuccessErr) console.error("[Stripe webhook] invoice.payment_succeeded update failed:", paySuccessErr.message);
         break;
       }
 
