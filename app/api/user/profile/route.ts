@@ -34,7 +34,9 @@ export async function GET(request: NextRequest) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const [{ data: apps }, { data: profile }] = await Promise.all([
+  console.log("[/api/user/profile] service role key defined:", !!process.env.SUPABASE_SERVICE_ROLE_KEY);
+
+  const [appsResult, profileResult] = await Promise.all([
     getAdmin().from("applications").select("status").eq("user_id", user.id),
     getAdmin()
       .from("profiles")
@@ -42,6 +44,16 @@ export async function GET(request: NextRequest) {
       .eq("id", user.id)
       .maybeSingle(),
   ]);
+
+  if (profileResult.error) {
+    console.error("[/api/user/profile] profiles query error:", JSON.stringify(profileResult.error));
+  }
+  if (appsResult.error) {
+    console.error("[/api/user/profile] applications query error:", JSON.stringify(appsResult.error));
+  }
+
+  const { data: apps } = appsResult;
+  const { data: profile } = profileResult;
   console.log("[/api/user/profile] raw profile:", JSON.stringify(profile));
 
   const response = {
