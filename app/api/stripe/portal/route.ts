@@ -32,14 +32,10 @@ export async function POST(request: NextRequest) {
       return Response.json({ error: "No subscription found" }, { status: 404 });
     }
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-    const requestOrigin = request.headers.get("origin") ?? "";
-    const allowedOrigins = [
-      process.env.NEXT_PUBLIC_APP_URL,
-      "http://localhost:3000",
-      "http://localhost:3001",
-    ].filter(Boolean);
-    const origin = allowedOrigins.includes(requestOrigin) ? requestOrigin : allowedOrigins[0] ?? "http://localhost:3000";
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      apiVersion: "2026-03-25.dahlia",
+    });
+    const origin = process.env.NEXT_PUBLIC_APP_URL ?? "https://eurocareerai.com";
 
     const portalSession = await stripe.billingPortal.sessions.create({
       customer: profile.stripe_customer_id,

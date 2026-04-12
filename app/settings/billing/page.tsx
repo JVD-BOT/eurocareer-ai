@@ -48,7 +48,11 @@ function BillingContent() {
   }, [searchParams]);
 
   const loadProfile = async (userId: string) => {
-    const { data } = await supabase.from("profiles").select("*").eq("id", userId).maybeSingle();
+    const { data, error } = await supabase.from("profiles").select("*").eq("id", userId).maybeSingle();
+    if (error) {
+      console.error("Failed to load billing profile:", error.message);
+      toast.error("Failed to load billing info. Please refresh.");
+    }
     setProfile(data as Profile | null);
     setLoading(false);
   };
@@ -93,6 +97,7 @@ function BillingContent() {
   };
 
   const isPro = profile?.plan === "pro";
+  const showUpgradeCTA = searchParams.get("upgrade") === "1" && !isPro;
   const creditsUsed = profile?.ai_credits_used ?? 0;
   const creditPct = isPro ? 100 : Math.min((creditsUsed / FREE_AI_LIMIT) * 100, 100);
 
@@ -122,6 +127,21 @@ function BillingContent() {
       </nav>
 
       <main className="max-w-2xl mx-auto px-6 py-10 space-y-6">
+        {showUpgradeCTA && (
+          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 text-white space-y-3">
+            <h2 className="text-xl font-bold">Upgrade to Pro — €9/month</h2>
+            <p className="text-sm text-white/80">Unlimited AI CV adaptations, cover letters, and follow-up emails. Cancel anytime.</p>
+            <Button
+              onClick={handleUpgrade}
+              disabled={checkoutLoading}
+              className="bg-white text-indigo-700 hover:bg-white/90 font-semibold gap-2"
+            >
+              <CreditCard className="h-4 w-4" />
+              {checkoutLoading ? "Redirecting…" : "Start Pro now"}
+            </Button>
+          </div>
+        )}
+
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Billing</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage your plan and AI usage.</p>

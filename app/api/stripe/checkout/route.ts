@@ -22,7 +22,9 @@ export async function POST(request: NextRequest) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      apiVersion: "2026-03-25.dahlia",
+    });
 
     // Get or create Stripe customer
     const { data: profile } = await supabase
@@ -42,13 +44,7 @@ export async function POST(request: NextRequest) {
       await supabase.from("profiles").upsert({ id: user.id, stripe_customer_id: customerId });
     }
 
-    const requestOrigin = request.headers.get("origin") ?? "";
-    const allowedOrigins = [
-      process.env.NEXT_PUBLIC_APP_URL,
-      "http://localhost:3000",
-      "http://localhost:3001",
-    ].filter(Boolean);
-    const origin = allowedOrigins.includes(requestOrigin) ? requestOrigin : allowedOrigins[0] ?? "http://localhost:3000";
+    const origin = process.env.NEXT_PUBLIC_APP_URL ?? "https://eurocareerai.com";
 
     const session = await stripe.checkout.sessions.create({
       customer: customerId,

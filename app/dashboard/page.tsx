@@ -22,7 +22,7 @@ const NAV_ITEMS = [
     ];
 
 const QUICK_ACTIONS = [
-    { label: "Track applications", desc: "Kanban board + list view", emhoji: "📋", href: "/applications" },
+    { label: "Track applications", desc: "Kanban board + list view", emoji: "📋", href: "/applications" },
     { label: "AI CV Adapter", desc: "Adapt your CV for any EU country", emoji: "📄", href: "/dashboard/cv-adapter" },
     { label: "Cover Letter", desc: "Generate in seconds with AI", emoji: "💌", href: "/dashboard/cover-letter" },
       { label: "Country Intel", desc: "Hiring norms for 12 EU markets", emoji: "🌍", href: "/dashboard/country-intel" },
@@ -83,17 +83,16 @@ export default function DashboardPage() {
   const loadStats = async () => {
     const { data: { user: currentUser } } = await supabase.auth.getUser();
     if (!currentUser) return setLoading(false);
-    const { data } = await supabase
-      .from("applications")
-      .select("status")
-      .eq("user_id", currentUser.id);
-    if (data) {
-      setStats({
-        applications: data.length,
-        interviews: data.filter((a) => a.status === "interview").length,
-        offers: data.filter((a) => a.status === "offer").length,
-      });
-    }
+    const [{ data: apps }, { data: profile }] = await Promise.all([
+      supabase.from("applications").select("status").eq("user_id", currentUser.id),
+      supabase.from("profiles").select("ai_credits_used").eq("id", currentUser.id).maybeSingle(),
+    ]);
+    setStats({
+      applications: apps?.length ?? 0,
+      interviews: apps?.filter((a) => a.status === "interview").length ?? 0,
+      offers: apps?.filter((a) => a.status === "offer").length ?? 0,
+      aiGenerations: profile?.ai_credits_used ?? 0,
+    });
     setLoading(false);
   };
 

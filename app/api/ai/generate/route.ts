@@ -1,8 +1,16 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { createClient } from "@supabase/supabase-js";
 import { NextRequest } from "next/server";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 import { buildCVPrompt, buildCoverLetterPrompt, buildFollowUpPrompt, SYSTEM_PROMPT } from "@/lib/ai-prompts";
-import { FREE_AI_LIMIT, PRO_DAILY_LIMIT } from "@/lib/types";
+import { FREE_AI_LIMIT } from "@/lib/types";
+
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(100, "1 d"),
+  analytics: true,
+});
 
 export async function POST(request: NextRequest) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -26,6 +34,20 @@ export async function POST(request: NextRequest) {
 
     if (!accessToken) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+    }
+
+    // ── Input validation ───────────────────────────────────────────────────
+    if (resumeText && resumeText.length > 15000) {
+      return new Response(
+        JSON.stringify({ error: "CV text is too long. Please trim to under 15,000 characters." }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
+    if (feedback && feedback.length > 500) {
+      return new Response(
+        JSON.stringify({ error: "Feedback must be under 500 characters." }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
     }
 
     // ── Auth ────────────────────────────────────────────────────────────────
@@ -75,18 +97,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // ── Pro daily rate limit ───────────────────────────────────────────────
+    // ── Pro daily rate limit (Upstash) ─────────────────────────────────────
     if (isPro) {
-      const todayUTC = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-      const { count } = await supabase
-        .from("ai_generations")
-        .select("*", { count: "exact", head: true })
-        .eq("user_id", user.id)
-        .gte("created_at", `${todayUTC}T00:00:00Z`);
-
-      if ((count ?? 0) >= PRO_DAILY_LIMIT) {
+      const { success } = await ratelimit.limit(user.id);
+      if (!success) {
         return new Response(
-          JSON.stringify({ error: "Daily generation limit reached. Your limit resets at midnight UTC." }),
+          JSON.stringify({ error: "Daily generation limit reached. Resets at midnight UTC." }),
           { status: 429, headers: { "Content-Type": "application/json" } }
         );
       }

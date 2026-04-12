@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -18,12 +18,6 @@ export default function SignupPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const router = useRouter();
-  const [isPro, setIsPro] = useState(false);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setIsPro(params.get("plan") === "pro");
-  }, []);
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,11 +106,11 @@ export default function SignupPage() {
           <Link href="/" className="inline-flex items-center gap-1 text-sm mb-8 transition-colors" style={{ color: "#7A7F94" }}>
             &larr; Back to home
           </Link>
-          <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>
-            {isPro ? "Start your Pro plan" : "Join EuroCareer AI"}
+          <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "’Outfit’, sans-serif", color: "#0F1629" }}>
+            Join EuroCareer AI
           </h1>
           <p className="text-sm mb-8" style={{ color: "#7A7F94" }}>
-            {isPro ? "Start your Pro plan — €9/month" : "Join EuroCareer AI — it’s free"}
+            Join EuroCareerAI — it&apos;s free
           </p>
           {error && (
             <div className="mb-5 text-sm px-4 py-3 rounded-xl border" style={{ background: "#FEE2E2", borderColor: "#FECACA", color: "#DC2626" }}>
@@ -159,7 +153,7 @@ export default function SignupPage() {
               ) : (
                 <span className="flex items-center gap-2">
                   <Image src="/STAR.png" alt="" width={14} height={14} style={{ filter: "invert(1)" }} />
-                  {isPro ? "Create account & continue to Pro" : "Create account"}
+                  Create account
                 </span>
               )}
             </Button>

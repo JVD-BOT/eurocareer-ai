@@ -16,21 +16,27 @@ export default function LoginPage() {
     const [error, setError] = useState("");
     const router = useRouter();
 
+  const getRedirectPath = () => {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("redirect") || "/dashboard";
+  };
+
   const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         setError("");
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) { setError(error.message); setLoading(false); }
-        else { router.push("/dashboard"); }
+        else { router.push(getRedirectPath()); }
   };
 
   const handleGoogleLogin = async () => {
         setGoogleLoading(true);
         setError("");
+        const redirectPath = getRedirectPath();
         const { error } = await supabase.auth.signInWithOAuth({
                 provider: "google",
-                options: { redirectTo: `${window.location.origin}/auth/callback` },
+                options: { redirectTo: `${window.location.origin}/auth/callback?redirect=${encodeURIComponent(redirectPath)}` },
         });
         if (error) { setError(error.message); setGoogleLoading(false); }
   };

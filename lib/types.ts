@@ -43,4 +43,3 @@ export interface Profile {
 }
 
 export const FREE_AI_LIMIT = 3;
-export const PRO_DAILY_LIMIT = 100;

@@ -13,6 +13,7 @@ import { ApplicationDetailSheet } from "@/components/applications/application-de
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { LayoutGrid, List, Plus } from "lucide-react";
+import { toast } from "sonner";
 import type { User } from "@supabase/supabase-js";
 
 export default function ApplicationsPage() {
@@ -35,10 +36,14 @@ export default function ApplicationsPage() {
   }, [router]);
 
   const loadApplications = async () => {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("applications")
       .select("*")
       .order("created_at", { ascending: false });
+    if (error) {
+      console.error("Failed to load applications:", error.message);
+      toast.error("Failed to load applications. Please refresh.");
+    }
     if (data) setApplications(data as Application[]);
     setLoading(false);
   };

@@ -38,11 +38,15 @@ export default function ProfilePage() {
   }, [router]);
 
   const loadProfile = async (userId: string) => {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("profiles")
       .select("*")
       .eq("id", userId)
       .maybeSingle();
+    if (error) {
+      console.error("Failed to load profile:", error.message);
+      toast.error("Failed to load profile. Please refresh.");
+    }
     if (data) {
       setProfile(data as Profile);
       setResumeText(data.resume_text ?? "");
