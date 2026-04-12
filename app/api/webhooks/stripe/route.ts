@@ -15,10 +15,8 @@ export async function POST(request: NextRequest) {
   let event: Stripe.Event;
   try {
     event = stripe.webhooks.constructEvent(payload, sig, process.env.STRIPE_WEBHOOK_SECRET!);
-  } catch (err) {
-    const e = err as { message?: string };
-    console.error("[Stripe webhook] signature verification failed:", e?.message);
-    return new Response(`Webhook error: ${e?.message}`, { status: 400 });
+  } catch {
+    return new Response("Webhook signature verification failed", { status: 400 });
   }
 
   // Service-role client to bypass RLS for webhook updates
@@ -32,19 +30,33 @@ export async function POST(request: NextRequest) {
       case "checkout.session.completed": {
         const session = event.data.object as Stripe.Checkout.Session;
         const userId = session.metadata?.supabase_user_id;
-        if (userId && session.customer) {
+        const customerId = typeof session.customer === "string"
+          ? session.customer
+          : session.customer?.id;
+        if (userId && customerId) {
           await supabase.from("profiles").upsert({
             id: userId,
             plan: "pro",
-            stripe_customer_id: session.customer as string,
+            stripe_customer_id: customerId,
           });
         }
         break;
       }
 
+      case "customer.subscription.updated": {
+        const sub = event.data.object as Stripe.Subscription;
+        const customerId = typeof sub.customer === "string" ? sub.customer : sub.customer.id;
+        const isActive = sub.status === "active" || sub.status === "trialing";
+        await supabase
+          .from("profiles")
+          .update({ plan: isActive ? "pro" : "free" })
+          .eq("stripe_customer_id", customerId);
+        break;
+      }
+
       case "customer.subscription.deleted": {
         const sub = event.data.object as Stripe.Subscription;
-        const customerId = sub.customer as string;
+        const customerId = typeof sub.customer === "string" ? sub.customer : sub.customer.id;
         await supabase
           .from("profiles")
           .update({ plan: "free" })
@@ -54,9 +66,25 @@ export async function POST(request: NextRequest) {
 
       case "invoice.payment_failed": {
         const invoice = event.data.object as Stripe.Invoice;
-        const customerId = invoice.customer as string;
-        console.warn("[Stripe webhook] payment failed for customer:", customerId);
-        // Could email the user here via Supabase Edge Function or similar
+        const customerId = typeof invoice.customer === "string" ? invoice.customer : invoice.customer?.id;
+        if (customerId) {
+          await supabase
+            .from("profiles")
+            .update({ payment_warning: true })
+            .eq("stripe_customer_id", customerId);
+        }
+        break;
+      }
+
+      case "invoice.payment_succeeded": {
+        const invoice = event.data.object as Stripe.Invoice;
+        const customerId = typeof invoice.customer === "string" ? invoice.customer : invoice.customer?.id;
+        if (customerId) {
+          await supabase
+            .from("profiles")
+            .update({ payment_warning: false })
+            .eq("stripe_customer_id", customerId);
+        }
         break;
       }
 
@@ -64,8 +92,7 @@ export async function POST(request: NextRequest) {
         // Unhandled event type — ignore
         break;
     }
-  } catch (err) {
-    console.error("[Stripe webhook] handler error:", err);
+  } catch {
     return new Response("Handler error", { status: 500 });
   }
 

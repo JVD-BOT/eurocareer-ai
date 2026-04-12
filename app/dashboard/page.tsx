@@ -5,9 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type User = any;
+import type { User } from "@supabase/supabase-js";
+import type { Profile } from "@/lib/types";
 
 interface Stats {
       applications: number;
@@ -34,37 +33,73 @@ export default function DashboardPage() {
       const [loading, setLoading] = useState(true);
       const [stats, setStats] = useState<Stats>({ applications: 0, interviews: 0, offers: 0 });
       const [sidebarOpen, setSidebarOpen] = useState(false);
+      const [paymentWarning, setPaymentWarning] = useState(false);
+      const [dismissedWarning, setDismissedWarning] = useState(false);
       const router = useRouter();
 
   useEffect(() => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                (supabase.auth as any).getUser().then(({ data }: { data: { user: User | null } }) => {
-                          const currentUser = data.user;
-                          if (!currentUser) {
-                                      router.replace("/auth/login");
-                          } else {
-                                      setUser(currentUser);
-                                      loadStats();
-                          }
-                });
+    supabase.auth.getUser().then(({ data: { user: currentUser } }) => {
+      if (!currentUser) {
+        router.replace("/auth/login");
+      } else {
+        setUser(currentUser);
+        loadStats();
+        loadProfile(currentUser.id);
+      }
+    });
   }, [router]);
 
+  const loadProfile = async (userId: string) => {
+    const { data } = await supabase
+      .from("profiles")
+      .select("payment_warning")
+      .eq("id", userId)
+      .maybeSingle();
+    if (data?.payment_warning) setPaymentWarning(true);
+  };
+
+  const handleUpdatePayment = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return;
+    const res = await fetch("/api/stripe/portal", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ accessToken: session.access_token }),
+    });
+    const { url } = await res.json();
+    if (url) window.location.href = url;
+  };
+
+  const handleDismissWarning = async () => {
+    setDismissedWarning(true);
+    if (user) {
+      await supabase
+        .from("profiles")
+        .update({ payment_warning: false })
+        .eq("id", user.id);
+    }
+  };
+
   const loadStats = async () => {
-          const { data } = await supabase.from("applications").select("status");
-          if (data) {
-                    setStats({
-                                applications: data.length,
-                                interviews: data.filter((a: { status: string }) => a.status === "interview").length,
-                                offers: data.filter((a: { status: string }) => a.status === "offer").length,
-                    });
-          }
-          setLoading(false);
+    const { data: { user: currentUser } } = await supabase.auth.getUser();
+    if (!currentUser) return setLoading(false);
+    const { data } = await supabase
+      .from("applications")
+      .select("status")
+      .eq("user_id", currentUser.id);
+    if (data) {
+      setStats({
+        applications: data.length,
+        interviews: data.filter((a) => a.status === "interview").length,
+        offers: data.filter((a) => a.status === "offer").length,
+      });
+    }
+    setLoading(false);
   };
 
   const handleSignOut = async () => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          await (supabase.auth as any).signOut();
-          router.replace("/auth/login");
+    await supabase.auth.signOut();
+    router.replace("/auth/login");
   };
 
   if (loading) {
@@ -152,6 +187,34 @@ export default function DashboardPage() {
                     
                         {/* Content */}
                             <main className="flex-1 p-6 max-w-5xl w-full mx-auto">
+                                {/* Payment warning banner */}
+                                {paymentWarning && !dismissedWarning && (
+                                  <div className="mb-6 flex items-center justify-between gap-4 rounded-xl border border-red-200 bg-red-50 px-5 py-4">
+                                    <div className="flex items-center gap-3 min-w-0">
+                                      <span className="text-red-500 text-lg shrink-0">⚠</span>
+                                      <p className="text-sm text-red-800">
+                                        Your last payment failed. Please update your payment method to keep Pro access.
+                                      </p>
+                                    </div>
+                                    <div className="flex items-center gap-2 shrink-0">
+                                      <Button
+                                        size="sm"
+                                        onClick={handleUpdatePayment}
+                                        className="bg-red-600 hover:bg-red-700 text-white text-xs rounded-lg"
+                                      >
+                                        Update payment method
+                                      </Button>
+                                      <button
+                                        onClick={handleDismissWarning}
+                                        className="p-1 rounded hover:bg-red-100 transition-colors text-red-400 hover:text-red-600"
+                                        aria-label="Dismiss"
+                                      >
+                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                                      </button>
+                                    </div>
+                                  </div>
+                                )}
+
                                 {/* Welcome */}
                                       <div className="mb-8 animate-fade-up">
                                                   <h2 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Welcome back 👋</h2>

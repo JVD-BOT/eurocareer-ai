@@ -72,9 +72,7 @@ export function CoverLetter({ application, profile, onUpdate, onCreditUsed }: Co
       }
 
       if (!response.ok) {
-        const errBody = await response.text().catch(() => "(no body)");
-        console.error("[CoverLetter] generation failed", response.status, errBody);
-        toast.error(`Generation failed (${response.status}). Check console.`);
+        toast.error(`Generation failed (${response.status}). Please try again.`);
         setStreaming(false);
         return;
       }
@@ -83,8 +81,7 @@ export function CoverLetter({ application, profile, onUpdate, onCreditUsed }: Co
       setResult(data.content);
       setFeedback("");
       onCreditUsed();
-    } catch (err) {
-      console.error(err);
+    } catch {
       toast.error("Something went wrong.");
     }
 

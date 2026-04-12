@@ -42,22 +42,26 @@ export async function POST(request: NextRequest) {
       await supabase.from("profiles").upsert({ id: user.id, stripe_customer_id: customerId });
     }
 
-    const origin = request.headers.get("origin") ?? "http://localhost:3000";
+    const requestOrigin = request.headers.get("origin") ?? "";
+    const allowedOrigins = [
+      process.env.NEXT_PUBLIC_APP_URL,
+      "http://localhost:3000",
+      "http://localhost:3001",
+    ].filter(Boolean);
+    const origin = allowedOrigins.includes(requestOrigin) ? requestOrigin : allowedOrigins[0] ?? "http://localhost:3000";
 
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       mode: "subscription",
       payment_method_types: ["card"],
-          line_items: [{ price: process.env.STRIPE_PRO_PRICE_ID! }],
+      line_items: [{ price: process.env.STRIPE_PRO_PRICE_ID!, quantity: 1 }],
       success_url: `${origin}/settings/billing?success=1`,
       cancel_url: `${origin}/settings/billing?canceled=1`,
       metadata: { supabase_user_id: user.id },
     });
 
     return Response.json({ url: session.url });
-  } catch (error) {
-    const e = error as { message?: string };
-    console.error("[Stripe checkout]", e?.message);
-    return Response.json({ error: e?.message ?? "Internal error" }, { status: 500 });
+  } catch {
+    return Response.json({ error: "Internal error" }, { status: 500 });
   }
 }

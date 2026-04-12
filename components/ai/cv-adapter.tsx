@@ -60,9 +60,7 @@ export function CVAdapter({ application, profile, onUpdate, onCreditUsed }: CVAd
       }
 
       if (!response.ok) {
-        const errBody = await response.text().catch(() => "(no body)");
-        console.error("[CVAdapter] generation failed", response.status, errBody);
-        toast.error(`Generation failed (${response.status}). Check console.`);
+        toast.error(`Generation failed (${response.status}). Please try again.`);
         setStreaming(false);
         return;
       }
@@ -72,8 +70,7 @@ export function CVAdapter({ application, profile, onUpdate, onCreditUsed }: CVAd
       // Save resume text to profile
       await supabase.from("profiles").upsert({ id: session!.user.id, resume_text: resumeText });
       onCreditUsed();
-    } catch (err) {
-      console.error(err);
+    } catch {
       toast.error("Something went wrong.");
     }
 

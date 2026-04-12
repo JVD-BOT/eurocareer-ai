@@ -1,8 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { createClient } from "@supabase/supabase-js";
 import { NextRequest } from "next/server";
-import { buildCVPrompt, buildCoverLetterPrompt, buildFollowUpPrompt } from "@/lib/ai-prompts";
-import { FREE_AI_LIMIT } from "@/lib/types";
+import { buildCVPrompt, buildCoverLetterPrompt, buildFollowUpPrompt, SYSTEM_PROMPT } from "@/lib/ai-prompts";
+import { FREE_AI_LIMIT, PRO_DAILY_LIMIT } from "@/lib/types";
 
 export async function POST(request: NextRequest) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -75,11 +75,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // ── Fetch application ───────────────────────────────────────────────────
+    // ── Pro daily rate limit ───────────────────────────────────────────────
+    if (isPro) {
+      const todayUTC = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+      const { count } = await supabase
+        .from("ai_generations")
+        .select("*", { count: "exact", head: true })
+        .eq("user_id", user.id)
+        .gte("created_at", `${todayUTC}T00:00:00Z`);
+
+      if ((count ?? 0) >= PRO_DAILY_LIMIT) {
+        return new Response(
+          JSON.stringify({ error: "Daily generation limit reached. Your limit resets at midnight UTC." }),
+          { status: 429, headers: { "Content-Type": "application/json" } }
+        );
+      }
+    }
+
+    // ── Fetch application (scoped to current user) ────────────────────────
     const { data: application } = await supabase
       .from("applications")
       .select("*")
       .eq("id", applicationId)
+      .eq("user_id", user.id)
       .single();
 
     if (!application) {
@@ -110,19 +128,18 @@ export async function POST(request: NextRequest) {
     }
 
     // ── Call Anthropic ──────────────────────────────────────────────────────
-    console.log("[AI] calling Anthropic, model: claude-sonnet-4-6, type:", type, "maxTokens:", maxTokens);
     const response = await anthropic.messages.create({
       model: "claude-sonnet-4-6",
       max_tokens: maxTokens,
+      system: SYSTEM_PROMPT,
       messages: [{ role: "user", content: prompt }],
     });
-    console.log("[AI] Anthropic response received, stop_reason:", response.stop_reason);
 
     const text =
       response.content[0].type === "text" ? response.content[0].text : "";
 
-    // Save generation record and increment credits (fire & forget)
-    Promise.all([
+    // Save generation record and increment credits
+    const [genResult, creditResult] = await Promise.all([
       supabase.from("ai_generations").insert({
         user_id: user.id,
         application_id: applicationId,
@@ -134,16 +151,23 @@ export async function POST(request: NextRequest) {
         .from("profiles")
         .update({ ai_credits_used: creditsUsed + 1, ai_credits_month: currentMonth })
         .eq("id", user.id),
-    ]).catch(console.error);
+    ]);
+
+    if (genResult.error || creditResult.error) {
+      // Log server-side only — still return generated content to user
+      if (process.env.NODE_ENV === "development") {
+        console.error("[AI] usage tracking error:", genResult.error, creditResult.error);
+      }
+    }
 
     return Response.json({ content: text });
   } catch (error: unknown) {
-    const e = error as { message?: string; status?: number; stack?: string };
-    console.error("[AI] generate error — message:", e?.message);
-    console.error("[AI] generate error — status:", e?.status);
-    console.error("[AI] generate error — stack:", e?.stack);
+    const e = error as { message?: string; status?: number };
+    if (process.env.NODE_ENV === "development") {
+      console.error("[AI] generate error:", e?.message);
+    }
     return new Response(
-      JSON.stringify({ error: "Internal server error", message: e?.message, status: e?.status }),
+      JSON.stringify({ error: "Internal server error" }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }

@@ -37,8 +37,10 @@ export interface Profile {
   ai_credits_used: number;
   ai_credits_month: string;
   stripe_customer_id: string | null;
+  payment_warning: boolean;
   created_at: string;
   updated_at: string;
 }
 
 export const FREE_AI_LIMIT = 3;
+export const PRO_DAILY_LIMIT = 100;

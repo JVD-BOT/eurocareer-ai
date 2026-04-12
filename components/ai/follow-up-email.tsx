@@ -54,9 +54,7 @@ export function FollowUpEmail({ application, onCreditUsed }: FollowUpEmailProps)
       }
 
       if (!response.ok) {
-        const errBody = await response.text().catch(() => "(no body)");
-        console.error("[FollowUpEmail] generation failed", response.status, errBody);
-        toast.error(`Generation failed (${response.status}). Check console.`);
+        toast.error(`Generation failed (${response.status}). Please try again.`);
         setStreaming(false);
         return;
       }
@@ -64,8 +62,7 @@ export function FollowUpEmail({ application, onCreditUsed }: FollowUpEmailProps)
       const data = await response.json();
       setResult(data.content);
       onCreditUsed();
-    } catch (err) {
-      console.error(err);
+    } catch {
       toast.error("Something went wrong.");
     }
 

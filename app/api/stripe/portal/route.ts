@@ -33,7 +33,13 @@ export async function POST(request: NextRequest) {
     }
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-    const origin = request.headers.get("origin") ?? "http://localhost:3000";
+    const requestOrigin = request.headers.get("origin") ?? "";
+    const allowedOrigins = [
+      process.env.NEXT_PUBLIC_APP_URL,
+      "http://localhost:3000",
+      "http://localhost:3001",
+    ].filter(Boolean);
+    const origin = allowedOrigins.includes(requestOrigin) ? requestOrigin : allowedOrigins[0] ?? "http://localhost:3000";
 
     const portalSession = await stripe.billingPortal.sessions.create({
       customer: profile.stripe_customer_id,
@@ -41,9 +47,7 @@ export async function POST(request: NextRequest) {
     });
 
     return Response.json({ url: portalSession.url });
-  } catch (error) {
-    const e = error as { message?: string };
-    console.error("[Stripe portal]", e?.message);
-    return Response.json({ error: e?.message ?? "Internal error" }, { status: 500 });
+  } catch {
+    return Response.json({ error: "Internal error" }, { status: 500 });
   }
 }
