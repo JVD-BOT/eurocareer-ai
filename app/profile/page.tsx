@@ -154,10 +154,15 @@ export default function ProfilePage() {
                 />
               </div>
             </div>
-            {/* Fix: added Link wrapper so button navigates to billing page */}
-            {!isPro && (
+            {isPro ? (
               <Link href="/settings/billing">
-                <Button size="sm" className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white text-xs">
+                <Button size="sm" variant="outline" className="text-xs">
+                  Manage plan →
+                </Button>
+              </Link>
+            ) : (
+              <Link href="/settings/billing">
+                <Button size="sm" className="bg-[#6366F1] hover:bg-[#4F46E5] text-white text-xs">
                   Upgrade to Pro — €9/mo
                 </Button>
               </Link>

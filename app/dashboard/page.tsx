@@ -146,7 +146,7 @@ export default function DashboardPage() {
                                                     <p className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>3 <span className="text-sm font-normal text-white/50">/ month</span></p>
                                                   )}
                                                   <div className="w-full h-1.5 rounded-full bg-white/20 mb-3">
-                                                                <div className="h-1.5 rounded-full bg-white" style={{ width: "100%" }} />
+                                                                <div className="h-1.5 rounded-full bg-white" style={{ width: userPlan === "pro" ? "100%" : `${Math.min(((stats.aiGenerations ?? 0) / 3) * 100, 100)}%` }} />
                                                   </div>
                                                   {userPlan === "pro" ? (
                                                     <Link href="/settings/billing" className="block text-center text-xs font-semibold text-white bg-white/15 hover:bg-white/25 rounded-lg py-1.5 transition-colors">Manage plan →</Link>
