@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
   }
 
   const supabase = createSupabaseServer(accessToken);
-  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  const { data: { user }, error: authError } = await supabase.auth.getUser(accessToken);
   console.log("[/api/user/profile] user session:", user?.id ?? "none", "error:", authError?.message ?? "none");
   if (authError || !user) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
@@ -56,7 +56,7 @@ export async function PATCH(request: NextRequest) {
   }
 
   const supabase = createSupabaseServer(accessToken);
-  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  const { data: { user }, error: authError } = await supabase.auth.getUser(accessToken);
   if (authError || !user) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }

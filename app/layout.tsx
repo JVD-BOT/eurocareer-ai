@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Outfit, DM_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import { CookieBanner } from "@/components/cookie-banner";
@@ -16,6 +16,11 @@ const dmSans = DM_Sans({
         variable: "--font-dm-sans",
         display: "swap",
 });
+
+export const viewport: Viewport = {
+        width: "device-width",
+        initialScale: 1,
+};
 
 export const metadata: Metadata = {
         title: {
