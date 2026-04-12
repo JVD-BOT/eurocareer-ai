@@ -202,9 +202,9 @@ export function CoverLetter({ application, profile, onUpdate, onCreditUsed }: Co
                     <Label className="text-xs text-muted-foreground">Feedback for regeneration</Label>
                     <div className="flex gap-2">
                       <Input
-                        placeholder="e.g. Make it more concise, emphasise my Python experience, use a warmer tone..." value={feedback}
+                        value={feedback}
                         onChange={(e) => setFeedback(e.target.value)}
-                        placeholder='e.g. "Make it more concise" or "Emphasise Python skills"'
+                        placeholder="e.g. Make it more concise, emphasise my Python experience, use a warmer tone..."
                         className="h-8 text-xs flex-1"
                         onKeyDown={(e) => e.key === "Enter" && feedback && generate(true)}
                       />

@@ -13,6 +13,7 @@ interface Stats {
       applications: number;
       interviews: number;
       offers: number;
+      aiGenerations?: number;
 }
 
 const NAV_ITEMS = [

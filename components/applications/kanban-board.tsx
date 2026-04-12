@@ -7,12 +7,7 @@ import { COLUMNS, COUNTRIES } from "@/lib/constants";
 
 interface KanbanBoardProps {
   applications: Application[];
-  onStatusChange: (id: string, newStatus: ApplicationStatus, oldStatus: ApplicationStatus) =>
-      {/* Issue #10: Kanban instruction */}
-      <div className="mb-3 flex items-center gap-2 text-xs px-3 py-2 rounded-lg" style={{ background: "#EEEFFE", color: "#636DF5" }}>
-        <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-        <span>Click any card to open and update its status. Drag cards between columns to move them.</span>
-      </div> void;
+  onStatusChange: (id: string, newStatus: ApplicationStatus, oldStatus: ApplicationStatus) => void;
   onCardClick: (app: Application) => void;
 }
 
@@ -42,7 +37,13 @@ export function KanbanBoard({ applications, onStatusChange, onCardClick }: Kanba
   }
 
   return (
-    <DragDropContext onDragEnd={handleDragEnd}>
+    <>
+      {/* Issue #10: Kanban instruction */}
+      <div className="mb-3 flex items-center gap-2 text-xs px-3 py-2 rounded-lg" style={{ background: "#EEEFFE", color: "#636DF5" }}>
+        <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span>Click any card to open and update its status. Drag cards between columns to move them.</span>
+      </div>
+      <DragDropContext onDragEnd={handleDragEnd}>
       <div className="flex gap-3 overflow-x-auto pb-6 min-h-[calc(100vh-220px)]">
         {COLUMNS.map((column) => {
           const colApps = applications.filter((a) => a.status === column.id);
@@ -102,6 +103,7 @@ export function KanbanBoard({ applications, onStatusChange, onCardClick }: Kanba
         })}
       </div>
     </DragDropContext>
+    </>
   );
 }
 
