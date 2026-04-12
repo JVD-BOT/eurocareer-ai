@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { supabase, supabaseWithToken } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import type { User } from "@supabase/supabase-js";
 import type { Profile } from "@/lib/types";
@@ -36,24 +36,27 @@ export default function DashboardPage() {
       const [paymentWarning, setPaymentWarning] = useState(false);
       const [dismissedWarning, setDismissedWarning] = useState(false);
       const [userPlan, setUserPlan] = useState<"free" | "pro">("free");
-      const accessTokenRef = useRef<string | null>(null);
+      const settingSession = useRef(false);
       const router = useRouter();
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        if (session?.access_token) {
-          accessTokenRef.current = session.access_token;
-        }
+      async (event, session) => {
+        if (settingSession.current) return;
         if (event === "INITIAL_SESSION" || event === "SIGNED_IN") {
           if (!session) {
             router.replace("/auth/login");
           } else {
+            settingSession.current = true;
+            await supabase.auth.setSession({
+              access_token: session.access_token,
+              refresh_token: session.refresh_token,
+            });
+            settingSession.current = false;
             setUser(session.user);
-            loadStats(session.user.id, session.access_token);
+            loadStats(session.user.id);
           }
         } else if (event === "SIGNED_OUT") {
-          accessTokenRef.current = null;
           router.replace("/auth/login");
         }
       }
@@ -75,20 +78,18 @@ export default function DashboardPage() {
 
   const handleDismissWarning = async () => {
     setDismissedWarning(true);
-    if (user && accessTokenRef.current) {
-      const client = supabaseWithToken(accessTokenRef.current);
-      await client
+    if (user) {
+      await supabase
         .from("profiles")
         .update({ payment_warning: false })
         .eq("id", user.id);
     }
   };
 
-  const loadStats = async (userId: string, accessToken: string) => {
-    const client = supabaseWithToken(accessToken);
+  const loadStats = async (userId: string) => {
     const [{ data: apps }, { data: profile }] = await Promise.all([
-      client.from("applications").select("status").eq("user_id", userId),
-      client.from("profiles").select("ai_credits_used, plan, payment_warning").eq("id", userId).maybeSingle(),
+      supabase.from("applications").select("status").eq("user_id", userId),
+      supabase.from("profiles").select("ai_credits_used, plan, payment_warning").eq("id", userId).maybeSingle(),
     ]);
     console.log("[loadStats] raw profile from Supabase:", profile);
     setStats({
