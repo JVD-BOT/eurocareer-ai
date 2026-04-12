@@ -4,6 +4,9 @@
 -- ============================================================
 
 -- ── Profiles table ───────────────────────────────────────────
+-- NOTE: CREATE TABLE IF NOT EXISTS is a no-op if the table already exists
+-- (e.g. created via Supabase UI or auth trigger). The ALTER TABLE statements
+-- below ensure every required column exists regardless.
 create table if not exists public.profiles (
   id                  uuid references auth.users(id) on delete cascade primary key,
   resume_text         text,
@@ -16,6 +19,22 @@ create table if not exists public.profiles (
   created_at          timestamptz default now() not null,
   updated_at          timestamptz default now() not null
 );
+
+-- Defensive: ensure columns exist if the table was created by another mechanism
+alter table public.profiles add column if not exists resume_text text;
+alter table public.profiles add column if not exists languages text;
+alter table public.profiles add column if not exists nationality text;
+alter table public.profiles add column if not exists work_authorization text;
+alter table public.profiles add column if not exists plan text default 'free';
+alter table public.profiles add column if not exists ai_credits_used integer default 0;
+alter table public.profiles add column if not exists ai_credits_month text default '';
+alter table public.profiles add column if not exists created_at timestamptz default now();
+alter table public.profiles add column if not exists updated_at timestamptz default now();
+
+-- Backfill any NULL plan values and enforce NOT NULL
+update public.profiles set plan = 'free' where plan is null;
+alter table public.profiles alter column plan set default 'free';
+alter table public.profiles alter column plan set not null;
 
 alter table public.profiles enable row level security;
 
