@@ -299,7 +299,7 @@ export function ApplicationDetailSheet({
           </div>
 
           {isDirty && (
-            <Button onClick={handleSave} disabled={saving} className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white">
+            <Button onClick={handleSave} disabled={saving} className="w-full bg-[#636DF5] hover:bg-[#4F58E0] text-white">
               {saving ? "Saving…" : "Save changes"}
             </Button>
           )}

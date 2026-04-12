@@ -29,6 +29,7 @@ export const metadata: Metadata = {
         },
         description: "EuroCareer AI adapts your CV for Germany, Netherlands, France, Sweden, UK, Spain and 6 more EU markets in seconds. Free to start, no credit card needed.",
                 metadataBase: new URL("https://eurocareerai.com"),
+        icons: { icon: "/STAR.png" },
         openGraph: {
                 title: "CV Adapter for Europe | EuroCareer AI",
                 description: "Adapt your CV for any EU country in seconds. Covers Germany, Netherlands, France, Sweden, UK, Spain, and 6 more markets.",

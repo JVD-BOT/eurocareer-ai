@@ -68,7 +68,7 @@ export function UpgradeModal({ open, onClose }: UpgradeModalProps) {
         <Button
           onClick={handleCheckout}
           disabled={loading}
-          className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white h-11 font-semibold gap-2"
+          className="w-full bg-[#636DF5] hover:bg-[#4F58E0] text-white h-11 font-semibold gap-2"
         >
           <CreditCard className="h-4 w-4" />
           {loading ? "Redirecting to checkout…" : "Go Pro — €9/month"}

@@ -49,9 +49,9 @@ export default function LoginPage() {
                           <div className="absolute inset-0 pointer-events-none select-none opacity-[0.03]">
                                     <Image src="/STAR.png" alt="" fill className="object-contain animate-slow-spin" style={{ filter: "invert(1)" }} />
                           </div>
-                        <div className="relative">
+                        <Link href="/" className="relative block">
                                   <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={160} height={36} className="h-9 w-auto" style={{ filter: "brightness(0) invert(1)" }} />
-                        </div>
+                        </Link>
                         <div className="relative space-y-6">
                                   <h2 className="text-3xl font-bold text-white leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                               Your EU job search,<br />

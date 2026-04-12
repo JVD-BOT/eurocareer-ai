@@ -144,7 +144,7 @@ export default function ApplicationsPage() {
               </TabsList>
               <Button
                 onClick={() => setShowAddModal(true)}
-                className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white gap-1.5"
+                className="bg-[#636DF5] hover:bg-[#4F58E0] text-white gap-1.5"
               >
                 <Plus className="h-4 w-4" />
                 Add Application
