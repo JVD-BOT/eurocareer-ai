@@ -1,11 +1,20 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextRequest } from "next/server";
 
-function createSupabaseServer(accessToken: string) {
+/** Anon client with user JWT — used only to verify the caller's identity. */
+function createAuthClient(accessToken: string) {
   return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     { global: { headers: { Authorization: `Bearer ${accessToken}` } } }
+  );
+}
+
+/** Service-role client — bypasses RLS for server-side reads/writes. */
+function getAdmin() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
 }
 
@@ -19,16 +28,15 @@ export async function GET(request: NextRequest) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const supabase = createSupabaseServer(accessToken);
-  const { data: { user }, error: authError } = await supabase.auth.getUser(accessToken);
+  const { data: { user }, error: authError } = await createAuthClient(accessToken).auth.getUser(accessToken);
   console.log("[/api/user/profile] user session:", user?.id ?? "none", "error:", authError?.message ?? "none");
   if (authError || !user) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const [{ data: apps }, { data: profile }] = await Promise.all([
-    supabase.from("applications").select("status").eq("user_id", user.id),
-    supabase
+    getAdmin().from("applications").select("status").eq("user_id", user.id),
+    getAdmin()
       .from("profiles")
       .select("plan, ai_credits_used, payment_warning")
       .eq("id", user.id)
@@ -55,14 +63,13 @@ export async function PATCH(request: NextRequest) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const supabase = createSupabaseServer(accessToken);
-  const { data: { user }, error: authError } = await supabase.auth.getUser(accessToken);
+  const { data: { user }, error: authError } = await createAuthClient(accessToken).auth.getUser(accessToken);
   if (authError || !user) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const { payment_warning } = await request.json();
-  await supabase
+  await getAdmin()
     .from("profiles")
     .update({ payment_warning: !!payment_warning })
     .eq("id", user.id);
