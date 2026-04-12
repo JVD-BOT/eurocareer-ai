@@ -39,14 +39,21 @@ export default function DashboardPage() {
       const router = useRouter();
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user: currentUser } }) => {
-      if (!currentUser) {
-        router.replace("/auth/login");
-      } else {
-        setUser(currentUser);
-        loadStats();
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (event === "INITIAL_SESSION" || event === "SIGNED_IN") {
+          if (!session) {
+            router.replace("/auth/login");
+          } else {
+            setUser(session.user);
+            loadStats(session.user.id);
+          }
+        } else if (event === "SIGNED_OUT") {
+          router.replace("/auth/login");
+        }
       }
-    });
+    );
+    return () => { subscription.unsubscribe(); };
   }, [router]);
 
   const handleUpdatePayment = async () => {
@@ -71,12 +78,10 @@ export default function DashboardPage() {
     }
   };
 
-  const loadStats = async () => {
-    const { data: { user: currentUser } } = await supabase.auth.getUser();
-    if (!currentUser) return setLoading(false);
+  const loadStats = async (userId: string) => {
     const [{ data: apps }, { data: profile }] = await Promise.all([
-      supabase.from("applications").select("status").eq("user_id", currentUser.id),
-      supabase.from("profiles").select("ai_credits_used, plan, payment_warning").eq("id", currentUser.id).maybeSingle(),
+      supabase.from("applications").select("status").eq("user_id", userId),
+      supabase.from("profiles").select("ai_credits_used, plan, payment_warning").eq("id", userId).maybeSingle(),
     ]);
     console.log("[loadStats] raw profile from Supabase:", profile);
     setStats({
