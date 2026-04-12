@@ -78,6 +78,7 @@ export default function DashboardPage() {
       supabase.from("applications").select("status").eq("user_id", currentUser.id),
       supabase.from("profiles").select("ai_credits_used, plan, payment_warning").eq("id", currentUser.id).maybeSingle(),
     ]);
+    console.log("[loadStats] raw profile from Supabase:", profile);
     setStats({
       applications: apps?.length ?? 0,
       interviews: apps?.filter((a) => a.status === "interview").length ?? 0,
