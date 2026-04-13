@@ -12,23 +12,23 @@ const wrap = (content: string) => `<!DOCTYPE html>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body style="margin:0;padding:0;background:#F8F8F6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#0F1629;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F8F8F6;padding:40px 20px;">
+  <body style="margin:0;padding:0;background:#FAFAFA;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#0F172A;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#FAFAFA;padding:40px 20px;">
       <tr>
         <td align="center">
-          <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#FFFFFF;border-radius:12px;border:1px solid #E2E1DC;">
+          <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#FFFFFF;border-radius:12px;border:1px solid #E2E8F0;">
             <tr>
               <td style="padding:28px 40px 20px 40px;border-bottom:1px solid #F0F0EC;">
                 <p style="margin:0;font-size:14px;font-weight:700;color:#6366F1;letter-spacing:0.04em;">EuroCareerAI</p>
               </td>
             </tr>
             <tr>
-              <td style="padding:28px 40px 36px 40px;font-size:15px;line-height:1.65;color:#3D4255;">
+              <td style="padding:28px 40px 36px 40px;font-size:15px;line-height:1.65;color:#1E293B;">
                 ${content}
               </td>
             </tr>
           </table>
-          <p style="margin:20px 0 0;font-size:12px;color:#7A7F94;">EuroCareerAI &middot; eurocareerai.com</p>
+          <p style="margin:20px 0 0;font-size:12px;color:#64748B;">EuroCareerAI &middot; eurocareerai.com</p>
         </td>
       </tr>
     </table>
@@ -40,7 +40,7 @@ const cta = (href: string, label: string) =>
 
 export function welcomeEmail() {
   const html = wrap(`
-    <h1 style="margin:0 0 16px;font-size:22px;font-weight:700;color:#0F1629;line-height:1.3;">Welcome to EuroCareerAI &mdash; start here</h1>
+    <h1 style="margin:0 0 16px;font-size:22px;font-weight:700;color:#0F172A;line-height:1.3;">Welcome to EuroCareerAI &mdash; start here</h1>
     <p style="margin:0 0 16px;">You've got <strong>3 free AI generations</strong> this month. Here's how to make them count:</p>
     <ol style="margin:0 0 20px;padding-left:22px;">
       <li style="margin-bottom:8px;">Paste your CV and adapt it for any EU country</li>
@@ -55,7 +55,7 @@ export function welcomeEmail() {
 
 export function day2Email(remaining: number) {
   const html = wrap(`
-    <h1 style="margin:0 0 16px;font-size:22px;font-weight:700;color:#0F1629;line-height:1.3;">Your CV might be costing you interviews in Europe</h1>
+    <h1 style="margin:0 0 16px;font-size:22px;font-weight:700;color:#0F172A;line-height:1.3;">Your CV might be costing you interviews in Europe</h1>
     <p style="margin:0 0 16px;">Did you know German employers expect a photo on your CV? Dutch recruiters prefer a direct, collaborative tone. Every EU country has different rules.</p>
     <p style="margin:0 0 16px;">Our AI adapts your CV automatically for any of 12 European markets.</p>
     <p style="margin:0 0 24px;">You have <strong>${remaining} free AI generations</strong> left this month.</p>
@@ -66,11 +66,11 @@ export function day2Email(remaining: number) {
 
 export function day7Email(remaining: number) {
   const html = wrap(`
-    <h1 style="margin:0 0 16px;font-size:22px;font-weight:700;color:#0F1629;line-height:1.3;">You have free AI generations expiring</h1>
+    <h1 style="margin:0 0 16px;font-size:22px;font-weight:700;color:#0F172A;line-height:1.3;">You have free AI generations expiring</h1>
     <p style="margin:0 0 16px;">You still have <strong>${remaining} free AI generations</strong> this month.</p>
     <p style="margin:0 0 24px;">The most popular countries: Germany, Netherlands, and France. Each has different CV rules &mdash; our AI handles all of them.</p>
     <p style="margin:0 0 16px;">${cta("https://eurocareerai.com/applications", "Use your free generations &rarr;")}</p>
-    <p style="margin:0;font-size:13px;color:#7A7F94;">Want unlimited? <a href="https://eurocareerai.com/settings/billing" style="color:#6366F1;text-decoration:none;">Upgrade to Pro for &euro;9/month</a></p>
+    <p style="margin:0;font-size:13px;color:#64748B;">Want unlimited? <a href="https://eurocareerai.com/settings/billing" style="color:#6366F1;text-decoration:none;">Upgrade to Pro for &euro;9/month</a></p>
   `);
   return { subject: "You have free AI generations expiring", html };
 }

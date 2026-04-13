@@ -31,60 +31,60 @@ export default function SpainCVFormat() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <nav aria-label="breadcrumb">
-        <div className="flex items-center gap-2 text-sm text-[#7A7F94] mb-8">
-          <Link href="/" className="hover:text-[#636DF5] transition-colors">Home</Link>
+        <div className="flex items-center gap-2 text-sm text-[#64748B] mb-8">
+          <Link href="/" className="hover:text-[#6366F1] transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/blog" className="hover:text-[#636DF5] transition-colors">Guides</Link>
+          <Link href="/blog" className="hover:text-[#6366F1] transition-colors">Guides</Link>
           <span>/</span>
-          <span className="text-[#0F1629]">Spain CV Format</span>
+          <span className="text-[#0F172A]">Spain CV Format</span>
         </div>
       </nav>
 
       <div className="mb-12">
         <div className="flex items-center gap-3 mb-4">
           <span className="text-sm font-medium text-indigo-600 uppercase tracking-wide">ES CV Guide</span>
-          <span className="text-sm text-[#7A7F94]">Last updated: April 2026</span>
-          <span className="text-sm text-[#7A7F94]">&middot; ~6 min read</span>
+          <span className="text-sm text-[#64748B]">Last updated: April 2026</span>
+          <span className="text-sm text-[#64748B]">&middot; ~6 min read</span>
         </div>
-        <h1 className="mt-3 text-3xl font-bold text-[#0F1629] leading-tight">
+        <h1 className="mt-3 text-3xl font-bold text-[#0F172A] leading-tight">
           How to Write a CV for Spain in 2026
         </h1>
-        <p className="mt-4 text-[#3D4255] text-lg">
+        <p className="mt-4 text-[#1E293B] text-lg">
           Spain's job market has its own conventions — particularly around photos, language, and the warm, personal tone that Spanish employers appreciate.
         </p>
       </div>
 
       <div className="prose prose-slate max-w-none space-y-6">
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Spanish workplace culture</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Spanish workplace culture</h2>
         <p className="text-slate-600 leading-relaxed">
           Spain has a relationship-oriented business culture. Building rapport matters. Spanish employers value personal connection, genuine interest in the company, and a warm — though still professional — tone in application materials. This extends from the major cities (Madrid, Barcelona) to regional markets with their own distinct cultures (Catalonia, Basque Country, Andalusia).
         </p>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Photo and personal details</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Photo and personal details</h2>
         <p className="text-slate-600 leading-relaxed">
           A professional photo is standard in Spain and widely expected. Personal details including date of birth, address, phone, email, and nationality are typically included. DNI (Spanish ID number) is sometimes requested for Spanish nationals. For international applicants, include your nationality and visa status if relevant.
         </p>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Structure and format</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Structure and format</h2>
         <ul className="text-slate-600 space-y-2 list-disc list-inside">
-          <li><strong className="text-[#0F1629]">Length:</strong> One to two pages. Spanish employers appreciate brevity but do not penalise a well-structured second page.</li>
-          <li><strong className="text-[#0F1629]">Layout:</strong> Clean and professional. The Europass format is accepted but a customised format often makes a stronger impression.</li>
-          <li><strong className="text-[#0F1629]">Work experience:</strong> Reverse chronological with dates, company names, roles, and bullet-pointed achievements.</li>
-          <li><strong className="text-[#0F1629]">Education:</strong> List qualifications with institution, location, and dates. Spanish employers value formal education.</li>
-          <li><strong className="text-[#0F1629]">Languages:</strong> Spanish proficiency is essential for most roles. English is increasingly valued, particularly in Barcelona and tech sectors.</li>
+          <li><strong className="text-[#0F172A]">Length:</strong> One to two pages. Spanish employers appreciate brevity but do not penalise a well-structured second page.</li>
+          <li><strong className="text-[#0F172A]">Layout:</strong> Clean and professional. The Europass format is accepted but a customised format often makes a stronger impression.</li>
+          <li><strong className="text-[#0F172A]">Work experience:</strong> Reverse chronological with dates, company names, roles, and bullet-pointed achievements.</li>
+          <li><strong className="text-[#0F172A]">Education:</strong> List qualifications with institution, location, and dates. Spanish employers value formal education.</li>
+          <li><strong className="text-[#0F172A]">Languages:</strong> Spanish proficiency is essential for most roles. English is increasingly valued, particularly in Barcelona and tech sectors.</li>
         </ul>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">The carta de presentación</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">The carta de presentación</h2>
         <p className="text-slate-600 leading-relaxed">
           A cover letter is generally expected. Write it in Spanish for Spanish companies. Demonstrate genuine knowledge of and interest in the company. Spanish employers appreciate authentic motivation — show that you have researched them specifically. A warm, personal tone is appropriate without being informal.
         </p>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Barcelona vs Madrid</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Barcelona vs Madrid</h2>
         <p className="text-slate-600 leading-relaxed">
           Barcelona has a stronger startup and tech ecosystem, with many international companies. Catalan is widely spoken — learning even a few words shows cultural respect. Madrid is Spain's financial and corporate capital, home to many multinational headquarters. The tech scene is growing. Both cities have large expat communities and English-speaking job markets in certain sectors.
         </p>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Common mistakes</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Common mistakes</h2>
         <ul className="text-slate-600 space-y-2 list-disc list-inside">
           <li>Omitting a photo (expected in most Spanish contexts)</li>
           <li>Sending an English-only CV to a Spanish company</li>
@@ -101,23 +101,23 @@ export default function SpainCVFormat() {
           </Link>
         </div>
 
-        <div className="mt-12 border-t border-[#E2E1DC] pt-8">
-          <h2 className="text-lg font-semibold text-[#0F1629] mb-4">Related guides</h2>
+        <div className="mt-12 border-t border-[#E2E8F0] pt-8">
+          <h2 className="text-lg font-semibold text-[#0F172A] mb-4">Related guides</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Link href="/blog/italy-cv-format" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+            <Link href="/blog/italy-cv-format" className="p-4 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] transition-colors">
               <span className="text-2xl">it</span>
-              <p className="mt-2 text-sm font-semibold text-[#0F1629]">Italy CV Format</p>
-              <p className="text-xs text-[#7A7F94] mt-1">Similar Southern European conventions</p>
+              <p className="mt-2 text-sm font-semibold text-[#0F172A]">Italy CV Format</p>
+              <p className="text-xs text-[#64748B] mt-1">Similar Southern European conventions</p>
             </Link>
-            <Link href="/blog/france-cv-format" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+            <Link href="/blog/france-cv-format" className="p-4 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] transition-colors">
               <span className="text-2xl">fr</span>
-              <p className="mt-2 text-sm font-semibold text-[#0F1629]">France CV Format</p>
-              <p className="text-xs text-[#7A7F94] mt-1">Another Latin European market</p>
+              <p className="mt-2 text-sm font-semibold text-[#0F172A]">France CV Format</p>
+              <p className="text-xs text-[#64748B] mt-1">Another Latin European market</p>
             </Link>
-            <Link href="/blog/eu-work-visa-guide" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+            <Link href="/blog/eu-work-visa-guide" className="p-4 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] transition-colors">
               <span className="text-2xl">eu</span>
-              <p className="mt-2 text-sm font-semibold text-[#0F1629]">EU Work Visa Guide</p>
-              <p className="text-xs text-[#7A7F94] mt-1">Working in Europe legally</p>
+              <p className="mt-2 text-sm font-semibold text-[#0F172A]">EU Work Visa Guide</p>
+              <p className="text-xs text-[#64748B] mt-1">Working in Europe legally</p>
             </Link>
           </div>
         </div>

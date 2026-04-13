@@ -101,22 +101,18 @@ export async function POST(request: NextRequest) {
         const invoice = event.data.object as Stripe.Invoice;
         const customerId = invoice.customer as string;
         console.warn("[Stripe webhook] payment failed for customer:", customerId);
+        // Downgrade to free on failed renewal. Stripe handles dunning emails.
         const { error: payFailErr } = await supabase
           .from("profiles")
-          .update({ plan: "free", payment_warning: true })
+          .update({ plan: "free" })
           .eq("stripe_customer_id", customerId);
         if (payFailErr) console.error("[Stripe webhook] invoice.payment_failed update failed:", payFailErr.message);
         break;
       }
 
       case "invoice.payment_succeeded": {
-        const invoice = event.data.object as Stripe.Invoice;
-        const customerId = invoice.customer as string;
-        const { error: paySuccessErr } = await supabase
-          .from("profiles")
-          .update({ payment_warning: false })
-          .eq("stripe_customer_id", customerId);
-        if (paySuccessErr) console.error("[Stripe webhook] invoice.payment_succeeded update failed:", paySuccessErr.message);
+        // No-op: plan is already set by checkout.session.completed /
+        // customer.subscription.updated. Receipts are sent by Stripe.
         break;
       }
 

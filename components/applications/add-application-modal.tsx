@@ -236,7 +236,7 @@ export function AddApplicationModal({ open, onClose, onAdd, userId }: AddApplica
             <Button
               type="submit"
               disabled={loading}
-              className="bg-[#636DF5] hover:bg-[#4F58E0] text-white"
+              className="bg-[#6366F1] hover:bg-[#4F46E5] text-white"
             >
               {loading ? "Adding…" : "Add Application"}
             </Button>

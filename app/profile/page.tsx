@@ -87,10 +87,10 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: "#F8F8F6" }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#FAFAFA" }}>
         <div className="flex flex-col items-center gap-3">
           <Image src="/STAR.png" alt="" width={40} height={40} className="animate-slow-spin opacity-40" />
-          <p className="text-sm" style={{ color: "#7A7F94" }}>Loading…</p>
+          <p className="text-sm" style={{ color: "#64748B" }}>Loading…</p>
         </div>
       </div>
     );
@@ -234,7 +234,7 @@ export default function ProfilePage() {
           <Button
             onClick={handleSave}
             disabled={saving}
-            className="bg-[#636DF5] hover:bg-[#4F58E0] text-white gap-2"
+            className="bg-[#6366F1] hover:bg-[#4F46E5] text-white gap-2"
           >
             <Save className="h-4 w-4" />
             {saving ? "Saving…" : "Save Profile"}

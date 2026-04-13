@@ -31,12 +31,12 @@ export default function AustriaCVFormat() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <nav aria-label="breadcrumb">
-        <div className="flex items-center gap-2 text-sm text-[#7A7F94] mb-8">
-          <Link href="/" className="hover:text-[#636DF5] transition-colors">Home</Link>
+        <div className="flex items-center gap-2 text-sm text-[#64748B] mb-8">
+          <Link href="/" className="hover:text-[#6366F1] transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/blog" className="hover:text-[#636DF5] transition-colors">Guides</Link>
+          <Link href="/blog" className="hover:text-[#6366F1] transition-colors">Guides</Link>
           <span>/</span>
-          <span className="text-[#0F1629]">Austria CV Format</span>
+          <span className="text-[#0F172A]">Austria CV Format</span>
         </div>
       </nav>
 
@@ -44,48 +44,48 @@ export default function AustriaCVFormat() {
       <div className="mb-12">
         <div className="flex items-center gap-3 mb-4">
           <span className="text-sm font-medium text-indigo-600 uppercase tracking-wide">🇦🇹 CV Guide</span>
-          <span className="text-sm text-[#7A7F94]">Last updated: April 2026</span>
-          <span className="text-sm text-[#7A7F94]">&middot; ~6 min read</span>
+          <span className="text-sm text-[#64748B]">Last updated: April 2026</span>
+          <span className="text-sm text-[#64748B]">&middot; ~6 min read</span>
         </div>
-        <h1 className="mt-3 text-3xl font-bold text-[#0F1629] leading-tight">
+        <h1 className="mt-3 text-3xl font-bold text-[#0F172A] leading-tight">
           How to Write a CV for Austria in 2026
         </h1>
-        <p className="mt-4 text-[#3D4255] text-lg">
+        <p className="mt-4 text-[#1E293B] text-lg">
           Austria shares much of Germany's CV culture but has its own expectations — especially in Vienna's growing international job market.
         </p>
       </div>
 
       <div className="prose prose-slate max-w-none space-y-6">
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Austria vs Germany: the differences</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Austria vs Germany: the differences</h2>
         <p className="text-slate-600 leading-relaxed">
           Austria and Germany share a language and many professional conventions, but Austrian workplace culture is generally slightly less formal and more personal. Viennese recruiters tend to appreciate a warmer tone than their German counterparts, while still expecting structure, precision, and professionalism. The fundamentals are the same — but the edges are softer.
         </p>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Photo and personal details</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Photo and personal details</h2>
         <p className="text-slate-600 leading-relaxed">
           Including a professional photo is standard. Personal details — name, address, date of birth, nationality, phone, email — are all expected at the top of the document. This is more similar to Germany than to the Netherlands or Sweden.
         </p>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Structure and format</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Structure and format</h2>
         <ul className="text-slate-600 space-y-2 list-disc list-inside">
-          <li><strong className="text-[#0F1629]">Length:</strong> Two pages is standard. One page for very junior roles, three only for very senior or academic positions.</li>
-          <li><strong className="text-[#0F1629]">Layout:</strong> Clean and professional. No graphics or heavy design. Clear section headers.</li>
-          <li><strong className="text-[#0F1629]">Work experience:</strong> Reverse chronological. Include exact dates (month and year), company name, job title, and responsibilities. No unexplained gaps.</li>
-          <li><strong className="text-[#0F1629]">Education:</strong> Include all formal qualifications. Austrian employers respect academic credentials — particularly university degrees and apprenticeships (Lehre).</li>
-          <li><strong className="text-[#0F1629]">Languages:</strong> German fluency is essential for most roles. English is widely spoken in Vienna's tech and international sectors. Specify levels using CEFR.</li>
+          <li><strong className="text-[#0F172A]">Length:</strong> Two pages is standard. One page for very junior roles, three only for very senior or academic positions.</li>
+          <li><strong className="text-[#0F172A]">Layout:</strong> Clean and professional. No graphics or heavy design. Clear section headers.</li>
+          <li><strong className="text-[#0F172A]">Work experience:</strong> Reverse chronological. Include exact dates (month and year), company name, job title, and responsibilities. No unexplained gaps.</li>
+          <li><strong className="text-[#0F172A]">Education:</strong> Include all formal qualifications. Austrian employers respect academic credentials — particularly university degrees and apprenticeships (Lehre).</li>
+          <li><strong className="text-[#0F172A]">Languages:</strong> German fluency is essential for most roles. English is widely spoken in Vienna's tech and international sectors. Specify levels using CEFR.</li>
         </ul>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">The cover letter (Bewerbungsschreiben)</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">The cover letter (Bewerbungsschreiben)</h2>
         <p className="text-slate-600 leading-relaxed">
           A cover letter is expected in Austria, similar to Germany. It should be one page, formally addressed, and explain your motivation for the specific role and company — not just a summary of your CV. Austrian employers appreciate genuine interest in the organisation. Do some research before you write.
         </p>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Vienna's international job market</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Vienna's international job market</h2>
         <p className="text-slate-600 leading-relaxed">
           Vienna hosts a number of international organisations including UN agencies, OPEC, and the OSCE, making it more internationally accessible than most Austrian cities. The tech startup scene is growing. For international companies, English CVs are often accepted and sometimes preferred. Always check the language of the job posting.
         </p>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Common mistakes</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Common mistakes</h2>
         <ul className="text-slate-600 space-y-2 list-disc list-inside">
           <li>Treating Austria exactly like Germany — the cultural differences are subtle but real</li>
           <li>Omitting a photo</li>
@@ -103,23 +103,23 @@ export default function AustriaCVFormat() {
         </div>
 
         {/* Related guides */}
-        <div className="mt-12 border-t border-[#E2E1DC] pt-8">
-          <h2 className="text-lg font-semibold text-[#0F1629] mb-4">Related guides</h2>
+        <div className="mt-12 border-t border-[#E2E8F0] pt-8">
+          <h2 className="text-lg font-semibold text-[#0F172A] mb-4">Related guides</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Link href="/blog/german-cv-format" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+            <Link href="/blog/german-cv-format" className="p-4 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] transition-colors">
               <span className="text-2xl">de</span>
-              <p className="mt-2 text-sm font-semibold text-[#0F1629]">German CV Format</p>
-              <p className="text-xs text-[#7A7F94] mt-1">The closest comparison to Austria</p>
+              <p className="mt-2 text-sm font-semibold text-[#0F172A]">German CV Format</p>
+              <p className="text-xs text-[#64748B] mt-1">The closest comparison to Austria</p>
             </Link>
-            <Link href="/blog/switzerland-cv-format" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+            <Link href="/blog/switzerland-cv-format" className="p-4 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] transition-colors">
               <span className="text-2xl">ch</span>
-              <p className="mt-2 text-sm font-semibold text-[#0F1629]">Switzerland CV Format</p>
-              <p className="text-xs text-[#7A7F94] mt-1">Another German-speaking market</p>
+              <p className="mt-2 text-sm font-semibold text-[#0F172A]">Switzerland CV Format</p>
+              <p className="text-xs text-[#64748B] mt-1">Another German-speaking market</p>
             </Link>
-            <Link href="/blog/cover-letter-europe" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+            <Link href="/blog/cover-letter-europe" className="p-4 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] transition-colors">
               <span className="text-2xl">letter</span>
-              <p className="mt-2 text-sm font-semibold text-[#0F1629]">Cover Letters in Europe</p>
-              <p className="text-xs text-[#7A7F94] mt-1">Writing for European employers</p>
+              <p className="mt-2 text-sm font-semibold text-[#0F172A]">Cover Letters in Europe</p>
+              <p className="text-xs text-[#64748B] mt-1">Writing for European employers</p>
             </Link>
           </div>
         </div>

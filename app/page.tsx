@@ -99,7 +99,7 @@ export default function HomePage() {
             AI-powered for 12 European markets
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6" style={{ fontFamily: "var(--font-outfit), 'Outfit', sans-serif" }}>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif" }}>
             Your EU job search,<br />
             <span style={{ background: "linear-gradient(135deg, #6366F1, #7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               powered by AI
@@ -139,11 +139,11 @@ export default function HomePage() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section id="how-it-works" className="py-20 md:py-28 px-4" style={{ background: "#F8F8F6" }}>
+      <section id="how-it-works" className="py-20 md:py-28 px-4" style={{ background: "#FAFAFA" }}>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6366F1" }}>How it works</p>
-            <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "var(--font-outfit), 'Outfit', sans-serif", color: "#0F172A" }}>
+            <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>
               Three steps to your next EU role
             </h2>
           </div>
@@ -157,10 +157,10 @@ export default function HomePage() {
                 >
                   {step.num}
                 </div>
-                <h3 className="font-bold text-lg mb-2" style={{ fontFamily: "var(--font-outfit), 'Outfit', sans-serif", color: "#0F172A" }}>
+                <h3 className="font-bold text-lg mb-2" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>
                   {step.title}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#7A7F94" }}>
+                <p className="text-sm leading-relaxed" style={{ color: "#64748B" }}>
                   {step.description}
                 </p>
               </div>
@@ -174,7 +174,7 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6366F1" }}>Features</p>
-            <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "var(--font-outfit), 'Outfit', sans-serif", color: "#0F172A" }}>
+            <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>
               Everything you need to land a job in Europe
             </h2>
           </div>
@@ -183,13 +183,13 @@ export default function HomePage() {
             {FEATURES.map((f) => (
               <div
                 key={f.title}
-                className="rounded-2xl border border-[#E2E1DC] p-6 hover:border-[#6366F1] hover:shadow-sm transition-all"
+                className="rounded-2xl border border-[#E2E8F0] p-6 hover:border-[#6366F1] hover:shadow-sm transition-all"
               >
                 <span className="text-3xl mb-4 block">{f.emoji}</span>
-                <h3 className="font-bold text-lg mb-2" style={{ fontFamily: "var(--font-outfit), 'Outfit', sans-serif", color: "#0F172A" }}>
+                <h3 className="font-bold text-lg mb-2" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>
                   {f.title}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#7A7F94" }}>
+                <p className="text-sm leading-relaxed" style={{ color: "#64748B" }}>
                   {f.description}
                 </p>
               </div>
@@ -199,26 +199,26 @@ export default function HomePage() {
       </section>
 
       {/* ── PRICING ── */}
-      <section id="pricing" className="py-20 md:py-28 px-4" style={{ background: "#F8F8F6" }}>
+      <section id="pricing" className="py-20 md:py-28 px-4" style={{ background: "#FAFAFA" }}>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6366F1" }}>Pricing</p>
-            <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "var(--font-outfit), 'Outfit', sans-serif", color: "#0F172A" }}>
+            <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>
               Start free, upgrade when you need more
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {/* Free */}
-            <div className="bg-white rounded-2xl border border-[#E2E1DC] p-8">
-              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#7A7F94" }}>Free</p>
-              <p className="text-4xl font-extrabold mb-1" style={{ fontFamily: "var(--font-outfit), 'Outfit', sans-serif", color: "#0F172A" }}>
+            <div className="bg-white rounded-2xl border border-[#E2E8F0] p-8">
+              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#64748B" }}>Free</p>
+              <p className="text-4xl font-extrabold mb-1" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>
                 &euro;0
               </p>
-              <p className="text-sm mb-6" style={{ color: "#7A7F94" }}>No credit card required</p>
+              <p className="text-sm mb-6" style={{ color: "#64748B" }}>No credit card required</p>
               <ul className="space-y-3 mb-8">
                 {["3 AI generations / month", "AI CV Adapter", "Cover letter generator", "Application tracker", "Country intelligence guides"].map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm" style={{ color: "#3D4255" }}>
+                  <li key={f} className="flex items-center gap-2 text-sm" style={{ color: "#1E293B" }}>
                     <span style={{ color: "#6366F1" }} className="font-bold">&#10003;</span>
                     {f}
                   </li>
@@ -226,7 +226,7 @@ export default function HomePage() {
               </ul>
               <Link
                 href="/auth/signup"
-                className="block text-center font-semibold text-sm px-6 py-3 rounded-xl border border-[#E2E1DC] hover:border-[#6366F1] hover:bg-[#EEF2FF] transition-all"
+                className="block text-center font-semibold text-sm px-6 py-3 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] hover:bg-[#EEF2FF] transition-all"
                 style={{ color: "#0F172A" }}
               >
                 Start free
@@ -239,7 +239,7 @@ export default function HomePage() {
                 <Image src="/STAR.png" alt="" width={80} height={80} style={{ filter: "invert(1)" }} />
               </div>
               <p className="text-xs font-bold uppercase tracking-widest mb-1 text-white/60">Pro</p>
-              <p className="text-4xl font-extrabold mb-1" style={{ fontFamily: "var(--font-outfit), 'Outfit', sans-serif" }}>
+              <p className="text-4xl font-extrabold mb-1" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif" }}>
                 &euro;9<span className="text-base font-normal text-white/50"> / month</span>
               </p>
               <p className="text-sm mb-6 text-white/60">Cancel anytime</p>
@@ -268,16 +268,16 @@ export default function HomePage() {
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6366F1" }}>FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "var(--font-outfit), 'Outfit', sans-serif", color: "#0F172A" }}>
+            <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>
               Frequently asked questions
             </h2>
           </div>
 
           <div className="space-y-6">
             {FAQS.map((faq) => (
-              <div key={faq.q} className="rounded-xl border border-[#E2E1DC] p-6">
+              <div key={faq.q} className="rounded-xl border border-[#E2E8F0] p-6">
                 <h3 className="font-bold mb-2" style={{ color: "#0F172A" }}>{faq.q}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#7A7F94" }}>{faq.a}</p>
+                <p className="text-sm leading-relaxed" style={{ color: "#64748B" }}>{faq.a}</p>
               </div>
             ))}
           </div>
@@ -290,7 +290,7 @@ export default function HomePage() {
           <Image src="/STAR.png" alt="" fill className="object-contain" style={{ filter: "invert(1)" }} />
         </div>
         <div className="relative max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "var(--font-outfit), 'Outfit', sans-serif" }}>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif" }}>
             Ready to land your next role in Europe?
           </h2>
           <p className="text-white/50 mb-8 text-lg">

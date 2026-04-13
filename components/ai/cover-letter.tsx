@@ -126,7 +126,7 @@ export function CoverLetter({ application, profile, onUpdate, onCreditUsed }: Co
               onClick={() => setTone(t.id)}
               className={`flex-1 text-xs py-1.5 px-2 rounded-md border font-medium transition-colors ${
                 tone === t.id
-                  ? "bg-[#636DF5] text-white border-[#636DF5]"
+                  ? "bg-[#6366F1] text-white border-[#6366F1]"
                   : "bg-white text-gray-600 border-gray-200 hover:border-gray-300"
               }`}
             >
@@ -170,7 +170,7 @@ export function CoverLetter({ application, profile, onUpdate, onCreditUsed }: Co
       <Button
         onClick={() => generate(false)}
         disabled={streaming}
-        className="w-full bg-[#636DF5] hover:bg-[#4F58E0] text-white gap-2 h-9"
+        className="w-full bg-[#6366F1] hover:bg-[#4F46E5] text-white gap-2 h-9"
         size="sm"
       >
         <Wand2 className="h-3.5 w-3.5" />

@@ -111,24 +111,24 @@ export default function DashboardPage() {
 
   if (loading) {
           return (
-                    <div className="min-h-screen flex items-center justify-center" style={{ background: "#F8F8F6" }}>
+                    <div className="min-h-screen flex items-center justify-center" style={{ background: "#FAFAFA" }}>
                                 <div className="flex flex-col items-center gap-3">
                                           <Image src="/STAR.png" alt="" width={40} height={40} className="animate-slow-spin opacity-40" />
-                                          <p className="text-sm" style={{ color: "#7A7F94" }}>Loading…</p>
+                                          <p className="text-sm" style={{ color: "#64748B" }}>Loading…</p>
                                 </div>
                     </div>
                   );
   }
     
       return (
-              <div className="min-h-screen flex" style={{ background: "#F8F8F6" }}>
+              <div className="min-h-screen flex" style={{ background: "#FAFAFA" }}>
                   {/* ── SIDEBAR ── */}
                   {sidebarOpen && (
                           <div className="fixed inset-0 z-40 bg-black/40 lg:hidden" onClick={() => setSidebarOpen(false)} />
                         )}
                     <aside
                                 className={`fixed lg:static inset-y-0 left-0 z-50 w-64 flex flex-col justify-between transition-transform lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
-                                style={{ background: "#0F1629" }}
+                                style={{ background: "#0F172A" }}
                               >
                             <div className="absolute bottom-0 right-0 pointer-events-none select-none opacity-[0.025]">
                                       <Image src="/STAR.png" alt="" width={120} height={120} style={{ filter: "invert(1)" }} />
@@ -150,15 +150,15 @@ export default function DashboardPage() {
                                               ))}
                                       </nav>
                                 {/* AI Credits card */}
-                                      <div className="mx-3 mb-4 p-4 rounded-xl relative overflow-hidden" style={{ background: "linear-gradient(135deg, #636DF5, #7C3AED)" }}>
+                                      <div className="mx-3 mb-4 p-4 rounded-xl relative overflow-hidden" style={{ background: "linear-gradient(135deg, #6366F1, #7C3AED)" }}>
                                                   <div className="absolute top-1 right-1 opacity-[0.07]">
                                                                 <Image src="/STAR.png" alt="" width={48} height={48} style={{ filter: "invert(1)" }} />
                                                   </div>
                                                   <p className="text-xs font-bold text-white/70 uppercase tracking-widest mb-1">AI Credits</p>
                                                   {userPlan === "pro" ? (
-                                                    <p className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>Unlimited</p>
+                                                    <p className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>Unlimited</p>
                                                   ) : (
-                                                    <p className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>3 <span className="text-sm font-normal text-white/50">/ month</span></p>
+                                                    <p className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>3 <span className="text-sm font-normal text-white/50">/ month</span></p>
                                                   )}
                                                   <div className="w-full h-1.5 rounded-full bg-white/20 mb-3">
                                                                 <div className="h-1.5 rounded-full bg-white" style={{ width: userPlan === "pro" ? "100%" : `${Math.min(((stats.aiGenerations ?? 0) / 3) * 100, 100)}%` }} />
@@ -175,25 +175,25 @@ export default function DashboardPage() {
                   {/* ── MAIN ── */}
                     <div className="flex-1 flex flex-col min-w-0">
                         {/* Top bar */}
-                            <header className="bg-white border-b border-[#E2E1DC] px-6 py-4 flex items-center justify-between sticky top-0 z-30">
+                            <header className="bg-white border-b border-[#E2E8F0] px-6 py-4 flex items-center justify-between sticky top-0 z-30">
                                       <div className="flex items-center gap-3">
                                                   <button
                                                                     onClick={() => setSidebarOpen(!sidebarOpen)}
-                                                                    className="lg:hidden p-1.5 rounded-lg hover:bg-[#F8F8F6] transition-colors"
-                                                                    style={{ color: "#3D4255" }}
+                                                                    className="lg:hidden p-1.5 rounded-lg hover:bg-[#FAFAFA] transition-colors"
+                                                                    style={{ color: "#1E293B" }}
                                                                   >
                                                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
                                                   </button>
-                                                  <h1 className="font-bold text-lg" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Dashboard</h1>
+                                                  <h1 className="font-bold text-lg" style={{ fontFamily: "'Sora', sans-serif", color: "#0F172A" }}>Dashboard</h1>
                                       </div>
                                       <div className="flex items-center gap-3">
-                                                  <span className="text-sm hidden sm:block" style={{ color: "#7A7F94" }}>{user?.email}</span>
+                                                  <span className="text-sm hidden sm:block" style={{ color: "#64748B" }}>{user?.email}</span>
                                                   <Button
                                                                     variant="outline"
                                                                     size="sm"
                                                                     onClick={handleSignOut}
-                                                                    className="rounded-lg border-[#E2E1DC] text-sm font-medium hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-all"
-                                                                    style={{ color: "#3D4255" }}
+                                                                    className="rounded-lg border-[#E2E8F0] text-sm font-medium hover:border-[#6366F1] hover:bg-[#EEF2FF] transition-all"
+                                                                    style={{ color: "#1E293B" }}
                                                                   >
                                                                 Sign out
                                                   </Button>
@@ -232,27 +232,27 @@ export default function DashboardPage() {
 
                                 {/* Welcome */}
                                       <div className="mb-8 animate-fade-up">
-                                                  <h2 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Welcome back 👋</h2>
-                                                  <p className="text-sm" style={{ color: "#7A7F94" }}>Here&apos;s your EuroCareer AI overview</p>
+                                                  <h2 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Sora', sans-serif", color: "#0F172A" }}>Welcome back 👋</h2>
+                                                  <p className="text-sm" style={{ color: "#64748B" }}>Here&apos;s your EuroCareer AI overview</p>
                                       </div>
                             
                                 {/* Stats */}
                                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                                           {[
-                  { label: "Total", value: stats.applications, icon: "📋", color: "#636DF5" },
+                  { label: "Total", value: stats.applications, icon: "📋", color: "#6366F1" },
                   { label: "Interviews", value: stats.interviews, icon: "🎤", color: "#7C3AED" },
                   { label: "Offers", value: stats.offers, icon: "🎯", color: "#16A34A" },
-                  { label: "AI Credits", value: stats.aiGenerations ?? 0, icon: null, color: "#636DF5", star: true, isPro: userPlan === "pro" },
+                  { label: "AI Credits", value: stats.aiGenerations ?? 0, icon: null, color: "#6366F1", star: true, isPro: userPlan === "pro" },
                               ].map((stat) => (
-                                                <div key={stat.label} className="bg-white rounded-2xl border border-[#E2E1DC] p-5 flex items-center gap-3 hover:border-[#636DF5] hover:shadow-sm transition-all">
+                                                <div key={stat.label} className="bg-white rounded-2xl border border-[#E2E8F0] p-5 flex items-center gap-3 hover:border-[#6366F1] hover:shadow-sm transition-all">
                                                     {stat.star ? (
                                                                       <Image src="/STAR.png" alt="" width={28} height={28} style={{ opacity: 0.5 }} />
                                                                     ) : (
                                                                       <span className="text-2xl">{stat.icon}</span>
                                                                 )}
                                                                 <div>
-                                                                  <p className="text-2xl font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>{stat.label === "AI Credits" ? (stat.isPro ? `${stat.value}` : `${stat.value} of 3`) : stat.value}</p>
-                                                                  <p className="text-xs" style={{ color: "#7A7F94" }}>{stat.label === "AI Credits" ? (stat.isPro ? "Unlimited AI credits" : "AI Credits used this month") : stat.label}</p>
+                                                                  <p className="text-2xl font-bold" style={{ fontFamily: "'Sora', sans-serif", color: "#0F172A" }}>{stat.label === "AI Credits" ? (stat.isPro ? `${stat.value}` : `${stat.value} of 3`) : stat.value}</p>
+                                                                  <p className="text-xs" style={{ color: "#64748B" }}>{stat.label === "AI Credits" ? (stat.isPro ? "Unlimited AI credits" : "AI Credits used this month") : stat.label}</p>
                                                                 </div>
                                                 </div>
                                               ))}
@@ -260,11 +260,11 @@ export default function DashboardPage() {
 
                                 {/* Issue #12: New user onboarding */}
                                 {stats.applications === 0 && (
-                                  <div className="mb-6 p-6 rounded-2xl border border-[#636DF5]/30" style={{ background: "linear-gradient(135deg, #EEEFFE 0%, #F8F8FF 100%)" }}>
-                                    <h2 className="font-bold text-lg mb-1" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>
+                                  <div className="mb-6 p-6 rounded-2xl border border-[#6366F1]/30" style={{ background: "linear-gradient(135deg, #EEF2FF 0%, #F8F8FF 100%)" }}>
+                                    <h2 className="font-bold text-lg mb-1" style={{ fontFamily: "'Sora', sans-serif", color: "#0F172A" }}>
                                       Welcome to EuroCareerAI — let&apos;s get started!
                                     </h2>
-                                    <p className="text-sm mb-4" style={{ color: "#7A7F94" }}>
+                                    <p className="text-sm mb-4" style={{ color: "#64748B" }}>
                                       Complete these three steps to get the most out of EuroCareer AI.
                                     </p>
                                     <div className="space-y-3">
@@ -273,10 +273,10 @@ export default function DashboardPage() {
                                         { step: 2, label: "Adapt your CV for your target country", href: "/applications" },
                                         { step: 3, label: "Generate a tailored cover letter", href: "/applications" },
                                       ].map(({ step, label, href }) => (
-                                        <a key={step} href={href} className="flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-[#F8F8F6] transition-colors border border-[#E2E1DC] group">
-                                          <span className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold text-white" style={{ background: "#636DF5" }}>{step}</span>
-                                          <span className="text-sm font-medium" style={{ color: "#0F1629" }}>{label}</span>
-                                          <svg className="ml-auto w-4 h-4 text-[#7A7F94] group-hover:text-[#636DF5] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                                        <a key={step} href={href} className="flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-[#FAFAFA] transition-colors border border-[#E2E8F0] group">
+                                          <span className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold text-white" style={{ background: "#6366F1" }}>{step}</span>
+                                          <span className="text-sm font-medium" style={{ color: "#0F172A" }}>{label}</span>
+                                          <svg className="ml-auto w-4 h-4 text-[#64748B] group-hover:text-[#6366F1] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                                         </a>
                                       ))}
                                     </div>
@@ -284,22 +284,22 @@ export default function DashboardPage() {
                                 )}
 
                                 {/* Quick actions */}
-                                      <div className="bg-white rounded-2xl border border-[#E2E1DC] p-6 mb-6">
+                                      <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6 mb-6">
                                                   <div className="flex items-center gap-2 mb-5">
                                                                 <Image src="/STAR.png" alt="" width={16} height={16} style={{ opacity: 0.5 }} />
-                                                                <h3 className="font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Quick actions</h3>
+                                                                <h3 className="font-bold" style={{ fontFamily: "'Sora', sans-serif", color: "#0F172A" }}>Quick actions</h3>
                                                   </div>
                                                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                                       {QUICK_ACTIONS.map((action) => (
                                   <Link
                                                         key={action.label}
                                                         href={action.href}
-                                                        className="flex items-center gap-3 p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-all group"
+                                                        className="flex items-center gap-3 p-4 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] hover:bg-[#EEF2FF] transition-all group"
                                                       >
                                                     <span className="text-2xl">{action.emoji}</span>
                                                     <div>
-                                                                        <p className="font-semibold text-sm transition-colors" style={{ color: "#0F1629", fontFamily: "'Outfit', sans-serif" }}>{action.label}</p>
-                                                                        <p className="text-xs" style={{ color: "#7A7F94" }}>{action.desc}</p>
+                                                                        <p className="font-semibold text-sm transition-colors" style={{ color: "#0F172A", fontFamily: "'Sora', sans-serif" }}>{action.label}</p>
+                                                                        <p className="text-xs" style={{ color: "#64748B" }}>{action.desc}</p>
                                                     </div>
                                   </Link>
                                 ))}
@@ -307,19 +307,19 @@ export default function DashboardPage() {
                                       </div>
                             
                                 {/* Recent applications link */}
-                                      <div className="bg-white rounded-2xl border border-[#E2E1DC] p-6">
+                                      <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6">
                                                   <div className="flex items-center justify-between mb-4">
-                                                                <h3 className="font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Applications</h3>
-                                                                <Link href="/applications" className="text-sm font-medium hover:underline" style={{ color: "#636DF5" }}>View all →</Link>
+                                                                <h3 className="font-bold" style={{ fontFamily: "'Sora', sans-serif", color: "#0F172A" }}>Applications</h3>
+                                                                <Link href="/applications" className="text-sm font-medium hover:underline" style={{ color: "#6366F1" }}>View all →</Link>
                                                   </div>
                                           {stats.applications === 0 ? (
                                 <div className="flex flex-col items-center py-8 gap-3">
                                                 <Image src="/STAR.png" alt="" width={36} height={36} className="opacity-10" />
-                                                <p className="text-sm" style={{ color: "#B0B4C5" }}>No applications yet</p>
-                                                <Link href="/applications" className="text-sm font-semibold px-4 py-2 rounded-lg text-white transition-all hover:-translate-y-0.5" style={{ background: "#636DF5" }}>Add your first →</Link>
+                                                <p className="text-sm" style={{ color: "#64748B" }}>No applications yet</p>
+                                                <Link href="/applications" className="text-sm font-semibold px-4 py-2 rounded-lg text-white transition-all hover:-translate-y-0.5" style={{ background: "#6366F1" }}>Add your first →</Link>
                                 </div>
                               ) : (
-                                <p className="text-sm" style={{ color: "#7A7F94" }}>You have {stats.applications} application{stats.applications !== 1 ? "s" : ""} tracked. <Link href="/applications" className="hover:underline font-medium" style={{ color: "#636DF5" }}>View them →</Link></p>
+                                <p className="text-sm" style={{ color: "#64748B" }}>You have {stats.applications} application{stats.applications !== 1 ? "s" : ""} tracked. <Link href="/applications" className="hover:underline font-medium" style={{ color: "#6366F1" }}>View them →</Link></p>
                                                   )}
                                       </div>
                             </main>

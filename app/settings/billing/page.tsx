@@ -211,7 +211,7 @@ function BillingContent() {
             <Button
               onClick={handleUpgrade}
               disabled={checkoutLoading}
-              className="bg-[#636DF5] hover:bg-[#4F58E0] text-white gap-2"
+              className="bg-[#6366F1] hover:bg-[#4F46E5] text-white gap-2"
             >
               <CreditCard className="h-4 w-4" />
               {checkoutLoading ? "Redirecting…" : "Upgrade to Pro — €9/month"}

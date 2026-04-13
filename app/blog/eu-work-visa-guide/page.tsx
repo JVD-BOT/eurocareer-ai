@@ -31,55 +31,55 @@ export default function EUWorkVisaGuide() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <nav aria-label="breadcrumb">
-        <div className="flex items-center gap-2 text-sm text-[#7A7F94] mb-8">
-          <Link href="/" className="hover:text-[#636DF5] transition-colors">Home</Link>
+        <div className="flex items-center gap-2 text-sm text-[#64748B] mb-8">
+          <Link href="/" className="hover:text-[#6366F1] transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/blog" className="hover:text-[#636DF5] transition-colors">Guides</Link>
+          <Link href="/blog" className="hover:text-[#6366F1] transition-colors">Guides</Link>
           <span>/</span>
-          <span className="text-[#0F1629]">EU Work Visa Guide</span>
+          <span className="text-[#0F172A]">EU Work Visa Guide</span>
         </div>
       </nav>
 
       <div className="mb-12">
         <div className="flex items-center gap-3 mb-4">
           <span className="text-sm font-medium text-indigo-600 uppercase tracking-wide">Visa Guide</span>
-          <span className="text-sm text-[#7A7F94]">Last updated: April 2026</span>
-          <span className="text-sm text-[#7A7F94]">&middot; ~8 min read</span>
+          <span className="text-sm text-[#64748B]">Last updated: April 2026</span>
+          <span className="text-sm text-[#64748B]">&middot; ~8 min read</span>
         </div>
-        <h1 className="mt-3 text-3xl font-bold text-[#0F1629] leading-tight">
+        <h1 className="mt-3 text-3xl font-bold text-[#0F172A] leading-tight">
           EU Work Visa Guide for Non-EU Nationals in 2026
         </h1>
-        <p className="mt-4 text-[#3D4255] text-lg">
+        <p className="mt-4 text-[#1E293B] text-lg">
           A practical guide to working in Europe legally. Covers visa types, work permits, the EU Blue Card, and what you need to know before you apply.
         </p>
       </div>
 
       <div className="prose prose-slate max-w-none space-y-6">
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Do you need a visa to work in Europe?</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Do you need a visa to work in Europe?</h2>
         <p className="text-slate-600 leading-relaxed">
           EU and EEA citizens (including Norway, Iceland, and Liechtenstein) have the right to work freely in all EU member states. Citizens of Switzerland also have extensive rights. If you are from outside these zones, you will generally need a work permit and/or visa to legally work in Europe. The exact requirements vary significantly by country.
         </p>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">The EU Blue Card</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">The EU Blue Card</h2>
         <p className="text-slate-600 leading-relaxed">
           The EU Blue Card is a work and residence permit for highly skilled non-EU workers. It is the most widely recognised pathway for skilled professionals. Key requirements include a job offer meeting a minimum salary threshold (varies by country), a recognised university degree or equivalent qualification, and a contract of at least six months. The Blue Card allows holders to move to a new EU country after 12 months.
         </p>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Country-specific pathways</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Country-specific pathways</h2>
         <ul className="text-slate-600 space-y-2 list-disc list-inside">
-          <li><strong className="text-[#0F1629]">Germany:</strong> The German Fachkräfteeinwanderungsgesetz (Skilled Immigration Act) is one of the most comprehensive. The Opportunity Card (Chancenkarte) allows skilled workers to enter Germany to seek employment. The EU Blue Card is also widely used.</li>
-          <li><strong className="text-[#0F1629]">Netherlands:</strong> The Highly Skilled Migrant programme (Kennismigrant) is employer-sponsored and requires a minimum salary. The Netherlands also offers an orientation visa for graduates and freelancers.</li>
-          <li><strong className="text-[#0F1629]">France:</strong> The Passeport Talent programme covers multiple categories including highly skilled workers, researchers, and investors. A job offer from a French employer is typically required.</li>
-          <li><strong className="text-[#0F1629]">Ireland:</strong> The Critical Skills Employment Permit is available for roles on Ireland's Critical Skills Occupations List. The General Employment Permit covers other roles. Ireland is English-speaking, which makes it attractive to many applicants.</li>
-          <li><strong className="text-[#0F1629]">Spain:</strong> Spain's Ley de Startups introduced a digital nomad visa in 2023. Traditional work permits require employer sponsorship. Spain also has a highly skilled worker fast-track.</li>
+          <li><strong className="text-[#0F172A]">Germany:</strong> The German Fachkräfteeinwanderungsgesetz (Skilled Immigration Act) is one of the most comprehensive. The Opportunity Card (Chancenkarte) allows skilled workers to enter Germany to seek employment. The EU Blue Card is also widely used.</li>
+          <li><strong className="text-[#0F172A]">Netherlands:</strong> The Highly Skilled Migrant programme (Kennismigrant) is employer-sponsored and requires a minimum salary. The Netherlands also offers an orientation visa for graduates and freelancers.</li>
+          <li><strong className="text-[#0F172A]">France:</strong> The Passeport Talent programme covers multiple categories including highly skilled workers, researchers, and investors. A job offer from a French employer is typically required.</li>
+          <li><strong className="text-[#0F172A]">Ireland:</strong> The Critical Skills Employment Permit is available for roles on Ireland's Critical Skills Occupations List. The General Employment Permit covers other roles. Ireland is English-speaking, which makes it attractive to many applicants.</li>
+          <li><strong className="text-[#0F172A]">Spain:</strong> Spain's Ley de Startups introduced a digital nomad visa in 2023. Traditional work permits require employer sponsorship. Spain also has a highly skilled worker fast-track.</li>
         </ul>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">The job seeker visa</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">The job seeker visa</h2>
         <p className="text-slate-600 leading-relaxed">
           Several European countries offer job seeker visas that allow you to enter and look for work for a fixed period (typically three to six months) without a job offer in hand. Germany, Austria, Denmark, and Portugal all offer versions of this. Requirements vary — you typically need to demonstrate qualifications, language skills, and sufficient funds.
         </p>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Practical steps to take</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Practical steps to take</h2>
         <ul className="text-slate-600 space-y-2 list-disc list-inside">
           <li>Research the specific requirements for your target country — immigration law changes frequently</li>
           <li>Get your qualifications recognised if necessary — some countries require formal recognition of foreign degrees</li>
@@ -100,23 +100,23 @@ export default function EUWorkVisaGuide() {
           </Link>
         </div>
 
-        <div className="mt-12 border-t border-[#E2E1DC] pt-8">
-          <h2 className="text-lg font-semibold text-[#0F1629] mb-4">Related guides</h2>
+        <div className="mt-12 border-t border-[#E2E8F0] pt-8">
+          <h2 className="text-lg font-semibold text-[#0F172A] mb-4">Related guides</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Link href="/blog/german-cv-format" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+            <Link href="/blog/german-cv-format" className="p-4 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] transition-colors">
               <span className="text-2xl">de</span>
-              <p className="mt-2 text-sm font-semibold text-[#0F1629]">German CV Format</p>
-              <p className="text-xs text-[#7A7F94] mt-1">Largest EU job market</p>
+              <p className="mt-2 text-sm font-semibold text-[#0F172A]">German CV Format</p>
+              <p className="text-xs text-[#64748B] mt-1">Largest EU job market</p>
             </Link>
-            <Link href="/blog/netherlands-job-search" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+            <Link href="/blog/netherlands-job-search" className="p-4 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] transition-colors">
               <span className="text-2xl">nl</span>
-              <p className="mt-2 text-sm font-semibold text-[#0F1629]">Job Search Netherlands</p>
-              <p className="text-xs text-[#7A7F94] mt-1">Finding work in Holland</p>
+              <p className="mt-2 text-sm font-semibold text-[#0F172A]">Job Search Netherlands</p>
+              <p className="text-xs text-[#64748B] mt-1">Finding work in Holland</p>
             </Link>
-            <Link href="/blog/eu-vs-us-resume" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+            <Link href="/blog/eu-vs-us-resume" className="p-4 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] transition-colors">
               <span className="text-2xl">eu</span>
-              <p className="mt-2 text-sm font-semibold text-[#0F1629]">EU vs US Resume</p>
-              <p className="text-xs text-[#7A7F94] mt-1">Key differences</p>
+              <p className="mt-2 text-sm font-semibold text-[#0F172A]">EU vs US Resume</p>
+              <p className="text-xs text-[#64748B] mt-1">Key differences</p>
             </Link>
           </div>
         </div>

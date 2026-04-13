@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -17,7 +17,13 @@ export default function SignupPage() {
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [isPro, setIsPro] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const plan = new URLSearchParams(window.location.search).get("plan");
+    setIsPro(plan === "pro");
+  }, []);
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,18 +71,18 @@ export default function SignupPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6" style={{ background: "#F8F8F6" }}>
+      <div className="min-h-screen flex items-center justify-center p-6" style={{ background: "#FAFAFA" }}>
         <div className="w-full max-w-md text-center space-y-4">
-          <div className="mx-auto mb-4 w-16 h-16 rounded-full flex items-center justify-center" style={{ background: "#EEEFFE" }}>
-            <svg className="w-8 h-8" style={{ color: "#636DF5" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="mx-auto mb-4 w-16 h-16 rounded-full flex items-center justify-center" style={{ background: "#EEF2FF" }}>
+            <svg className="w-8 h-8" style={{ color: "#6366F1" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Check your email</h1>
-          <p className="text-sm" style={{ color: "#7A7F94" }}>
-            We sent a confirmation link to <strong style={{ color: "#3D4255" }}>{email}</strong>. Click it to activate your account.
+          <h1 className="text-2xl font-bold" style={{ fontFamily: "'Sora', sans-serif", color: "#0F172A" }}>Check your email</h1>
+          <p className="text-sm" style={{ color: "#64748B" }}>
+            We sent a confirmation link to <strong style={{ color: "#1E293B" }}>{email}</strong>. Click it to activate your account.
           </p>
-          <Link href="/auth/login" className="text-sm font-semibold hover:underline" style={{ color: "#636DF5" }}>
+          <Link href="/auth/login" className="text-sm font-semibold hover:underline" style={{ color: "#6366F1" }}>
             Back to sign in
           </Link>
         </div>
@@ -85,8 +91,8 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row" style={{ background: "#F8F8F6" }}>
-      <div className="hidden lg:flex lg:w-1/2 flex-col justify-between p-12 relative overflow-hidden" style={{ background: "#0F1629" }}>
+    <div className="min-h-screen flex flex-col lg:flex-row" style={{ background: "#FAFAFA" }}>
+      <div className="hidden lg:flex lg:w-1/2 flex-col justify-between p-12 relative overflow-hidden" style={{ background: "#0F172A" }}>
         <div className="absolute inset-0 pointer-events-none select-none opacity-[0.03]">
           <Image src="/STAR.png" alt="" fill className="object-contain" style={{ filter: "invert(1)" }} />
         </div>
@@ -94,14 +100,14 @@ export default function SignupPage() {
           <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto brightness-0 invert" />
         </Link>
         <div className="relative z-10 space-y-4">
-          <p className="text-3xl font-bold leading-tight" style={{ fontFamily: "'Outfit', sans-serif", color: "#FFFFFF" }}>
+          <p className="text-3xl font-bold leading-tight" style={{ fontFamily: "'Sora', sans-serif", color: "#FFFFFF" }}>
             Your career across<br />Europe, simplified.
           </p>
-          <p className="text-sm leading-relaxed" style={{ color: "#7A7F94" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "#64748B" }}>
             AI-powered CV adaptation, cover letters, and application tracking.
           </p>
         </div>
-        <p className="relative z-10 text-xs" style={{ color: "#7A7F94" }}>&copy; 2026 EuroCareer AI</p>
+        <p className="relative z-10 text-xs" style={{ color: "#64748B" }}>&copy; 2026 EuroCareer AI</p>
       </div>
 
       <div className="flex-1 flex items-center justify-center p-6 lg:p-12">
@@ -109,14 +115,16 @@ export default function SignupPage() {
           <div className="lg:hidden flex justify-center mb-8">
             <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" />
           </div>
-          <Link href="/" className="inline-flex items-center gap-1 text-sm mb-8 transition-colors" style={{ color: "#7A7F94" }}>
+          <Link href="/" className="inline-flex items-center gap-1 text-sm mb-8 transition-colors" style={{ color: "#64748B" }}>
             &larr; Back to home
           </Link>
-          <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "’Outfit’, sans-serif", color: "#0F1629" }}>
-            Join EuroCareer AI
+          <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>
+            {isPro ? "Upgrade to EuroCareerAI Pro" : "Join EuroCareerAI"}
           </h1>
-          <p className="text-sm mb-8" style={{ color: "#7A7F94" }}>
-            Join EuroCareerAI — it&apos;s free
+          <p className="text-sm mb-8" style={{ color: "#64748B" }}>
+            {isPro
+              ? "Create your account to continue to Stripe checkout — \u20AC9/month, cancel anytime."
+              : "3 free AI generations per month. No credit card required."}
           </p>
           {error && (
             <div className="mb-5 text-sm px-4 py-3 rounded-xl border" style={{ background: "#FEE2E2", borderColor: "#FECACA", color: "#DC2626" }}>
@@ -134,23 +142,23 @@ export default function SignupPage() {
             )}
           </Button>
           <div className="relative mb-4">
-            <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-[#E2E1DC]" /></div>
-            <div className="relative flex justify-center text-xs uppercase"><span className="px-2 text-[#B0B4C5]" style={{ background: "#F8F8F6" }}>or</span></div>
+            <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-[#E2E8F0]" /></div>
+            <div className="relative flex justify-center text-xs uppercase"><span className="px-2 text-[#64748B]" style={{ background: "#FAFAFA" }}>or</span></div>
           </div>
           <form onSubmit={handleSignup} className="space-y-4">
             <div className="text-left space-y-1">
-              <Label htmlFor="email" className="text-sm font-medium" style={{ color: "#3D4255" }}>Email</Label>
-              <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-11 rounded-xl" style={{ borderColor: "#E2E1DC" }} />
+              <Label htmlFor="email" className="text-sm font-medium" style={{ color: "#1E293B" }}>Email</Label>
+              <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-11 rounded-xl" style={{ borderColor: "#E2E8F0" }} />
             </div>
             <div className="text-left space-y-1">
-              <Label htmlFor="password" className="text-sm font-medium" style={{ color: "#3D4255" }}>Password</Label>
-              <Input id="password" type="password" placeholder="Min. 6 characters" value={password} onChange={(e) => setPassword(e.target.value)} required className="h-11 rounded-xl" style={{ borderColor: "#E2E1DC" }} />
+              <Label htmlFor="password" className="text-sm font-medium" style={{ color: "#1E293B" }}>Password</Label>
+              <Input id="password" type="password" placeholder="Min. 6 characters" value={password} onChange={(e) => setPassword(e.target.value)} required className="h-11 rounded-xl" style={{ borderColor: "#E2E8F0" }} />
             </div>
             <div className="text-left space-y-1">
-              <Label htmlFor="confirm" className="text-sm font-medium" style={{ color: "#3D4255" }}>Confirm password</Label>
-              <Input id="confirm" type="password" placeholder="Repeat your password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required className="h-11 rounded-xl" style={{ borderColor: "#E2E1DC" }} />
+              <Label htmlFor="confirm" className="text-sm font-medium" style={{ color: "#1E293B" }}>Confirm password</Label>
+              <Input id="confirm" type="password" placeholder="Repeat your password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required className="h-11 rounded-xl" style={{ borderColor: "#E2E8F0" }} />
             </div>
-            <Button type="submit" className="w-full h-11 font-semibold rounded-xl text-white" style={{ background: "#636DF5" }} disabled={loading}>
+            <Button type="submit" className="w-full h-11 font-semibold rounded-xl text-white" style={{ background: "#6366F1" }} disabled={loading}>
               {loading ? (
                 <span className="flex items-center gap-2">
                   <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
@@ -163,16 +171,16 @@ export default function SignupPage() {
                 </span>
               )}
             </Button>
-            <p className="text-xs text-center" style={{ color: "#7A7F94" }}>
+            <p className="text-xs text-center" style={{ color: "#64748B" }}>
               By signing up you agree to our{" "}
-              <Link href="/terms" className="hover:underline" style={{ color: "#636DF5" }}>Terms</Link>
+              <Link href="/terms" className="hover:underline" style={{ color: "#6366F1" }}>Terms</Link>
               {" "}and{" "}
-              <Link href="/privacy" className="hover:underline" style={{ color: "#636DF5" }}>Privacy Policy</Link>
+              <Link href="/privacy" className="hover:underline" style={{ color: "#6366F1" }}>Privacy Policy</Link>
             </p>
           </form>
-          <p className="text-sm text-center mt-6" style={{ color: "#7A7F94" }}>
+          <p className="text-sm text-center mt-6" style={{ color: "#64748B" }}>
             Already have an account?{" "}
-            <Link href="/auth/login" className="font-semibold hover:underline" style={{ color: "#636DF5" }}>Sign in</Link>
+            <Link href="/auth/login" className="font-semibold hover:underline" style={{ color: "#6366F1" }}>Sign in</Link>
           </p>
         </div>
       </div>

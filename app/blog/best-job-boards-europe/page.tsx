@@ -31,53 +31,53 @@ export default function BestJobBoardsEurope() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <nav aria-label="breadcrumb">
-        <div className="flex items-center gap-2 text-sm text-[#7A7F94] mb-8">
-          <Link href="/" className="hover:text-[#636DF5] transition-colors">Home</Link>
+        <div className="flex items-center gap-2 text-sm text-[#64748B] mb-8">
+          <Link href="/" className="hover:text-[#6366F1] transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/blog" className="hover:text-[#636DF5] transition-colors">Guides</Link>
+          <Link href="/blog" className="hover:text-[#6366F1] transition-colors">Guides</Link>
           <span>/</span>
-          <span className="text-[#0F1629]">Best Job Boards in Europe</span>
+          <span className="text-[#0F172A]">Best Job Boards in Europe</span>
         </div>
       </nav>
 
       <div className="mb-12">
         <div className="flex items-center gap-3 mb-4">
           <span className="text-sm font-medium text-indigo-600 uppercase tracking-wide">Job Search Guide</span>
-          <span className="text-sm text-[#7A7F94]">Last updated: April 2026</span>
-          <span className="text-sm text-[#7A7F94]">&middot; ~7 min read</span>
+          <span className="text-sm text-[#64748B]">Last updated: April 2026</span>
+          <span className="text-sm text-[#64748B]">&middot; ~7 min read</span>
         </div>
-        <h1 className="mt-3 text-3xl font-bold text-[#0F1629] leading-tight">
+        <h1 className="mt-3 text-3xl font-bold text-[#0F172A] leading-tight">
           Best Job Boards in Europe for 2026
         </h1>
-        <p className="mt-4 text-[#3D4255] text-lg">
+        <p className="mt-4 text-[#1E293B] text-lg">
           Whether you are searching across the whole continent or targeting a specific country, here are the best platforms for finding work in Europe.
         </p>
       </div>
 
       <div className="prose prose-slate max-w-none space-y-6">
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Pan-European job boards</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Pan-European job boards</h2>
         <p className="text-slate-600 leading-relaxed">
           These platforms cover multiple European countries and are ideal if you are open to opportunities across borders.
         </p>
         <ul className="text-slate-600 space-y-2 list-disc list-inside">
-          <li><strong className="text-[#0F1629]">LinkedIn:</strong> The dominant professional network across all of Europe. Essential for networking and direct outreach to recruiters. Most roles in tech, finance, and consulting are posted here.</li>
-          <li><strong className="text-[#0F1629]">Indeed Europe:</strong> A reliable aggregator pulling from company career pages, other job boards, and direct listings. Good for volume searches.</li>
-          <li><strong className="text-[#0F1629]">Glassdoor:</strong> Job listings plus company reviews and salary data. Useful for researching employers before applying.</li>
-          <li><strong className="text-[#0F1629]">EuroJobs.com:</strong> Specifically designed for cross-border European job seekers. Covers most EU countries.</li>
-          <li><strong className="text-[#0F1629]">EURES:</strong> The European Job Mobility Portal — run by the EU itself. Free to use and covers all 27 EU member states plus Iceland, Liechtenstein, and Norway.</li>
+          <li><strong className="text-[#0F172A]">LinkedIn:</strong> The dominant professional network across all of Europe. Essential for networking and direct outreach to recruiters. Most roles in tech, finance, and consulting are posted here.</li>
+          <li><strong className="text-[#0F172A]">Indeed Europe:</strong> A reliable aggregator pulling from company career pages, other job boards, and direct listings. Good for volume searches.</li>
+          <li><strong className="text-[#0F172A]">Glassdoor:</strong> Job listings plus company reviews and salary data. Useful for researching employers before applying.</li>
+          <li><strong className="text-[#0F172A]">EuroJobs.com:</strong> Specifically designed for cross-border European job seekers. Covers most EU countries.</li>
+          <li><strong className="text-[#0F172A]">EURES:</strong> The European Job Mobility Portal — run by the EU itself. Free to use and covers all 27 EU member states plus Iceland, Liechtenstein, and Norway.</li>
         </ul>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Country-specific job boards</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Country-specific job boards</h2>
         <ul className="text-slate-600 space-y-2 list-disc list-inside">
-          <li><strong className="text-[#0F1629]">Germany:</strong> StepStone.de, Xing (professional network), Monster.de, Bundesagentur für Arbeit (the national employment agency)</li>
-          <li><strong className="text-[#0F1629]">Netherlands:</strong> Nationale Vacaturebank, Indeed.nl, Monsterboard.nl, Intermediair.nl</li>
-          <li><strong className="text-[#0F1629]">France:</strong> Pôle Emploi, APEC (for executives and graduates), Welcome to the Jungle (popular with startups), Cadremploi</li>
-          <li><strong className="text-[#0F1629]">UK:</strong> Reed.co.uk, Total Jobs, CV-Library, Guardian Jobs (media/public sector), CWJobs (tech)</li>
-          <li><strong className="text-[#0F1629]">Spain:</strong> InfoJobs.net, Infojobs, LinkedIn (very active), Tecnoempleo (tech)</li>
-          <li><strong className="text-[#0F1629]">Sweden:</strong> Arbetsförmedlingen (national employment agency), Jobs.se, LinkedIn (dominant for professionals)</li>
+          <li><strong className="text-[#0F172A]">Germany:</strong> StepStone.de, Xing (professional network), Monster.de, Bundesagentur für Arbeit (the national employment agency)</li>
+          <li><strong className="text-[#0F172A]">Netherlands:</strong> Nationale Vacaturebank, Indeed.nl, Monsterboard.nl, Intermediair.nl</li>
+          <li><strong className="text-[#0F172A]">France:</strong> Pôle Emploi, APEC (for executives and graduates), Welcome to the Jungle (popular with startups), Cadremploi</li>
+          <li><strong className="text-[#0F172A]">UK:</strong> Reed.co.uk, Total Jobs, CV-Library, Guardian Jobs (media/public sector), CWJobs (tech)</li>
+          <li><strong className="text-[#0F172A]">Spain:</strong> InfoJobs.net, Infojobs, LinkedIn (very active), Tecnoempleo (tech)</li>
+          <li><strong className="text-[#0F172A]">Sweden:</strong> Arbetsförmedlingen (national employment agency), Jobs.se, LinkedIn (dominant for professionals)</li>
         </ul>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Tips for international job seekers</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Tips for international job seekers</h2>
         <ul className="text-slate-600 space-y-2 list-disc list-inside">
           <li>Always adapt your CV for the country you are applying to — format, photo expectations, and language norms vary significantly</li>
           <li>Use country-specific job boards in addition to LinkedIn — local boards often list roles not found elsewhere</li>
@@ -86,7 +86,7 @@ export default function BestJobBoardsEurope() {
           <li>Network actively on LinkedIn — many roles in Europe are filled through connections before being publicly posted</li>
         </ul>
 
-        <h2 className="text-xl font-semibold text-[#0F1629] mt-8">Niche platforms worth knowing</h2>
+        <h2 className="text-xl font-semibold text-[#0F172A] mt-8">Niche platforms worth knowing</h2>
         <p className="text-slate-600 leading-relaxed">
           For specific sectors, niche boards often outperform general ones. Sector-specific options include Euractiv for EU policy roles, eLitmus for tech roles in Eastern Europe, Welcome to the Jungle for startup culture, and Dezeen Jobs for design and architecture roles across Europe.
         </p>
@@ -99,23 +99,23 @@ export default function BestJobBoardsEurope() {
           </Link>
         </div>
 
-        <div className="mt-12 border-t border-[#E2E1DC] pt-8">
-          <h2 className="text-lg font-semibold text-[#0F1629] mb-4">Related guides</h2>
+        <div className="mt-12 border-t border-[#E2E8F0] pt-8">
+          <h2 className="text-lg font-semibold text-[#0F172A] mb-4">Related guides</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Link href="/blog/netherlands-job-search" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+            <Link href="/blog/netherlands-job-search" className="p-4 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] transition-colors">
               <span className="text-2xl">nl</span>
-              <p className="mt-2 text-sm font-semibold text-[#0F1629]">Job Search in Netherlands</p>
-              <p className="text-xs text-[#7A7F94] mt-1">Country-specific job search tips</p>
+              <p className="mt-2 text-sm font-semibold text-[#0F172A]">Job Search in Netherlands</p>
+              <p className="text-xs text-[#64748B] mt-1">Country-specific job search tips</p>
             </Link>
-            <Link href="/blog/eu-work-visa-guide" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+            <Link href="/blog/eu-work-visa-guide" className="p-4 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] transition-colors">
               <span className="text-2xl">eu</span>
-              <p className="mt-2 text-sm font-semibold text-[#0F1629]">EU Work Visa Guide</p>
-              <p className="text-xs text-[#7A7F94] mt-1">Working in Europe as a non-EU national</p>
+              <p className="mt-2 text-sm font-semibold text-[#0F172A]">EU Work Visa Guide</p>
+              <p className="text-xs text-[#64748B] mt-1">Working in Europe as a non-EU national</p>
             </Link>
-            <Link href="/blog/eu-vs-us-resume" className="p-4 rounded-xl border border-[#E2E1DC] hover:border-[#636DF5] transition-colors">
+            <Link href="/blog/eu-vs-us-resume" className="p-4 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] transition-colors">
               <span className="text-2xl">eu</span>
-              <p className="mt-2 text-sm font-semibold text-[#0F1629]">EU vs US Resume</p>
-              <p className="text-xs text-[#7A7F94] mt-1">Key differences explained</p>
+              <p className="mt-2 text-sm font-semibold text-[#0F172A]">EU vs US Resume</p>
+              <p className="text-xs text-[#64748B] mt-1">Key differences explained</p>
             </Link>
           </div>
         </div>

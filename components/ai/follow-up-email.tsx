@@ -100,7 +100,7 @@ export function FollowUpEmail({ application, onCreditUsed }: FollowUpEmailProps)
       <Button
         onClick={generate}
         disabled={streaming}
-        className="w-full bg-[#636DF5] hover:bg-[#4F58E0] text-white gap-2 h-9"
+        className="w-full bg-[#6366F1] hover:bg-[#4F46E5] text-white gap-2 h-9"
         size="sm"
       >
         <Wand2 className="h-3.5 w-3.5" />
@@ -127,13 +127,13 @@ export function FollowUpEmail({ application, onCreditUsed }: FollowUpEmailProps)
               {!streaming && (
                 <>
                   {/* Context summary - Issue #17 */}
-                  <div className="mb-4 p-3 rounded-xl border border-[#E2E1DC] text-sm" style={{ background: "#F8F8F6" }}>
-                    <p className="text-[#7A7F94]">
+                  <div className="mb-4 p-3 rounded-xl border border-[#E2E8F0] text-sm" style={{ background: "#FAFAFA" }}>
+                    <p className="text-[#64748B]">
                       Generating for:{" "}
-                      <strong className="text-[#0F1629]">{application.company_name || "Company"}</strong>
+                      <strong className="text-[#0F172A]">{application.company_name || "Company"}</strong>
                       {" — "}
-                      <strong className="text-[#0F1629]">{application.role_title || "Role"}</strong>
-                      {application.created_at ? <span> — Applied: <strong className="text-[#0F1629]">{new Date(application.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</strong></span> : null}
+                      <strong className="text-[#0F172A]">{application.role_title || "Role"}</strong>
+                      {application.created_at ? <span> — Applied: <strong className="text-[#0F172A]">{new Date(application.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</strong></span> : null}
                     </p>
                   </div>
                   <Button variant="outline" size="sm" className="gap-1.5 text-xs w-full" onClick={handleCopy}>

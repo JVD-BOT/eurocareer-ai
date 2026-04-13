@@ -39,7 +39,7 @@ export default function UpgradePage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-center space-y-4 px-6">
         {!error && (
-          <div className="mx-auto w-12 h-12 rounded-full border-4 border-[#636DF5] border-t-transparent animate-spin" />
+          <div className="mx-auto w-12 h-12 rounded-full border-4 border-[#6366F1] border-t-transparent animate-spin" />
         )}
         <p className="text-sm text-muted-foreground">
           {error ? error : "Redirecting to Stripe checkout\u2026"}
@@ -47,7 +47,7 @@ export default function UpgradePage() {
         {error && (
           <button
             onClick={() => router.replace("/dashboard")}
-            className="text-sm font-semibold text-[#636DF5] hover:underline"
+            className="text-sm font-semibold text-[#6366F1] hover:underline"
           >
             Go to dashboard
           </button>

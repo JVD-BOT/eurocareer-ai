@@ -42,10 +42,10 @@ export default function LoginPage() {
   };
 
   return (
-        <div className="min-h-screen flex flex-col lg:flex-row" style={{ background: "#F8F8F6" }}>
+        <div className="min-h-screen flex flex-col lg:flex-row" style={{ background: "#FAFAFA" }}>
 
           {/* ── LEFT BRAND PANEL ── */}
-                <div className="hidden lg:flex lg:w-1/2 flex-col justify-between p-12 relative overflow-hidden" style={{ background: "#0F1629" }}>
+                <div className="hidden lg:flex lg:w-1/2 flex-col justify-between p-12 relative overflow-hidden" style={{ background: "#0F172A" }}>
                           <div className="absolute inset-0 pointer-events-none select-none opacity-[0.03]">
                                     <Image src="/STAR.png" alt="" fill className="object-contain animate-slow-spin" style={{ filter: "invert(1)" }} />
                           </div>
@@ -53,9 +53,9 @@ export default function LoginPage() {
                                   <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={160} height={36} className="h-9 w-auto" style={{ filter: "brightness(0) invert(1)" }} />
                         </Link>
                         <div className="relative space-y-6">
-                                  <h2 className="text-3xl font-bold text-white leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                                  <h2 className="text-3xl font-bold text-white leading-tight" style={{ fontFamily: "'Sora', sans-serif" }}>
                                               Your EU job search,<br />
-                                              <span style={{ background: "linear-gradient(135deg, #636DF5, #7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>powered by AI</span>
+                                              <span style={{ background: "linear-gradient(135deg, #6366F1, #7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>powered by AI</span>
                                   </h2>
                                   <div className="flex flex-wrap gap-2">
                                     {["✨ AI CV Adapter", "🌍 12 Countries", "💌 Cover Letters", "📋 Kanban Tracker"].map((pill) => (
@@ -63,7 +63,7 @@ export default function LoginPage() {
                       ))}
                                   </div>
                         </div>
-                        <p className="relative text-xs" style={{ color: "#7A7F94" }}>© {new Date().getFullYear()} EuroCareer AI</p>
+                        <p className="relative text-xs" style={{ color: "#64748B" }}>© {new Date().getFullYear()} EuroCareer AI</p>
                 </div>
         
           {/* ── RIGHT FORM PANEL ── */}
@@ -73,12 +73,12 @@ export default function LoginPage() {
                                             <Image src="/LOGO_NEW.png" alt="EuroCareer AI" width={140} height={32} className="h-8 w-auto" />
                                 </div>
                       
-                                <Link href="/" className="inline-flex items-center gap-1 text-sm mb-8 transition-colors" style={{ color: "#7A7F94" }}>
+                                <Link href="/" className="inline-flex items-center gap-1 text-sm mb-8 transition-colors" style={{ color: "#64748B" }}>
                                             ← Back to home
                                 </Link>
                       
-                                <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Outfit', sans-serif", color: "#0F1629" }}>Welcome back</h1>
-                                <p className="text-sm mb-8" style={{ color: "#7A7F94" }}>Sign in to your EuroCareer AI account</p>
+                                <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Sora', sans-serif", color: "#0F172A" }}>Welcome back</h1>
+                                <p className="text-sm mb-8" style={{ color: "#64748B" }}>Sign in to your EuroCareer AI account</p>
                       
                         {error && (
                       <div className="mb-5 text-sm px-4 py-3 rounded-xl border" style={{ background: "#FEE2E2", borderColor: "#DC2626", color: "#DC2626" }}>{error}</div>
@@ -87,7 +87,7 @@ export default function LoginPage() {
                                 <Button
                                               type="button"
                                               variant="outline"
-                                              className="w-full h-11 font-medium mb-4 rounded-xl border-[#E2E1DC] hover:border-[#636DF5] hover:bg-[#EEEFFE] transition-all"
+                                              className="w-full h-11 font-medium mb-4 rounded-xl border-[#E2E8F0] hover:border-[#6366F1] hover:bg-[#EEF2FF] transition-all"
                                               onClick={handleGoogleLogin}
                                               disabled={googleLoading || loading}
                                             >
@@ -99,23 +99,23 @@ export default function LoginPage() {
                                 </Button>
                       
                                 <div className="relative mb-4">
-                                            <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-[#E2E1DC]" /></div>
-                                            <div className="relative flex justify-center text-xs uppercase"><span className="px-2 text-[#B0B4C5]" style={{ background: "#F8F8F6" }}>or continue with email</span></div>
+                                            <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-[#E2E8F0]" /></div>
+                                            <div className="relative flex justify-center text-xs uppercase"><span className="px-2 text-[#64748B]" style={{ background: "#FAFAFA" }}>or continue with email</span></div>
                                 </div>
                       
                                 <form onSubmit={handleLogin} className="space-y-4">
                                             <div className="space-y-1.5">
-                                                          <Label htmlFor="email" className="text-sm font-medium" style={{ color: "#3D4255" }}>Email</Label>
-                                                          <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required disabled={loading || googleLoading} className="h-11 rounded-xl border-[#E2E1DC] focus:border-[#636DF5] focus:ring-[#636DF5]/20" />
+                                                          <Label htmlFor="email" className="text-sm font-medium" style={{ color: "#1E293B" }}>Email</Label>
+                                                          <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required disabled={loading || googleLoading} className="h-11 rounded-xl border-[#E2E8F0] focus:border-[#6366F1] focus:ring-[#6366F1]/20" />
                                             </div>
                                             <div className="space-y-1.5">
                                                           <div className="flex items-center justify-between">
-                                                                          <Label htmlFor="password" className="text-sm font-medium" style={{ color: "#3D4255" }}>Password</Label>
-                                                                          <Link href="/auth/forgot-password" className="text-xs hover:underline" style={{ color: "#636DF5" }}>Forgot password?</Link>
+                                                                          <Label htmlFor="password" className="text-sm font-medium" style={{ color: "#1E293B" }}>Password</Label>
+                                                                          <Link href="/auth/forgot-password" className="text-xs hover:underline" style={{ color: "#6366F1" }}>Forgot password?</Link>
                                                           </div>
-                                                          <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required disabled={loading || googleLoading} className="h-11 rounded-xl border-[#E2E1DC] focus:border-[#636DF5] focus:ring-[#636DF5]/20" />
+                                                          <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required disabled={loading || googleLoading} className="h-11 rounded-xl border-[#E2E8F0] focus:border-[#6366F1] focus:ring-[#6366F1]/20" />
                                             </div>
-                                            <Button type="submit" className="w-full h-11 font-semibold rounded-xl text-white transition-all hover:-translate-y-0.5 hover:shadow-md" style={{ background: "#636DF5" }} disabled={loading || googleLoading}>
+                                            <Button type="submit" className="w-full h-11 font-semibold rounded-xl text-white transition-all hover:-translate-y-0.5 hover:shadow-md" style={{ background: "#6366F1" }} disabled={loading || googleLoading}>
                                               {loading ? (
                           <span className="flex items-center gap-2"><svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg>Signing in…</span>
                         ) : (
@@ -124,9 +124,9 @@ export default function LoginPage() {
                                             </Button>
                                 </form>
                       
-                                <p className="text-sm text-center mt-6" style={{ color: "#7A7F94" }}>
+                                <p className="text-sm text-center mt-6" style={{ color: "#64748B" }}>
                                             Don&apos;t have an account?{" "}
-                                            <Link href="/auth/signup" className="font-semibold hover:underline" style={{ color: "#636DF5" }}>Create one free</Link>
+                                            <Link href="/auth/signup" className="font-semibold hover:underline" style={{ color: "#6366F1" }}>Create one free</Link>
                                 </p>
                       </div>
               </div>
