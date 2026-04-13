@@ -11,9 +11,15 @@ export default function AuthCallbackPage() {
     const handleCallback = async () => {
       const params = new URLSearchParams(window.location.search);
       const code = params.get("code");
+      const plan = params.get("plan");
 
       if (code) {
         await supabase.auth.exchangeCodeForSession(code);
+      }
+
+      if (plan === "pro") {
+        router.replace("/auth/upgrade");
+        return;
       }
 
       router.replace("/dashboard");

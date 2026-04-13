@@ -31,10 +31,13 @@ export default function SignupPage() {
       return;
     }
     setLoading(true);
+    const plan = new URLSearchParams(window.location.search).get("plan");
+    const callbackUrl = new URL(window.location.origin + "/auth/callback");
+    if (plan) callbackUrl.searchParams.set("plan", plan);
     const { error } = await supabase.auth.signUp({
       email,
       password,
-      options: { emailRedirectTo: window.location.origin + "/auth/callback" },
+      options: { emailRedirectTo: callbackUrl.toString() },
     });
     if (error) {
       setError(error.message);
@@ -47,9 +50,12 @@ export default function SignupPage() {
   const handleGoogleSignup = async () => {
     setGoogleLoading(true);
     setError("");
+    const plan = new URLSearchParams(window.location.search).get("plan");
+    const callbackUrl = new URL(window.location.origin + "/auth/callback");
+    if (plan) callbackUrl.searchParams.set("plan", plan);
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: window.location.origin + "/auth/callback" },
+      options: { redirectTo: callbackUrl.toString() },
     });
     if (error) {
       setError(error.message);
