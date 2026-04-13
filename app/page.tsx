@@ -252,11 +252,11 @@ export default function HomePage() {
                 ))}
               </ul>
               <Link
-                href="/auth/signup"
+                href="/auth/signup?plan=pro"
                 className="block text-center font-semibold text-sm px-6 py-3 rounded-xl bg-white hover:bg-white/90 transition-all"
                 style={{ color: "#6366F1" }}
               >
-                Start free, upgrade later
+                Upgrade to Pro — &euro;9/month
               </Link>
             </div>
           </div>
