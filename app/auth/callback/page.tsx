@@ -17,6 +17,20 @@ export default function AuthCallbackPage() {
         await supabase.auth.exchangeCodeForSession(code);
       }
 
+      // Fire-and-forget welcome email. Failures must not block the signup flow.
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.access_token) {
+          await fetch("/api/emails/welcome", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ accessToken: session.access_token }),
+          });
+        }
+      } catch {
+        // ignore — email sending is non-blocking
+      }
+
       if (plan === "pro") {
         router.replace("/auth/upgrade");
         return;
