@@ -113,7 +113,7 @@ export default function HomePage() {
           <source src="/hero-loop.mp4" type="video/mp4" />
         </video>
 
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(15,23,42,0.88), rgba(15,23,42,0.78))" }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(15,23,42,0.90), rgba(15,23,42,0.88))" }} />
 
         <div className="relative max-w-5xl mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full border border-white/10 text-white/60 mb-8">
@@ -152,8 +152,9 @@ export default function HomePage() {
           {/* Country pills */}
           <div className="flex flex-wrap justify-center gap-2">
             {COUNTRIES.map((c) => (
-              <span key={c} className="text-xs font-medium px-3 py-1.5 rounded-full border border-white/10 text-white/50">
-                {c}
+              <span key={c} className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full border border-white/10 text-white/50">
+                <span style={{ fontFamily: "'Apple Color Emoji', 'Noto Color Emoji', 'Segoe UI Emoji', 'Twemoji Mozilla', sans-serif" }}>{c.split(' ')[0]}</span>
+                {c.split(' ').slice(1).join(' ')}
               </span>
             ))}
           </div>
