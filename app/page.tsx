@@ -278,6 +278,7 @@ export default function HomePage() {
                   ["Application tracker", "Unlimited — Kanban + list view"],
                   ["AI CV adaptations", "3 / month"],
                   ["Cover letters", "Included in the 3"],
+                  ["Follow-up emails", "—"],
                   ["Country intelligence", "All 12 countries"],
                   ["Export formats", "Copy to clipboard"],
                   ["AI processing", "Standard"],
@@ -347,8 +348,8 @@ export default function HomePage() {
           <div className="space-y-6">
             {FAQS.map((faq) => (
               <div key={faq.q} className="rounded-xl border border-[#E2E8F0] p-6">
-                <h3 className="font-bold mb-2" style={{ color: "#0F172A" }}>{faq.q}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#64748B" }}>{faq.a}</p>
+                <h3 className="font-semibold mb-2" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A", fontSize: "17px" }}>{faq.q}</h3>
+                <p className="leading-relaxed" style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", color: "#64748B", fontSize: "14px" }}>{faq.a}</p>
               </div>
             ))}
           </div>
