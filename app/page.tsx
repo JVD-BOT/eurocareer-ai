@@ -17,23 +17,23 @@ const COUNTRIES = [
 const FEATURES = [
   {
     emoji: "📄",
-    title: "AI CV Adapter",
-    description: "Paste your CV and pick a country. Our AI restructures it to match local norms — photo rules, section order, tone, and formatting.",
+    headline: "German CVs need a photo. UK ones don't. Our AI knows which.",
+    body: "Paste your CV. Pick a country. Get a version that matches local conventions — photo rules, section order, tone, and length. All 12 markets, calibrated.",
   },
   {
     emoji: "💌",
-    title: "Cover Letter Generator",
-    description: "Generate a tailored cover letter in seconds. Choose formal, warm, or casual tone — tuned to each country's business culture.",
+    headline: "Dutch directness. German formality. French lettre de motivation. One tool.",
+    body: "Generate a cover letter tuned to each country's business culture. Pick the tone, regenerate until it fits, save it to the application.",
   },
   {
     emoji: "📋",
-    title: "Application Tracker",
-    description: "Kanban board and list view to manage every application. Drag cards between stages — researching, applied, interview, offer.",
+    headline: "Track applications across 12 countries without spreadsheet chaos.",
+    body: "Kanban board or list view. Drag between stages. See which countries respond fastest. Stay on top of follow-up dates across time zones.",
   },
   {
     emoji: "🌍",
-    title: "Country Intelligence",
-    description: "Hiring norms, visa guidance, and market insights for 12 European countries. Know what employers expect before you apply.",
+    headline: "Know what German recruiters expect before a Dutch one sees your CV.",
+    body: "Hiring norms, CV rules, visa pathways, job boards, and salary ranges for 12 countries. Stop guessing what's different — know.",
   },
 ];
 
@@ -182,15 +182,15 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {FEATURES.map((f) => (
               <div
-                key={f.title}
+                key={f.headline}
                 className="rounded-2xl border border-[#E2E8F0] p-6 hover:border-[#6366F1] hover:shadow-sm transition-all"
               >
                 <span className="text-3xl mb-4 block">{f.emoji}</span>
-                <h3 className="font-bold text-lg mb-2" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>
-                  {f.title}
+                <h3 className="font-semibold mb-2" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A", fontSize: "19px" }}>
+                  {f.headline}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#64748B" }}>
-                  {f.description}
+                <p className="leading-relaxed" style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", color: "#64748B", fontSize: "14px" }}>
+                  {f.body}
                 </p>
               </div>
             ))}
