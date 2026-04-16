@@ -45,6 +45,26 @@ const STEPS = [
 
 const FAQS = [
   {
+    q: "Why not just use ChatGPT?",
+    a: "ChatGPT gives generic advice. We know that German CVs need a photo and date of birth, UK ones don't, French recruiters expect a formal lettre de motivation, and Dutch ones want directness. Our prompts are tuned per country — and your applications are saved, tracked, and refinable over time. ChatGPT won't remember the CV you adapted for Berlin last week.",
+  },
+  {
+    q: "How is this different from Kickresume, Rezi, or Teal?",
+    a: "Those are excellent resume builders, but they assume US or generic conventions. They won't tell you that a German CV should include your date of birth, or that UK recruiters skip the photo. EuroCareerAI is built around 12 country-specific formatting rulebooks — the logic the other tools don't have.",
+  },
+  {
+    q: "I'm already in Europe — is this still for me?",
+    a: "Yes. Cross-border EU moves (e.g. Berlin to Amsterdam, Paris to Stockholm) have the same CV and cover letter adaptation challenges as relocating from outside the EU. Dutch formality is different from German formality. Swedish tone is different from French tone. The tool handles both cross-EU and non-EU moves.",
+  },
+  {
+    q: "Do I need to speak the local language?",
+    a: "No. The tool works in English and generates English-first applications — which is acceptable for most international, tech, startup, and English-speaking EU roles. If you're applying to a Dutch-language-only role, this isn't the right tool.",
+  },
+  {
+    q: "What AI model powers this?",
+    a: "Anthropic's Claude — currently one of the strongest models for structured, instruction-following output. We never train on your data, and your CV isn't retained after processing.",
+  },
+  {
     q: "Which countries are supported?",
     a: "Germany, Netherlands, France, Sweden, Denmark, United Kingdom, Spain, Ireland, Belgium, Austria, Switzerland, and Italy — 12 markets and growing.",
   },
