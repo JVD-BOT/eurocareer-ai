@@ -210,58 +210,107 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {/* Free */}
-            <div className="bg-white rounded-2xl border border-[#E2E8F0] p-8">
-              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#64748B" }}>Free</p>
-              <p className="text-4xl font-extrabold mb-1" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>
-                &euro;0
-              </p>
-              <p className="text-sm mb-6" style={{ color: "#64748B" }}>No credit card required</p>
-              <ul className="space-y-3 mb-8">
-                {["3 AI generations / month", "AI CV Adapter", "Cover letter generator", "Application tracker", "Country intelligence guides"].map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm" style={{ color: "#1E293B" }}>
-                    <span style={{ color: "#6366F1" }} className="font-bold">&#10003;</span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/auth/signup"
-                className="block text-center font-semibold text-sm px-6 py-3 rounded-xl border border-[#E2E8F0] hover:border-[#6366F1] hover:bg-[#EEF2FF] transition-all"
-                style={{ color: "#0F172A" }}
-              >
-                Start free
-              </Link>
-            </div>
-
-            {/* Pro */}
-            <div className="rounded-2xl p-8 relative overflow-hidden text-white" style={{ background: "linear-gradient(135deg, #6366F1, #7C3AED)" }}>
-              <div className="absolute top-2 right-2 opacity-[0.07]">
-                <Image src="/STAR.png" alt="" width={80} height={80} style={{ filter: "invert(1)" }} />
+          {/* Desktop: 3-col comparison table */}
+          <div className="hidden md:block rounded-2xl border border-[#E2E8F0] overflow-hidden">
+            {/* Header row */}
+            <div className="grid" style={{ gridTemplateColumns: "30% 35% 35%" }}>
+              <div className="px-5 py-4 border-b border-[#E2E8F0]" />
+              <div className="px-5 py-4 border-b border-l border-[#E2E8F0]">
+                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", color: "#64748B" }}>Free</p>
+                <p className="text-2xl font-extrabold" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>&euro;0</p>
               </div>
-              <p className="text-xs font-bold uppercase tracking-widest mb-1 text-white/60">Pro</p>
-              <p className="text-4xl font-extrabold mb-1" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif" }}>
-                &euro;9<span className="text-base font-normal text-white/50"> / month</span>
-              </p>
-              <p className="text-sm mb-6 text-white/60">Cancel anytime</p>
-              <ul className="space-y-3 mb-8">
-                {["Unlimited AI generations", "AI CV Adapter", "Cover letter generator", "Follow-up email generator", "Application tracker", "Priority AI processing"].map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-white/90">
-                    <span className="font-bold text-white">&#10003;</span>
-                    {f}
+              <div className="px-5 py-4 border-b border-l border-[#E2E8F0]" style={{ background: "#EEF2FF" }}>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", color: "#6366F1" }}>Pro</p>
+                <p className="text-2xl font-extrabold" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>&euro;9<span className="text-sm font-normal" style={{ color: "#64748B" }}> / month</span></p>
+              </div>
+            </div>
+            {/* Feature rows */}
+            {[
+              { feature: "Application tracker", free: "Unlimited — Kanban + list view", pro: "Unlimited (same)" },
+              { feature: "AI CV adaptations", free: "3 / month", pro: "Unlimited — every country, every app" },
+              { feature: "Cover letters", free: "Included in the 3", pro: "Unlimited + tone control" },
+              { feature: "Follow-up emails", free: "—", pro: "Unlimited — country-adapted formality" },
+              { feature: "Country intelligence", free: "All 12 countries", pro: "All 12 countries" },
+              { feature: "Export formats", free: "Copy to clipboard", pro: "PDF + DOCX export" },
+              { feature: "AI processing", free: "Standard", pro: "Priority queue" },
+            ].map((row, i, arr) => (
+              <div key={row.feature} className="grid" style={{ gridTemplateColumns: "30% 35% 35%", borderBottom: i < arr.length - 1 ? "1px solid #E2E8F0" : undefined }}>
+                <div className="px-5 py-4">
+                  <span className="text-sm font-semibold" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>{row.feature}</span>
+                </div>
+                <div className="px-5 py-4" style={{ borderLeft: "1px solid #E2E8F0" }}>
+                  <span className="text-sm" style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", color: "#64748B" }}>{row.free}</span>
+                </div>
+                <div className="px-5 py-4" style={{ background: "#EEF2FF", borderLeft: "1px solid #E2E8F0" }}>
+                  <span className="text-sm" style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", color: "#0F172A" }}>{row.pro}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile: stacked cards */}
+          <div className="md:hidden space-y-4">
+            <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6">
+              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", color: "#64748B" }}>Free</p>
+              <p className="text-3xl font-extrabold mb-5" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>&euro;0</p>
+              <ul>
+                {[
+                  ["Application tracker", "Unlimited — Kanban + list view"],
+                  ["AI CV adaptations", "3 / month"],
+                  ["Cover letters", "Included in the 3"],
+                  ["Country intelligence", "All 12 countries"],
+                  ["Export formats", "Copy to clipboard"],
+                  ["AI processing", "Standard"],
+                ].map(([feat, val]) => (
+                  <li key={feat} className="flex justify-between gap-4 py-3 border-b border-[#E2E8F0] last:border-0">
+                    <span className="text-sm font-semibold" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>{feat}</span>
+                    <span className="text-sm text-right" style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", color: "#64748B" }}>{val}</span>
                   </li>
                 ))}
               </ul>
-              <Link
-                href="/auth/signup?plan=pro"
-                className="block text-center font-semibold text-sm px-6 py-3 rounded-xl bg-white hover:bg-white/90 transition-all"
-                style={{ color: "#6366F1" }}
-              >
-                Upgrade to Pro — &euro;9/month
-              </Link>
+            </div>
+            <div className="rounded-2xl border border-indigo-200 p-6" style={{ background: "#EEF2FF" }}>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", color: "#6366F1" }}>Pro</p>
+              <p className="text-3xl font-extrabold mb-5" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>&euro;9<span className="text-base font-normal" style={{ color: "#64748B" }}> / month</span></p>
+              <ul>
+                {[
+                  ["Application tracker", "Unlimited (same)"],
+                  ["AI CV adaptations", "Unlimited — every country, every app"],
+                  ["Cover letters", "Unlimited + tone control"],
+                  ["Follow-up emails", "Unlimited — country-adapted formality"],
+                  ["Country intelligence", "All 12 countries"],
+                  ["Export formats", "PDF + DOCX export"],
+                  ["AI processing", "Priority queue"],
+                ].map(([feat, val]) => (
+                  <li key={feat} className="flex justify-between gap-4 py-3 border-b last:border-0" style={{ borderColor: "rgba(99,102,241,0.2)" }}>
+                    <span className="text-sm font-semibold" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>{feat}</span>
+                    <span className="text-sm text-right" style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", color: "#0F172A" }}>{val}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+            <Link
+              href="/auth/signup"
+              className="w-full sm:w-auto text-center font-semibold text-sm px-8 py-3 rounded-xl border-2 border-[#6366F1] hover:bg-[#EEF2FF] transition-all"
+              style={{ color: "#6366F1" }}
+            >
+              Start free
+            </Link>
+            <Link
+              href="/auth/signup?plan=pro"
+              className="w-full sm:w-auto text-center font-semibold text-sm px-8 py-3 rounded-xl text-white hover:opacity-90 transition-all"
+              style={{ background: "#6366F1" }}
+            >
+              Upgrade to Pro — &euro;9/month
+            </Link>
+          </div>
+          <p className="text-center mt-4 text-[13px] font-medium" style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", color: "#64748B" }}>
+            Cancel anytime. No card required to start.
+          </p>
         </div>
       </section>
 
