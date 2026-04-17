@@ -338,7 +338,7 @@ export default function HomePage() {
 
       {/* ── FAQ ── */}
       <section id="faq" className="py-20 md:py-28 px-4 bg-white">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6366F1" }}>FAQ</p>
             <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A" }}>
@@ -346,7 +346,7 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {FAQS.map((faq) => (
               <div key={faq.q} className="rounded-xl border border-[#E2E8F0] p-6">
                 <h3 className="font-semibold mb-2" style={{ fontFamily: "var(--font-sora), 'Sora', sans-serif", color: "#0F172A", fontSize: "17px" }}>{faq.q}</h3>
