@@ -28,6 +28,21 @@ export async function POST(request: NextRequest) {
     process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
 
+  // Idempotency: skip if we've already processed this event ID.
+  const { error: dedupErr } = await supabase
+    .from("stripe_webhook_events")
+    .insert({ id: event.id });
+
+  if (dedupErr?.code === "23505") {
+    console.log("[Stripe webhook] duplicate event, skipping:", event.id);
+    return new Response("ok", { status: 200 });
+  }
+
+  if (dedupErr) {
+    console.error("[Stripe webhook] dedup insert failed:", dedupErr.message);
+    // Continue anyway — better to risk a duplicate than drop the event entirely.
+  }
+
   try {
     switch (event.type) {
       case "checkout.session.completed": {
