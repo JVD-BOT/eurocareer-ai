@@ -73,22 +73,35 @@ export async function POST(request: NextRequest) {
       profile = data;
     }
 
-    // Monthly reset
-    let creditsUsed = profile?.ai_credits_used ?? 0;
-    if (profile?.ai_credits_month !== currentMonth) {
-      creditsUsed = 0;
-      await supabase
-        .from("profiles")
-        .update({ ai_credits_used: 0, ai_credits_month: currentMonth })
-        .eq("id", user.id);
-    }
-
     const isPro = profile?.plan === "pro";
-    if (!isPro && creditsUsed >= FREE_AI_LIMIT) {
-      return new Response(
-        JSON.stringify({ error: "Monthly AI credit limit reached", upgrade: true, limit: FREE_AI_LIMIT }),
-        { status: 403, headers: { "Content-Type": "application/json" } }
-      );
+
+    if (!isPro) {
+      const { data: creditResult, error: creditErr } = await supabase
+        .rpc("increment_ai_credits", {
+          p_user_id: user.id,
+          p_month: currentMonth,
+          p_limit: FREE_AI_LIMIT,
+        })
+        .single<{ credits_used: number; limit_reached: boolean }>();
+
+      if (creditErr) {
+        console.error("[AI generate] credit RPC failed:", creditErr.message);
+        return new Response(
+          JSON.stringify({ error: "internal server error" }),
+          { status: 500, headers: { "Content-Type": "application/json" } }
+        );
+      }
+
+      if (creditResult?.limit_reached) {
+        return new Response(
+          JSON.stringify({
+            error: "Monthly AI credit limit reached",
+            upgrade: true,
+            limit: FREE_AI_LIMIT,
+          }),
+          { status: 403, headers: { "Content-Type": "application/json" } }
+        );
+      }
     }
 
     // ── Pro daily rate limit (Upstash) ─────────────────────────────────────
@@ -153,27 +166,15 @@ export async function POST(request: NextRequest) {
     const text =
       response.content[0].type === "text" ? response.content[0].text : "";
 
-    // Save generation record and increment credits
-    const [genResult, creditResult] = await Promise.all([
-      supabase.from("ai_generations").insert({
-        user_id: user.id,
-        application_id: applicationId,
-        type,
-        input_tokens: response.usage.input_tokens,
-        output_tokens: response.usage.output_tokens,
-      }),
-      supabase
-        .from("profiles")
-        .update({ ai_credits_used: creditsUsed + 1, ai_credits_month: currentMonth })
-        .eq("id", user.id),
-    ]);
-
-    if (genResult.error || creditResult.error) {
-      // Log server-side only — still return generated content to user
-      if (process.env.NODE_ENV === "development") {
-        console.error("[AI] usage tracking error:", genResult.error, creditResult.error);
-      }
-    }
+    // Save generation record (credits already incremented by increment_ai_credits RPC)
+    const { error: genErr } = await supabase.from("ai_generations").insert({
+      user_id: user.id,
+      application_id: applicationId,
+      type,
+      input_tokens: response.usage.input_tokens,
+      output_tokens: response.usage.output_tokens,
+    });
+    if (genErr) console.error("[AI generate] generation log insert failed:", genErr.message);
 
     return Response.json({ content: text });
   } catch (error: unknown) {
