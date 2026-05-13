@@ -6,12 +6,6 @@ import { Redis } from "@upstash/redis";
 import { buildCVPrompt, buildCoverLetterPrompt, buildFollowUpPrompt, SYSTEM_PROMPT } from "@/lib/ai-prompts";
 import { FREE_AI_LIMIT } from "@/lib/types";
 
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(100, "1 d"),
-  analytics: true,
-});
-
 export async function POST(request: NextRequest) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   const anthropic = new Anthropic({ apiKey });
@@ -99,6 +93,11 @@ export async function POST(request: NextRequest) {
 
     // ── Pro daily rate limit (Upstash) ─────────────────────────────────────
     if (isPro) {
+      const ratelimit = new Ratelimit({
+        redis: Redis.fromEnv(),
+        limiter: Ratelimit.slidingWindow(100, "1 d"),
+        analytics: true,
+      });
       const { success } = await ratelimit.limit(user.id);
       if (!success) {
         return new Response(
