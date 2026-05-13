@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
       case "customer.subscription.updated": {
         const subscription = event.data.object as Stripe.Subscription;
         const customerId = subscription.customer as string;
-        const plan = subscription.status === "active" ? "pro" : "free";
+        const plan = ["active", "trialing", "past_due"].includes(subscription.status) ? "pro" : "free";
         const { error: subUpdateErr } = await supabase
           .from("profiles")
           .update({ plan })
