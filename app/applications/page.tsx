@@ -22,6 +22,11 @@ export default function ApplicationsPage() {
   const [user, setUser] = useState<User | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
   const [selectedApp, setSelectedApp] = useState<Application | null>(null);
+  const [initialView] = useState<"kanban" | "list">(() =>
+    typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
+      ? "list"
+      : "kanban"
+  );
   const router = useRouter();
 
   useEffect(() => {
@@ -122,7 +127,7 @@ export default function ApplicationsPage() {
 
       {/* Main */}
       <main className="px-6 py-6">
-        <Tabs defaultValue="kanban">
+        <Tabs defaultValue={initialView}>
           {/* Top bar */}
           <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
             <div>
