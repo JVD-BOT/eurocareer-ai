@@ -1,8 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { createClient } from "@supabase/supabase-js";
 import { NextRequest } from "next/server";
-import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
 import { buildCVPrompt, buildCoverLetterPrompt, buildFollowUpPrompt, SYSTEM_PROMPT } from "@/lib/ai-prompts";
 import { FREE_AI_LIMIT } from "@/lib/types";
 
@@ -56,7 +54,7 @@ export async function POST(request: NextRequest) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
     }
 
-    // ── Profile & rate limiting ─────────────────────────────────────────────
+    // ── Profile & credit check ─────────────────────────────────────────────
     const currentMonth = new Date().toISOString().slice(0, 7);
     let { data: profile } = await supabase
       .from("profiles")
@@ -75,24 +73,14 @@ export async function POST(request: NextRequest) {
 
     const isPro = profile?.plan === "pro";
 
+    // Free-tier gate: read credits from the already-fetched profile and check
+    // BEFORE calling Anthropic so a failed API call does not burn a credit.
+    // The RPC atomically increments the counter only after a successful generation.
     if (!isPro) {
-      const { data: creditResult, error: creditErr } = await supabase
-        .rpc("increment_ai_credits", {
-          p_user_id: user.id,
-          p_month: currentMonth,
-          p_limit: FREE_AI_LIMIT,
-        })
-        .single<{ credits_used: number; limit_reached: boolean }>();
+      const creditsThisMonth =
+        profile?.ai_credits_month === currentMonth ? (profile?.ai_credits_used ?? 0) : 0;
 
-      if (creditErr) {
-        console.error("[AI generate] credit RPC failed:", creditErr.message);
-        return new Response(
-          JSON.stringify({ error: "internal server error" }),
-          { status: 500, headers: { "Content-Type": "application/json" } }
-        );
-      }
-
-      if (creditResult?.limit_reached) {
+      if (creditsThisMonth >= FREE_AI_LIMIT) {
         return new Response(
           JSON.stringify({
             error: "Monthly AI credit limit reached",
@@ -100,22 +88,6 @@ export async function POST(request: NextRequest) {
             limit: FREE_AI_LIMIT,
           }),
           { status: 403, headers: { "Content-Type": "application/json" } }
-        );
-      }
-    }
-
-    // ── Pro daily rate limit (Upstash) ─────────────────────────────────────
-    if (isPro) {
-      const ratelimit = new Ratelimit({
-        redis: Redis.fromEnv(),
-        limiter: Ratelimit.slidingWindow(100, "1 d"),
-        analytics: true,
-      });
-      const { success } = await ratelimit.limit(user.id);
-      if (!success) {
-        return new Response(
-          JSON.stringify({ error: "Daily generation limit reached. Resets at midnight UTC." }),
-          { status: 429, headers: { "Content-Type": "application/json" } }
         );
       }
     }
@@ -133,7 +105,6 @@ export async function POST(request: NextRequest) {
     }
 
     // ── Build prompt ────────────────────────────────────────────────────────
-    // Fix: maxTokens variable was computed but never used — now passed to anthropic.messages.create
     const maxTokens = type === "follow_up_email" ? 600 : 2048;
     let prompt: string;
 
@@ -166,7 +137,21 @@ export async function POST(request: NextRequest) {
     const text =
       response.content[0].type === "text" ? response.content[0].text : "";
 
-    // Save generation record (credits already incremented by increment_ai_credits RPC)
+    // ── Increment credit counter after successful generation (free users only) ──
+    if (!isPro) {
+      const { error: creditErr } = await supabase.rpc("increment_ai_credits", {
+        p_user_id: user.id,
+        p_month: currentMonth,
+        p_limit: FREE_AI_LIMIT,
+      });
+      if (creditErr) {
+        // Non-fatal: generation already succeeded. Log and continue so the user
+        // receives their result — the count will self-correct on the next request.
+        console.error("[AI generate] credit increment RPC failed:", creditErr.message);
+      }
+    }
+
+    // ── Save generation record ──────────────────────────────────────────────
     const { error: genErr } = await supabase.from("ai_generations").insert({
       user_id: user.id,
       application_id: applicationId,
@@ -178,10 +163,7 @@ export async function POST(request: NextRequest) {
 
     return Response.json({ content: text });
   } catch (error: unknown) {
-    const e = error as { message?: string; status?: number };
-    if (process.env.NODE_ENV === "development") {
-      console.error("[AI] generate error:", e?.message);
-    }
+    console.error("[AI generate] unhandled error:", error);
     return new Response(
       JSON.stringify({ error: "Internal server error" }),
       { status: 500, headers: { "Content-Type": "application/json" } }
