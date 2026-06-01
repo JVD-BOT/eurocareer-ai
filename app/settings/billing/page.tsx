@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,6 +12,9 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Zap, CreditCard, CheckCircle2, XCircle } from "lucide-react";
 import type { User } from "@supabase/supabase-js";
+
+const POLL_INTERVAL_MS = 1500;
+const POLL_MAX_ATTEMPTS = 8;
 
 export default function BillingPage() {
   return (
@@ -27,6 +30,9 @@ function BillingContent() {
   const [loading, setLoading] = useState(true);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [portalLoading, setPortalLoading] = useState(false);
+  const [activating, setActivating] = useState(false);
+  const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const pollAttemptsRef = useRef(0);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -38,16 +44,72 @@ function BillingContent() {
     });
   }, [router]);
 
+  // Handle ?success=1 return from Stripe Checkout.
+  // Show an "activating" state and poll until plan flips to 'pro' — the
+  // webhook is async and typically lands 1–5 s after the redirect.
   useEffect(() => {
-    if (searchParams.get("success") === "1") {
-      toast.success("You're now on Pro! Enjoy unlimited AI generations.");
+    if (searchParams.get("success") !== "1") {
+      if (searchParams.get("canceled") === "1") {
+        toast.info("Checkout canceled. You're still on the free plan.");
+      }
+      return;
     }
-    if (searchParams.get("canceled") === "1") {
-      toast.info("Checkout canceled. You're still on the free plan.");
-    }
+
+    setActivating(true);
+    const activatingToastId = toast.loading("Activating your plan…");
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) return;
+      const userId = session.user.id;
+
+      pollRef.current = setInterval(async () => {
+        pollAttemptsRef.current += 1;
+
+        const { data } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", userId)
+          .maybeSingle();
+
+        if (data?.plan === "pro") {
+          clearInterval(pollRef.current!);
+          pollRef.current = null;
+          setProfile(data as Profile);
+          setActivating(false);
+          setLoading(false);
+          toast.dismiss(activatingToastId);
+          toast.success("You're now on Pro! Enjoy unlimited AI generations.");
+          return;
+        }
+
+        if (pollAttemptsRef.current >= POLL_MAX_ATTEMPTS) {
+          clearInterval(pollRef.current!);
+          pollRef.current = null;
+          if (data) setProfile(data as Profile);
+          setActivating(false);
+          setLoading(false);
+          toast.dismiss(activatingToastId);
+          toast.info(
+            "Payment received — your plan is activating and may take a moment. Refresh in a few seconds."
+          );
+        }
+      }, POLL_INTERVAL_MS);
+    });
+
+    return () => {
+      if (pollRef.current) {
+        clearInterval(pollRef.current);
+        pollRef.current = null;
+      }
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   const loadProfile = async (userId: string) => {
+    // Skip the normal one-shot fetch while polling is active — the poll
+    // will set the profile once it resolves.
+    if (searchParams.get("success") === "1") return;
+
     const { data, error } = await supabase.from("profiles").select("*").eq("id", userId).maybeSingle();
     if (error) {
       console.error("Failed to load billing profile:", error.message);
@@ -104,7 +166,12 @@ function BillingContent() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="w-10 h-10 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
+          {activating && (
+            <p className="text-sm text-muted-foreground">Activating your Pro plan…</p>
+          )}
+        </div>
       </div>
     );
   }
