@@ -75,6 +75,25 @@ export function day7Email(remaining: number) {
   return { subject: "You have free AI generations expiring", html };
 }
 
+export function reactivationEmail() {
+  const html = wrap(`
+    <p style="margin:0 0 16px;">Hi,</p>
+    <p style="margin:0 0 16px;">Quick note from the team behind EuroCareerAI.</p>
+    <p style="margin:0 0 16px;">If you tried the CV adapter or cover letter generator a few weeks back and it threw an error, sorry about that. There was a bug that stopped the AI features from running. It's fixed now, and everything's working the way it should.</p>
+    <p style="margin:0 0 16px;">So if you signed up and didn't get to properly try it, now's a good time. Your free generations are ready to go:</p>
+    <ul style="margin:0 0 20px;padding-left:22px;">
+      <li style="margin-bottom:8px;">Adapt your CV to any of 12 EU country formats</li>
+      <li style="margin-bottom:8px;">Generate cover letters that actually sound human</li>
+      <li style="margin-bottom:8px;">Track your applications in one place</li>
+    </ul>
+    <p style="margin:0 0 24px;">${cta("https://eurocareerai.com/applications", "Try it now")}</p>
+    <p style="margin:0 0 16px;">You get 3 free AI generations a month. If you end up using it a lot, Pro is &euro;9/month for unlimited, but the free tier is plenty to see if it's useful.</p>
+    <p style="margin:0 0 16px;">Any issues or feedback, just reply to this email and it'll come through to us.</p>
+    <p style="margin:0;">Cheers,<br />EuroCareerAI</p>
+  `);
+  return { subject: "the AI tools are working properly now", html };
+}
+
 export async function sendEmail(opts: { to: string; subject: string; html: string }) {
   return client().emails.send({
     from: FROM,
