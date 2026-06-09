@@ -24,6 +24,18 @@ export async function GET(request: NextRequest) {
   // Safety guard: only actually send with ?confirm=yes. Otherwise dry-run.
   const confirm = request.nextUrl.searchParams.get("confirm") === "yes";
 
+  // Optional ?only=<email> — safe test send to a single address. Bypasses the
+  // profiles loop entirely and never writes a dedup stamp, so it can be re-run.
+  const only = request.nextUrl.searchParams.get("only");
+  if (only) {
+    if (!confirm) {
+      return Response.json({ wouldTestSend: only, dryRun: true });
+    }
+    const { subject, html } = reactivationEmail();
+    await sendEmail({ to: only, subject, html });
+    return Response.json({ testSent: true, to: only });
+  }
+
   const admin = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!
