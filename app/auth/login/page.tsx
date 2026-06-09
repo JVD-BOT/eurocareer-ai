@@ -18,7 +18,9 @@ export default function LoginPage() {
 
   const getRedirectPath = () => {
         const params = new URLSearchParams(window.location.search);
-        return params.get("redirect") || "/dashboard";
+        const raw = params.get("redirect") || "";
+        const isSafe = raw.startsWith("/") && !raw.startsWith("//") && !raw.startsWith("/\\");
+        return isSafe ? raw : "/dashboard";
   };
 
   const handleLogin = async (e: React.FormEvent) => {
